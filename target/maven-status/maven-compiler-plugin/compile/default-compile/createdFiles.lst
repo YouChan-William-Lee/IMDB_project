@@ -1,0 +1,16 @@
+app\controller\utils\HerokuUtil.class
+app\controller\paths\Template.class
+app\Main.class
+app\dao\UserDao.class
+app\model\Show.class
+app\controller\localisation\Filters.class
+app\controller\ShowController.class
+app\controller\UserController.class
+app\controller\utils\RequestUtil.class
+app\controller\IndexController.class
+app\controller\utils\ViewUtil.class
+app\dao\ShowDao.class
+app\model\User.class
+app\controller\localisation\MessageBundle.class
+app\controller\LoginController.class
+app\controller\paths\Web.class
