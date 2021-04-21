@@ -9,3 +9,5 @@
 #* @vtlvariable name="authenticationFailed" type="java.lang.String" *#
 #* @vtlvariable name="authenticationSucceeded" type="java.lang.String" *#
 #* @vtlvariable name="loginRedirect" type="java.lang.String" *#
+#* @vtlvariable name="duplicationCheckFailed" type="java.lang.String" *#
+#* @vtlvariable name="duplicationCheckSucceeded" type="java.lang.String" *#

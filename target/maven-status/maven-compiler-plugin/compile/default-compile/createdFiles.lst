@@ -10,6 +10,7 @@ app\controller\utils\RequestUtil.class
 app\controller\IndexController.class
 app\controller\utils\ViewUtil.class
 app\dao\ShowDao.class
+app\controller\SigninController.class
 app\model\User.class
 app\controller\localisation\MessageBundle.class
 app\controller\LoginController.class

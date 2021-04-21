@@ -45,7 +45,7 @@ public class LoginController {
     // The origin of the request (request.pathInfo()) is saved in the session so
     // the user can be redirected back after login
     public static Handler ensureLoginBeforeViewingShows = ctx -> {
-        if (!ctx.path().startsWith("/books")) {
+        if (!ctx.path().startsWith("/shows")) {
             return;
         }
         if (ctx.sessionAttribute("currentUser") == null) {

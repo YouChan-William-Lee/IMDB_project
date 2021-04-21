@@ -10,15 +10,20 @@
 <header>
     <nav>
         <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
-        <ul id="chooseLanguage">
-            <form>
-                <li>
-                    <button name="locale" value="de" style="background-image: url(/img/german.png);"></button>
-                </li>
-                <li>
-                    <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
-                </li>
-            </form>
+##        <ul id="chooseLanguage">
+##            <form>
+##                <li>
+##                    <button name="locale" value="de" style="background-image: url(/img/german.png);"></button>
+##                </li>
+##                <li>
+##                    <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
+##                </li>
+##            </form>
+##        </ul>
+        <ul id="currentuser">
+            #if($currentUser)
+                <p style="color:White">$currentUser</p>
+            #end
         </ul>
         <ul id="menu">
             <li><a href="/shows">$msg.get("COMMON_NAV_ALLSHOWS")</a></li>
@@ -30,6 +35,7 @@
                 </li>
             #else
                 <li><a href="/login">$msg.get("COMMON_NAV_LOGIN")</a></li>
+                <li><a href="/signin">$msg.get("COMMON_NAV_SIGNIN")</a></li>
             #end
         </ul>
     </nav>

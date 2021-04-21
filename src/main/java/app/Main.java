@@ -1,5 +1,6 @@
 package app;
 
+import app.controller.SigninController;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
@@ -40,8 +41,10 @@ public class Main {
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
             get(Web.LOGIN, LoginController.serveLoginPage);
+            get(Web.SIGNIN, SigninController.serveSigninPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
+            post(Web.SIGNIN, SigninController.handleSigninPost);
         });
 
         app.error(404, ViewUtil.notFound);

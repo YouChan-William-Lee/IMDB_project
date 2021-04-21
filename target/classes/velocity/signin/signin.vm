@@ -1,0 +1,22 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form id="signinForm" method="post">
+    #if($duplicationCheckFailed)
+        <p class="bad notification">$msg.get("SIGNIN_FAILED")</p>
+    #elseif($duplicationCheckSucceeded)
+        <p class="good notification">$msg.get("SIGNIN_SUCCEEDED", $currentUser)</p>
+    #elseif($loggedOut)
+        <p class="notification">$msg.get("LOGIN_LOGGED_OUT")</p>
+    #end
+    <h1>$msg.get("SIGNIN_HEADING")</h1>
+    <p>$msg.get("SIGNIN_INSTRUCTIONS", "/index")</p>
+    <label>$msg.get("SIGNIN_LABEL_USERNAME")</label>
+    <input type="text" name="username" placeholder="$msg.get("SIGNIN_LABEL_USERNAME")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_PASSWORD")</label>
+    <input type="password" name="password" placeholder="$msg.get("SIGNIN_LABEL_PASSWORD")" value="" required>
+    #if($loginRedirect)
+        <input type="hidden" name="loginRedirect" value="$loginRedirect">
+    #end
+    <input type="submit" value="$msg.get("SIGNIN_BUTTON_LOGIN")">
+</form>
+#end

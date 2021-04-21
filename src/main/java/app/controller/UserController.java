@@ -25,6 +25,17 @@ public class UserController {
         return hashedPassword.equals(user.hashedPassword);
     }
 
+    public static boolean duplicationCheck(String username) {
+        if (username == null) {
+            return false;
+        }
+        User user = userDao.getUserByUsername(username);
+        if (user == null) {
+            return true;
+        }
+        return false;
+    }
+
 
     // This method doesn't do anything, it's just included as an example
     public static void setPassword(String username, String oldPassword, String newPassword) {
@@ -33,5 +44,14 @@ public class UserController {
             String newHashedPassword = BCrypt.hashpw(newSalt, newPassword);
             // Update the user salt and password
         }
+    }
+
+    public static void newUser(String username, String password) {
+
+        String newSalt = BCrypt.gensalt();
+        String hashedPassword = BCrypt.hashpw(password, newSalt);
+
+        User user = new User(username, newSalt, hashedPassword);
+        userDao.updateUsersList(user);
     }
 }

@@ -286,3 +286,56 @@ a .bookCover img {
 .bad.notification {
     background: #bb0000;
 }
+
+/* Signin Form */
+
+#SigninForm {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#SigninForm label {
+    display: block;
+    width: 100%
+}
+
+#SigninForm input {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    width: 100%;
+    border-radius: 3px;
+    margin: 2px 0 20px 0;
+}
+
+#SigninForm input[type="submit"] {
+    color: white;
+    background: #274555;
+    border: 0;
+    cursor: pointer;
+}
+
+.notification {
+    padding: 10px;
+    background: #333;
+    color: white;
+    border-radius: 3px;
+}
+
+.good.notification {
+    background: #008900;
+}
+
+.bad.notification {
+    background: #bb0000;
+}
+
+/* Current User */
+#currentuser {
+    top: -5px;
+    right: 35px;
+    position: absolute;
+}
+
+#currentuser li {
+    float: right;
+}
