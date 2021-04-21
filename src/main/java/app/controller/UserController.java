@@ -46,12 +46,12 @@ public class UserController {
         }
     }
 
-    public static void newUser(String username, String password) {
+    public static void newUser(String username, String password, String email, String country, String gender, String firstname, String lastname) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        User user = new User(username, newSalt, hashedPassword);
+        User user = new User(username, newSalt, hashedPassword, email, country, gender, firstname, lastname);
         userDao.updateUsersList(user);
     }
 }

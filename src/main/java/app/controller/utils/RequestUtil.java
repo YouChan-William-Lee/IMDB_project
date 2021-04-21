@@ -21,6 +21,26 @@ public class RequestUtil {
         return ctx.formParam("password");
     }
 
+    public static String getQueryFirstName(Context ctx) {
+        return ctx.formParam("firstname");
+    }
+
+    public static String getQueryLastName(Context ctx) {
+        return ctx.formParam("lastname");
+    }
+
+    public static String getQueryEmail(Context ctx) {
+        return ctx.formParam("email");
+    }
+
+    public static String getQueryGender(Context ctx) {
+        return ctx.formParam("gender");
+    }
+
+    public static String getQueryCountry(Context ctx) {
+        return ctx.formParam("country");
+    }
+
     public static String getQueryLoginRedirect(Context ctx) {
         return ctx.queryParam("loginRedirect");
     }
