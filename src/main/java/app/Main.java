@@ -3,12 +3,33 @@ package app;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
+import java.sql.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
         Javalin app = Javalin.create().start(3000);
         app.get("/", ctx -> ctx.result("Hello world!"));
+
+        String url="jdbc:mysql://localhost:3306/SEF";
+        String user = "root";
+        String password = "jhD@13052001";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+
+            ResultSet set = statement.executeQuery("SELECT * FROM person");
+//            System.out.println("Successful " + set.);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+
 
         // Instantiate your dependencies
 //        bookDao = new BookDao();
