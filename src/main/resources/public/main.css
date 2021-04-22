@@ -122,7 +122,7 @@ footer {
     font-size: 14px;
 }
 
-nav ul, nav li {
+ul, nav li {
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -338,4 +338,15 @@ a .bookCover img {
 
 #currentuser li {
     float: right;
+}
+
+#button_logout {
+    height: 35px;
+    padding: 19% 10% 10% 10%;
+    background: transparent;
+    cursor: pointer;
+    border: 0;
+    font-size: 16px;
+    color: #fff;
+
 }
