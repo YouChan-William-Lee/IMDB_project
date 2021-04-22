@@ -1,0 +1,73 @@
+#macro(mainLayout)
+<html>
+<head>
+    <title>$msg.get("COMMON_TITLE")</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="icon" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <nav>
+##        <ul id="chooseLanguage">
+##            <form>
+##                <li>
+##                    <button name="locale" value="de" style="background-image: url(/img/german.png);"></button>
+##                </li>
+##                <li>
+##                    <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
+##                </li>
+##            </form>
+##        </ul>
+
+
+        <table width="800px">
+            <tr>
+                <td>
+                    <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
+                </td>
+                <td valign="bottom">
+                    <form>
+                        <select >
+                            <option selected="selected">All</option>
+                            <option>Titles</option>
+                            <option>Celebs</option>
+                        </select>
+                        <input type="text" class="input_text" placeholder="search IMDB "/>
+                        <input type="submit" value="search" class="input_sub"/>
+                    </form>
+                </td>
+                <td width="15%" align="center">
+                    <a style="color:White" href="/shows">$msg.get("COMMON_NAV_ALLSHOWS")</a>
+                </td>
+                <td width="12%" align="center">
+                    #if($currentUser)
+                        <p style="color:pink">$currentUser</p>
+                    #else
+                        <a style="color:White" href="/login">$msg.get("COMMON_NAV_LOGIN")</a>
+                    #end
+                </td>
+                <td width="12%" align="center">
+                    #if($currentUser)
+                        <form method="post" action="/logout">
+                            <button id="button_logout">$msg.get("COMMON_NAV_LOGOUT")</button>
+                        </form>
+                    #else
+                        <a style="color:White" href="/signin">$msg.get("COMMON_NAV_SIGNIN")</a>
+                    #end
+                </td>
+            </tr>
+        </table>
+    </nav>
+</header>
+<main>
+    <div id="content">
+        $bodyContent
+    </div>
+</main>
+<footer>
+    $msg.get("COMMON_FOOTER_TEXT")
+</footer>
+</body>
+</html>
+#end
