@@ -9,8 +9,8 @@ public class RequestUtil {
         return ctx.queryParam("locale");
     }
 
-    public static String getParamIsbn(Context ctx) {
-        return ctx.pathParam("isbn");
+    public static String getParamShowId(Context ctx) {
+        return ctx.pathParam("showId");
     }
 
     public static String getQueryUsername(Context ctx) {

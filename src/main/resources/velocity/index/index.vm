@@ -12,10 +12,10 @@
     <h2>$msg.get("INDEX_SHOW_OF_THE_DAY_TEXT")</h2>
     <div class="row row-2">
         <div class="col">
-            <a href="/shows/$show.isbn">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.title, $show.author)</a>
+            <a href="/shows/$show.showId">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.showTitle)</a>
         </div>
         <div class="col">
-            <img src="$show.largeCover" alt="$show.title">
+            <img src="$show.largeCover" alt="$show.showTitle">
         </div>
     </div>
     #end

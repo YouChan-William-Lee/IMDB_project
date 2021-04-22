@@ -9,26 +9,20 @@ import com.google.common.collect.ImmutableList;
 public class ShowDao {
 
     private final List<Show> shows = ImmutableList.of(
-            new Show("Moby Dick", "Herman Melville", "9789583001215"),
-            new Show("A Christmas Carol", "Charles Dickens", "9780141324524"),
-            new Show("Pride and Prejudice", "Jane Austen", "9781936594290"),
-            new Show("The Fellowship of The Ring", "J. R. R. Tolkien", "0007171978"),
-            new Show("Harry Potter", "J. K. Rowling", "0747532699"),
-            new Show("War and Peace", "Leo Tolstoy", "9780060798871"),
-            new Show("Don Quixote", "Miguel Cervantes", "9789626345221"),
-            new Show("Ulysses", "James Joyce", "9780394703800"),
-            new Show("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565"),
-            new Show("One Hundred Years of Solitude", "Gabriel Garcia Marquez", "9780060531041"),
-            new Show("The adventures of Huckleberry Finn", "Mark Twain", "9781591940296"),
-            new Show("Alice In Wonderland", "Lewis Carrol", "9780439291491")
+            new Show(1,"Star Wars: Episode I - The Phantom Menace", "Action",2.16,1,0,9,1999,"https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"),
+            new Show(2,"Star Wars: Episode II - Attack of The Clones","Action",2.22,1,0,9,2002,"https://images-na.ssl-images-amazon.com/images/I/91WTnoEb7RL._RI_.jpg"),
+            new Show(3,"Star Wars: Episode III - Revenge of The Sith","Action",2.20,1,0,9,2005,"https://i.pinimg.com/originals/9d/6a/23/9d6a232c628e4aaaecfaf3dbdb1d9653.jpg"),
+            new Show(4,"Star Wars: Episode V - The Empire Strikes Back","Action",2.07,1,0,9,1980,"https://static.wikia.nocookie.net/scratchpad/images/8/89/ESB_New_Poster.jpg/revision/latest?cb=20210319170027"),
+            new Show(5,"Star Wars: Episode IX - The Rise of Skywalker","Action",2.22,1,0,9,2019,"https://lumiere-a.akamaihd.net/v1/images/star-wars-the-rise-of-skywalker-theatrical-poster-1000_ebc74357.jpeg?region=0%2C0%2C891%2C1372")
     );
 
     public Iterable<Show> getAllShows() {
         return shows;
     }
 
-    public Show getShowByIsbn(String isbn) {
-        return shows.stream().filter(b -> b.isbn.equals(isbn)).findFirst().orElse(null);
+    public Show getShowByShowId(String showId) {
+        int showID = Integer.parseInt(showId);
+        return shows.stream().filter(b -> b.showId == showID).findFirst().orElse(null);
     }
 
     public Show getRandomShow() {

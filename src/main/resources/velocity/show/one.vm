@@ -1,11 +1,15 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show)
-    <h1>$show.title</h1>
-    <h2>$show.author</h2>
+    <h1><b>$show.showTitle</b></h1>
+    <h2>Genre: $show.genre</h2>
+    <h2>Length: $show.getLengthHour()h $show.getLengthMinute()m</h2>
+    <h2>Series: $show.series</h2>
+    <h2>Released year: $show.year</h2>
+
     <div class="show">
-        <div class="bookCover">
-            <img src="$show.largeCover" alt="$show.title">
+        <div class="showCover">
+            <img src="$show.largeCover" alt="$show.showTitle">
         </div>
     </div>
     #else

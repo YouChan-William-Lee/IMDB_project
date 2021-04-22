@@ -225,21 +225,21 @@ a.show:hover {
     background: #e2e9f5;
 }
 
-a .bookCover {
+a .showCover {
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-a .bookCover img {
+a .showCover img {
     border-radius: 5px;
     min-height: 200px;
     max-height: 200px;
     width: auto;
 }
 
-.bookCover img {
+.showCover img {
     margin-top: 20px;
     border-radius: 10px;
     width: 100%;
