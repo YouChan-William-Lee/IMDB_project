@@ -33,6 +33,10 @@ public class RequestUtil {
         return ctx.formParam("gender");
     }
 
+    public static String getQueryTypeOfUser(Context ctx){
+        return  ctx.formParam("typeofuser");
+    }
+
     public static String getQueryCountry(Context ctx) {
         return ctx.formParam("country");
     }

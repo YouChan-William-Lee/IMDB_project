@@ -26,6 +26,11 @@
         <option value="Female">Female</option>
         <option value="Other">Other</option>
     </select>
+    <label>$msg.get("SIGNIN_LABEL_TYPEOFUSER")</label>
+    <select id="type of user" name="type of user">
+        <option value="RegularUser" >Regular User</option>
+        <option value="PCoUser" >PCo User</option>
+    </select>
     <br>
     <br>
     <label>$msg.get("SIGNIN_LABEL_COUNTRY")</label>

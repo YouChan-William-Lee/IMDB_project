@@ -30,7 +30,7 @@ public class UserController {
     public static Handler serveProfileEditPagePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
-        user.updateUserInfo(getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryCountry(ctx));
+        user.updateUserInfo(getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryTypeOfUser(ctx), getQueryCountry(ctx));
         model.put("saveSuccess", true);
         model.put("user", user);
         ctx.render(Template.USEREDIT, model);
@@ -71,12 +71,12 @@ public class UserController {
         }
     }
 
-    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String country) {
+    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender,String typeofuser, String country) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        User user = new User(username, newSalt, hashedPassword, firstname, lastname, email, gender, country);
+        User user = new User(username, newSalt, hashedPassword, firstname, lastname, email, gender,typeofuser, country);
         userDao.updateUsersList(user);
     }
 }

@@ -17,7 +17,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: monospace;
+    font-family: inherit;
     font-weight: 300;
     color: #444;
 }
@@ -27,8 +27,8 @@ small {
 }
 
 header {
-    background: #274555;
-    border-bottom: 5px solid #008ab4;
+    background: #121212;
+    border-bottom: 5px solid;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, .6);
 }
 
@@ -118,7 +118,7 @@ footer {
     width: 100%;
     text-align: center;
     background: #fff;
-    border-top: 1px solid #008ab4;
+    border-top: 1px solid #121212;
     font-size: 14px;
 }
 
@@ -265,9 +265,10 @@ a .showCover img {
     margin: 2px 0 20px 0;
 }
 
+
 #loginForm input[type="submit"] {
-    color: white;
-    background: #274555;
+    color: black;
+    background: #f5c518;
     border: 0;
     cursor: pointer;
 }
@@ -291,14 +292,19 @@ a .showCover img {
 
 #SigninForm {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
-#SigninForm label {
+#SigninForm label  {
     display: block;
-    width: 100%
+    width: 100%;
+    margin:  10px auto;
 }
-
+#SigninForm select{
+    display: block;
+    width: 100%;
+    margin: 10px 10px auto;
+}
 #SigninForm input {
     border: 1px solid #ddd;
     padding: 8px 12px;
@@ -308,8 +314,8 @@ a .showCover img {
 }
 
 #SigninForm input[type="submit"] {
-    color: white;
-    background: #274555;
+    color: black;
+    background: #f5c518;
     border: 0;
     cursor: pointer;
 }
