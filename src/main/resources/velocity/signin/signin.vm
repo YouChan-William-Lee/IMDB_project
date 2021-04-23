@@ -15,9 +15,9 @@
     <label>$msg.get("SIGNIN_LABEL_PASSWORD")</label>
     <input type="password" name="password" placeholder="$msg.get("SIGNIN_LABEL_PASSWORD")" value="" required>
     <label>$msg.get("SIGNIN_LABEL_FIRSTNAME")</label>
-    <input type="text" name="first name" placeholder="$msg.get("SIGNIN_LABEL_FIRSTNAME")" value="" required>
+    <input type="text" name="firstname" placeholder="$msg.get("SIGNIN_LABEL_FIRSTNAME")" value="" required>
     <label>$msg.get("SIGNIN_LABEL_LASTNAME")</label>
-    <input type="text" name="last name" placeholder="$msg.get("SIGNIN_LABEL_LASTNAME")" value="" required>
+    <input type="text" name="lastname" placeholder="$msg.get("SIGNIN_LABEL_LASTNAME")" value="" required>
     <label>$msg.get("SIGNIN_LABEL_EMAIL")</label>
     <input type="text" name="email" placeholder="$msg.get("SIGNIN_LABEL_EMAIL")" value="" required>
     <label>$msg.get("SIGNIN_LABEL_GENDER")</label>

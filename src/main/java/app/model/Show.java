@@ -12,14 +12,6 @@ public class Show {
     public final int year;
     public final String imageAddress;
 
-    public String getMediumCover() {
-        return this.imageAddress;
-    }
-
-    public String getLargeCover() {
-        return this.imageAddress;
-    }
-
     public Show(int showId, String showTitle, String genre, double length, int movie, int series, int procoId, int year, String imageAddress) {
         this.showId = showId;
         this.showTitle = showTitle;
@@ -45,4 +37,8 @@ public class Show {
     public String getYear() { return String.valueOf(year); }
 
     public int getShowId() { return showId; }
+
+    public String getCover() {
+        return this.imageAddress;
+    }
 }

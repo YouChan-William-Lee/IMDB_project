@@ -5,27 +5,23 @@ import io.javalin.http.Context;
 
 public class RequestUtil {
 
-    public static String getQueryLocale(Context ctx) {
-        return ctx.queryParam("locale");
-    }
+    public static String getQueryLocale(Context ctx) { return ctx.queryParam("locale"); }
 
-    public static String getParamShowId(Context ctx) {
-        return ctx.pathParam("showId");
-    }
+    public static String getParamShowId(Context ctx) { return ctx.pathParam("showId"); }
 
-    public static String getQueryUsername(Context ctx) {
-        return ctx.formParam("username");
-    }
+    public static String getParamUsername(Context ctx) { return ctx.pathParam("username"); }
+
+    public static String getQueryUsername(Context ctx) { return ctx.formParam("username"); }
 
     public static String getQueryPassword(Context ctx) {
         return ctx.formParam("password");
     }
 
-    public static String getQueryFirstName(Context ctx) {
+    public static String getQueryFirstname(Context ctx) {
         return ctx.formParam("firstname");
     }
 
-    public static String getQueryLastName(Context ctx) {
+    public static String getQueryLastname(Context ctx) {
         return ctx.formParam("lastname");
     }
 

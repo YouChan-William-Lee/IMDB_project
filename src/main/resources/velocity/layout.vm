@@ -9,18 +9,6 @@
 <body>
 <header>
     <nav>
-##        <ul id="chooseLanguage">
-##            <form>
-##                <li>
-##                    <button name="locale" value="de" style="background-image: url(/img/german.png);"></button>
-##                </li>
-##                <li>
-##                    <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
-##                </li>
-##            </form>
-##        </ul>
-
-
         <table width="800px">
             <tr>
                 <td>
@@ -33,7 +21,7 @@
                             <option>Titles</option>
                             <option>Celebs</option>
                         </select>
-                        <input type="text" class="input_text" placeholder="search IMDB "/>
+                        <input type="text" class="input_text" placeholder="search IMDB"/>
                         <input type="submit" value="search" class="input_sub"/>
                     </form>
                 </td>
@@ -42,7 +30,7 @@
                 </td>
                 <td width="12%" align="center">
                     #if($currentUser)
-                        <p style="color:pink">$currentUser</p>
+                        <a style="color:pink" href="/user/$currentUser">$currentUser</a>
                     #else
                         <a style="color:White" href="/login">$msg.get("COMMON_NAV_LOGIN")</a>
                     #end

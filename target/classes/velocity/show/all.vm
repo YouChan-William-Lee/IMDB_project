@@ -6,10 +6,10 @@
         <div class="col">
             <a class="show" href="/shows/$show.showId">
                 <div class="showCover">
-                    <img src="$show.mediumCover" alt="$show.showTitle">
+                    <img src="$show.Cover" alt="$show.showTitle">
                 </div>
                 $msg.get("SHOWS_CAPTION", $show.showTitle)
-                <h3>$show.year</h3>
+                <h2>$show.year</h2>
             </a>
         </div>
     #end

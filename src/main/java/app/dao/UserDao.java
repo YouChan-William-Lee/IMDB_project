@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import app.model.Show;
 import app.model.User;
 import com.google.common.collect.ImmutableList;
 
@@ -23,6 +24,10 @@ public class UserDao {
 
     public Iterable<String> getAllUserNames() {
         return users.stream().map(user -> user.username).collect(Collectors.toList());
+    }
+
+    public Iterable<User> getAllUsers() {
+        return users;
     }
 
     public void updateUsersList(User user) {

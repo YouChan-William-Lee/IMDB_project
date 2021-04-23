@@ -15,7 +15,7 @@
             <a href="/shows/$show.showId">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.showTitle)</a>
         </div>
         <div class="col">
-            <img src="$show.largeCover" alt="$show.showTitle">
+            <img src="$show.Cover" alt="$show.showTitle">
         </div>
     </div>
     #end

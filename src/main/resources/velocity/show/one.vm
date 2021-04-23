@@ -9,7 +9,7 @@
 
     <div class="show">
         <div class="showCover">
-            <img src="$show.largeCover" alt="$show.showTitle">
+            <img src="$show.Cover" alt="$show.showTitle">
         </div>
     </div>
     #else

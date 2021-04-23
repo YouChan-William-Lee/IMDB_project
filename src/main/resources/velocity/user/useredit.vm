@@ -1,0 +1,32 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form id="signinForm" method="post">
+    #if($currentUser)
+        #if($saveSuccess)
+            <p class="good notification">$msg.get("USERINFO_SAVED")</p>
+        #end
+        <label>$msg.get("SIGNIN_LABEL_FIRSTNAME")</label>
+        <input type="text" name="firstname" placeholder="$msg.get("SIGNIN_LABEL_FIRSTNAME")" value="" required>
+        <label>$msg.get("SIGNIN_LABEL_LASTNAME")</label>
+        <input type="text" name="lastname" placeholder="$msg.get("SIGNIN_LABEL_LASTNAME")" value="" required>
+        <label>$msg.get("SIGNIN_LABEL_EMAIL")</label>
+        <input type="text" name="email" placeholder="$msg.get("SIGNIN_LABEL_EMAIL")" value="" required>
+        <label>$msg.get("SIGNIN_LABEL_GENDER")</label>
+        <select id="genders" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
+        <br>
+        <label>$msg.get("SIGNIN_LABEL_COUNTRY")</label>
+        <input type="text" name="country" placeholder="$msg.get("SIGNIN_LABEL_COUNTRY")" value="" required>
+        <br>
+        <form id="signinForm">
+            <input type="submit" value="$msg.get("USERINFO_SAVE")">
+        </form>
+    #else
+    <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
+    #end
+</form>
+#end
