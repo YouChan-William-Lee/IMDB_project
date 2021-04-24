@@ -1,6 +1,7 @@
 package app;
 
 import app.controller.*;
+import app.dao.Model;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
@@ -19,7 +20,6 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 public class Main {
     public static ShowDao showDao;
     public static UserDao userDao;
-    public static Connection conn;
 
     public static void main(String[] args) {
 
@@ -27,26 +27,7 @@ public class Main {
         String user = "root";
         String password = "jainamdoshi";
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, user, password);
-
-            System.out.println("Connection: " + url);
-
-            Statement statement = connection.createStatement();
-//            statement.execute(query);
-            ResultSet rs = statement.executeQuery("SELECT * FROM person");
-//            rs.beforeFirst();
-            rs.next();
-            System.out.println(rs.getString(2));
-            rs.next();
-            System.out.println(rs.getString(2));
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        Model.connectToDatabase(url, user, password);
 
         // Instantiate your dependencies
         showDao = new ShowDao();
@@ -60,7 +41,7 @@ public class Main {
         app.routes(() -> {
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingShows);
-            get(Web.INDEX, IndexController.serveIndexPage);
+//            get(Web.INDEX, IndexController.serveIndexPage);
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
             get(Web.LOGIN, LoginController.serveLoginPage);

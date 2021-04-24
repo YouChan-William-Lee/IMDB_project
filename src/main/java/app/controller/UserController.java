@@ -2,9 +2,12 @@ package app.controller;
 
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
+import app.model.Users.CriticsUser;
+import app.model.Users.PCOUser;
+import app.model.Users.RegularUser;
 import io.javalin.http.Handler;
 import java.util.Map;
-import app.model.User;
+import app.model.Users.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import static app.Main.*;
@@ -76,7 +79,16 @@ public class UserController {
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        User user = new User(username, newSalt, hashedPassword, firstname, lastname, email, gender,typeofuser, country);
-        userDao.updateUsersList(user);
+        User user = null;
+        if (typeofuser.equals("regularUser")) {
+            userDao.addRegularUser(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
+        } else if (typeofuser.equals("PCoUser")) {
+            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, null, null));
+        } else if (typeofuser.equals("criticsUser")) {
+            userDao.addCriticsUser(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, null, null));
+
+        }
+
+//        userDao.updateUsersList(user);
     }
 }

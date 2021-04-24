@@ -1,6 +1,6 @@
-package app.model;
+package app.model.Users;
 
-public class User {
+public class User implements UserInterface {
     public final String username;
     public String salt;
     public String hashedPassword;
@@ -8,10 +8,10 @@ public class User {
     public String lastname;
     public String email;
     public String gender;
-    public String typeofuser;
+//    public String typeofuser;
     public String country;
 
-    public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender,String typeofuser, String country) {
+    public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender, String country) {
         this.username = username;
         this.salt = salt;
         this.hashedPassword = hashedPassword;
@@ -19,7 +19,7 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.gender = gender;
-        this.typeofuser = typeofuser;
+//        this.typeofuser = typeofuser;
         this.country = country;
     }
 
@@ -28,7 +28,7 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.gender = gender;
-        this.typeofuser = typeofuser;
+//        this.typeofuser = typeofuser;
         this.country = country;
     }
 
@@ -42,7 +42,7 @@ public class User {
 
     public String getGender() { return gender; }
 
-    public String getTypeofuser() {return typeofuser;}
+//    public String getTypeofuser() {return typeofuser;}
 
     public String getCountry() { return country; }
 }
