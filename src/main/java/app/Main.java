@@ -36,47 +36,20 @@ public class Main {
 
             System.out.println("Connection: " + url);
 
-//            String query = "Insert into student(id, name) values(101, 'ram')";
             Statement statement = connection.createStatement();
 //            statement.execute(query);
             ResultSet rs = statement.executeQuery("SELECT * FROM person");
 //            rs.beforeFirst();
             rs.next();
-            System.out.println(rs.getString(3));
+            System.out.println(rs.getString(2));
+            rs.next();
+            System.out.println(rs.getString(2));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch(SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-//        Javalin app = Javalin.create().start(3000);
-//        app.get("/", ctx -> ctx.result("Hello world!"));
-
-//        try {
-//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/imdb?" + "user=root&password=jainamdoshi");
-//
-////            conn.setSchema("Test");
-//
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs;
-//
-//            System.out.println("Connection: " + conn.getSchema());
-//
-////            if (stmt.execute("SELECT * FROM person")) {
-////                rs = stmt.getResultSet();
-////                System.out.println("Connection: " + rs);
-////            }
-//            // Do something with the Connection
-//
-//        } catch (SQLException ex) {
-//            // handle any errors
-//            System.out.println("SQLException: " + ex.getMessage());
-//            System.out.println("SQLState: " + ex.getSQLState());
-//            System.out.println("VendorError: " + ex.getErrorCode());
-//        }
-
 
         // Instantiate your dependencies
         showDao = new ShowDao();
