@@ -3,7 +3,7 @@
 #* @vtlvariable name="msg" type="app.controller.localisation.MessageBundle" *#
 #* @vtlvariable name="shows" type="java.lang.Iterable<app.model.Show>" *#
 #* @vtlvariable name="show" type="app.model.Show" *#
-#* @vtlvariable name="users" type="java.lang.Iterable<app.model.User>" *#
+#* @vtlvariable name="users" type="java.lang.Iterable<app.model.Users.User>" *#
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
 #* @vtlvariable name="loggedOut" type="java.lang.String" *#
 #* @vtlvariable name="authenticationFailed" type="java.lang.String" *#

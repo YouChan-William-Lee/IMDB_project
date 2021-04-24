@@ -1,6 +1,7 @@
 package app;
 
 import app.controller.*;
+import app.dao.Model;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
@@ -9,6 +10,9 @@ import app.controller.localisation.Filters;
 import app.controller.utils.HerokuUtil;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
+
+import java.sql.*;
+
 import static io.javalin.apibuilder.ApiBuilder.before;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
@@ -19,8 +23,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Javalin app = Javalin.create().start(3000);
-//        app.get("/", ctx -> ctx.result("Hello world!"));
+        String url="jdbc:mysql://localhost:3306/imdb";
+        String user = "root";
+        String password = "jainamdoshi";
+
+        Model.connectToDatabase(url, user, password);
 
         // Instantiate your dependencies
         showDao = new ShowDao();
@@ -34,7 +41,7 @@ public class Main {
         app.routes(() -> {
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingShows);
-            get(Web.INDEX, IndexController.serveIndexPage);
+//            get(Web.INDEX, IndexController.serveIndexPage);
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
             get(Web.LOGIN, LoginController.serveLoginPage);
