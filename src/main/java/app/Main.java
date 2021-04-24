@@ -1,13 +1,10 @@
 package app;
 
-import app.controller.SigninController;
+import app.controller.*;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
 import app.dao.UserDao;
-import app.controller.IndexController;
-import app.controller.LoginController;
-import app.controller.ShowController;
 import app.controller.localisation.Filters;
 import app.controller.utils.HerokuUtil;
 import app.controller.paths.Web;
@@ -68,9 +65,12 @@ public class Main {
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
             get(Web.LOGIN, LoginController.serveLoginPage);
             get(Web.SIGNIN, SigninController.serveSigninPage);
+            get(Web.USER, UserController.serveProfilePageGet);
+            get(Web.USEREDIT, UserController.serveProfileEditPageGet);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
             post(Web.SIGNIN, SigninController.handleSigninPost);
+            post(Web.USEREDIT, UserController.serveProfileEditPagePost);
         });
 
         app.error(404, ViewUtil.notFound);

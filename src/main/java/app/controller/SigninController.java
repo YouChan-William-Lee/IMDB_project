@@ -6,6 +6,7 @@ import io.javalin.http.Handler;
 import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.controller.utils.RequestUtil.*;
+import static app.controller.utils.RequestUtil.getQueryTypeOfUser;
 
 public class SigninController {
 
@@ -22,7 +23,7 @@ public class SigninController {
             model.put("duplicationCheckFailed", true);
             ctx.render(Template.SIGNIN, model);
         } else {
-            UserController.newUser(getQueryUsername(ctx), getQueryPassword(ctx), getQueryFirstName(ctx), getQueryLastName(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryCountry(ctx));
+            UserController.newUser(getQueryUsername(ctx), getQueryPassword(ctx), getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx),getQueryTypeOfUser(ctx), getQueryCountry(ctx));
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("duplicationCheckSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));

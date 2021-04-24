@@ -21,7 +21,7 @@ public class ShowController {
 
     public static Handler fetchOneShow = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("show", showDao.getShowByIsbn(getParamIsbn(ctx)));
+        model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
         ctx.render(Template.SHOWS_ONE, model);
     };
 }

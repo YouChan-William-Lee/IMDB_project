@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="imdb-clone" />
+        <module name="team-project-m-7" />
         <module name="IMDB clone" />
       </profile>
     </annotationProcessing>

@@ -1,15 +1,40 @@
 package app.controller;
 
+import app.controller.paths.Template;
+import app.controller.utils.ViewUtil;
+import io.javalin.http.Handler;
+import java.util.Map;
 import app.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import static app.Main.*;
-
-
-
+import static app.controller.utils.RequestUtil.*;
 
 
 public class UserController {
+
+    public static Handler serveProfilePageGet = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
+        model.put("user", user);
+        ctx.render(Template.USER, model);
+    };
+
+    public static Handler serveProfileEditPageGet = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
+        model.put("user", user);
+        ctx.render(Template.USEREDIT, model);
+    };
+
+    public static Handler serveProfileEditPagePost = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
+        user.updateUserInfo(getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryTypeOfUser(ctx), getQueryCountry(ctx));
+        model.put("saveSuccess", true);
+        model.put("user", user);
+        ctx.render(Template.USEREDIT, model);
+    };
 
     // Authenticate the user by hashing the inputted password using the stored salt,
     // then comparing the generated hashed password to the stored hashed password
@@ -46,12 +71,12 @@ public class UserController {
         }
     }
 
-    public static void newUser(String username, String password, String email, String country, String gender, String firstname, String lastname) {
+    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender,String typeofuser, String country) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        User user = new User(username, newSalt, hashedPassword, email, country, gender, firstname, lastname);
+        User user = new User(username, newSalt, hashedPassword, firstname, lastname, email, gender,typeofuser, country);
         userDao.updateUsersList(user);
     }
 }

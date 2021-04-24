@@ -2,23 +2,48 @@ package app.model;
 
 public class User {
     public final String username;
-    public final String salt;
-    public final String hashedPassword;
-    public final String firstname;
-    public final String lastname;
-    public final String email;
-    public final String gender;
-    public final String country;
+    public String salt;
+    public String hashedPassword;
+    public String firstname;
+    public String lastname;
+    public String email;
+    public String gender;
+    public String typeofuser;
+    public String country;
 
-    public User(String username, String salt, String hashedPassword, String email, String country, String gender, String firstname, String lastname) {
+    public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender,String typeofuser, String country) {
         this.username = username;
         this.salt = salt;
         this.hashedPassword = hashedPassword;
-        this.email = email;
-        this.country = country;
-        this.gender = gender;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.email = email;
+        this.gender = gender;
+        this.typeofuser = typeofuser;
+        this.country = country;
     }
+
+    public void updateUserInfo(String firstname, String lastname, String email, String gender,String typeofuser, String country) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.gender = gender;
+        this.typeofuser = typeofuser;
+        this.country = country;
+    }
+
+    public String getUsername() { return username; }
+
+    public String getFirstname() { return firstname; }
+
+    public String getLastname() { return lastname; }
+
+    public String getEmail() { return email; }
+
+    public String getGender() { return gender; }
+
+    public String getTypeofuser() {return typeofuser;}
+
+    public String getCountry() { return country; }
 }
 

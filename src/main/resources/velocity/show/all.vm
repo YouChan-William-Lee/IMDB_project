@@ -4,11 +4,12 @@
 <div class="row row-3">
     #foreach($show in $shows)
         <div class="col">
-            <a class="show" href="/shows/$show.isbn">
-                <div class="bookCover">
-                    <img src="$show.mediumCover" alt="$show.title">
+            <a class="show" href="/shows/$show.showId">
+                <div class="showCover">
+                    <img src="$show.Cover" alt="$show.showTitle">
                 </div>
-                $msg.get("SHOWS_CAPTION", $show.title, $show.author)
+                $msg.get("SHOWS_CAPTION", $show.showTitle)
+                <h2>$show.year</h2>
             </a>
         </div>
     #end

@@ -1,0 +1,16 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($user)
+        <h1><b>$user.username</b></h1>
+        <br>
+        <h2><strong>First Name</strong>: $user.firstname</h2>
+        <h2><strong>Last Name</strong>: $user.lastname</h2>
+        <h2><strong>Email</strong>: $user.email</h2>
+        <h2><strong>Gender</strong>: $user.gender</h2>
+        <h2><strong>Country</strong>: $user.country</h2>
+        <br>
+        <a href="$currentUser/edit">$msg.get("USERINFO_EDIT")</a>
+    #else
+        <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
+    #end
+#end
