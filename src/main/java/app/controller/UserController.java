@@ -79,14 +79,12 @@ public class UserController {
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        User user = null;
         if (typeofuser.equals("regularUser")) {
             userDao.addRegularUser(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         } else if (typeofuser.equals("PCoUser")) {
-            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, null, null));
+            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         } else if (typeofuser.equals("criticsUser")) {
-            userDao.addCriticsUser(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, null, null));
-
+            userDao.addCriticsUser(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         }
 
 //        userDao.updateUsersList(user);

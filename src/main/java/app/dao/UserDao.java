@@ -88,9 +88,27 @@ public class UserDao {
 //        return regularUsers.stream().map(user -> user.username).collect(Collectors.toList());
 //    }
 //
-//    public Iterable<User> getAllUsers() {
-//        return regularUsers;
-//    }
+    public Iterable<User> getAllUsers() {
+        List<User> AllUsers = new ArrayList<User>();
+
+        for (int i = 0; i < regularUsers.size(); i++) {
+            AllUsers.add(regularUsers.get(i));
+        }
+
+        for (int i = 0; i < criticsUsers.size(); i++) {
+            AllUsers.add(criticsUsers.get(i));
+        }
+
+        for (int i = 0; i < PCOUsers.size(); i++) {
+            AllUsers.add(PCOUsers.get(i));
+        }
+
+        for (int i = 0; i < adminUsers.size(); i++) {
+            AllUsers.add(adminUsers.get(i));
+        }
+
+        return AllUsers;
+    }
 //
 //    public void updateUsersList(User user) {
 //        regularUsers.add(user);

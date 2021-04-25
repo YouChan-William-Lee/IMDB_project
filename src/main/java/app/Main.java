@@ -41,7 +41,7 @@ public class Main {
         app.routes(() -> {
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingShows);
-//            get(Web.INDEX, IndexController.serveIndexPage);
+            get(Web.INDEX, IndexController.serveIndexPage);
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
             get(Web.LOGIN, LoginController.serveLoginPage);

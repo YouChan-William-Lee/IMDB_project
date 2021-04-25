@@ -6,7 +6,6 @@ import io.javalin.http.Handler;
 import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.controller.utils.RequestUtil.*;
-import static app.controller.utils.RequestUtil.getQueryTypeOfUser;
 
 public class SigninController {
 

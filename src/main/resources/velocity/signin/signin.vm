@@ -27,7 +27,7 @@
         <option value="Other">Other</option>
     </select>
     <label>$msg.get("SIGNIN_LABEL_TYPEOFUSER")</label>
-    <select id="type of user" name="type of user">
+    <select id="type of user" name="typeofuser">
         <option value="regularUser" >Regular User</option>
         <option value="PCoUser" >Product Company Owner</option>
         <option value="criticsUser" >Critics</option>
