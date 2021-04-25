@@ -15,14 +15,14 @@
                     <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
                 </td>
                 <td valign="bottom">
-                    <form>
-                        <select >
-                            <option selected="selected">All</option>
-                            <option>Titles</option>
-                            <option>Celebs</option>
+                    <form method="post" action="/search">
+                        <select name="searchOption">
+                            ##<option selected="selected" value="All">All</option>
+                            <option selected="selected" value="Titles">Titles</option>
+                            <option value="Actors">Actors</option>
                         </select>
-                        <input type="text" class="input_text" placeholder="search IMDB"/>
-                        <input type="submit" value="search" class="input_sub"/>
+                        <input type="text" name="searchText" class="input_text" placeholder="search IMDB">
+                        <input type="submit" value="search">
                     </form>
                 </td>
                 <td width="15%" align="center">

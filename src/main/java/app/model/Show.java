@@ -51,4 +51,6 @@ public class Show {
     public String getCover() {
         return this.imageAddress;
     }
+
+    public Map<String, Cast> getCredits_roll() { return this.credits_roll; }
 }

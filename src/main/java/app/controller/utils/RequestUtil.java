@@ -9,6 +9,10 @@ public class RequestUtil {
 
     public static String getParamShowId(Context ctx) { return ctx.pathParam("showId"); }
 
+    public static String getParamSearchoption(Context ctx) { return ctx.formParam("searchOption"); }
+
+    public static String getParamSearchtext(Context ctx) { return ctx.formParam("searchText"); }
+
     public static String getParamUsername(Context ctx) { return ctx.pathParam("username"); }
 
     public static String getQueryUsername(Context ctx) { return ctx.formParam("username"); }

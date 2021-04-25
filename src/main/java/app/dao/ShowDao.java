@@ -74,4 +74,15 @@ public class ShowDao extends Model {
     public Show getRandomShow() {
         return shows.get(new Random().nextInt(shows.size()));
     }
+
+    public Iterable<Show> getSearchedShowsByShowTitles(String searching) {
+        List<Show> searchedShows = new ArrayList<Show>();
+        for(int i = 0; i < shows.size(); i++) {
+            if(shows.get(i).getShowTitle().toUpperCase().contains(searching.toUpperCase())) {
+                searchedShows.add(shows.get(i));
+            };
+        }
+
+        return searchedShows;
+    }
 }
