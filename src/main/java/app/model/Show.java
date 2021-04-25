@@ -1,27 +1,35 @@
 package app.model;
 
 
-public class Show {
-    public final int showId;
-    public final String showTitle;
-    public final String genre;
-    public final double length;
-    public final int movie;
-    public final int series;
-    public final int procoId;
-    public final int year;
-    public final String imageAddress;
+import app.model.Users.PCOUser;
 
-    public Show(int showId, String showTitle, String genre, double length, int movie, int series, int procoId, int year, String imageAddress) {
+public class Show {
+    private final int showId;
+    private final String showTitle;
+    private final String genre;
+    private final double length;
+    private final int movie;
+    private final int series;
+    private final PCOUser PCOUser;
+    private final int year;
+    private final String imageAddress;
+//    private List<Cast> cast;
+
+
+    public Show(int showId, String showTitle, String genre, double length, int movie, int series, PCOUser PCOUser, int year, String imageAddress) {
         this.showId = showId;
         this.showTitle = showTitle;
         this.genre = genre;
         this.length = length;
         this.movie = movie;
         this.series = series;
-        this.procoId = procoId;
+        this.PCOUser = PCOUser;
         this.year = year;
         this.imageAddress = imageAddress;
+    }
+
+    public int getshowID() {
+        return showId;
     }
 
     public String getShowTitle() { return showTitle; }
