@@ -32,9 +32,7 @@ public class Show {
         this.credits_roll = casts;
     }
 
-    public int getShowID() {
-        return showId;
-    }
+    public int getShowID() { return showId; }
 
     public String getShowTitle() { return showTitle; }
 

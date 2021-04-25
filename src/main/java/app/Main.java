@@ -39,9 +39,11 @@ public class Main {
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
 
+        app.get("/", IndexController.serveIndexPage);
+
         app.routes(() -> {
             before(Filters.handleLocaleChange);
-            before(LoginController.ensureLoginBeforeViewingShows);
+//            before(LoginController.ensureLoginBeforeViewingShows);
             get(Web.INDEX, IndexController.serveIndexPage);
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
