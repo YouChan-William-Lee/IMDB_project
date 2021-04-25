@@ -7,7 +7,7 @@ import app.model.Show;
 import app.model.Users.PCOUser;
 import com.google.common.collect.ImmutableList;
 
-public class ShowDao extends Model {
+public class ShowDao extends DatabaseDao {
 
     private final List<Show> shows;
 

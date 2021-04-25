@@ -53,6 +53,9 @@ public class UserController {
         return hashedPassword.equals(user.getHashedPassword());
     }
 
+    //username is null -> false 
+    //duplicated -> false
+    //not duplicated -> true
     public static boolean duplicationCheck(String username) {
         if (username == null) {
             return false;
@@ -71,17 +74,18 @@ public class UserController {
         }
     }
 
+    //create a new user, now the new user is stored in database instead of buffer, it means if the server is closed, new user will not disappear when open server next time.
     public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String typeofuser, String country) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
         if (typeofuser.equals("regularUser")) {
-            userDao.addRegularUser(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
+            userDao.addRegularUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         } else if (typeofuser.equals("PCoUser")) {
-            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email));
+            userDao.addPCOUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email));
         } else if (typeofuser.equals("criticsUser")) {
-            userDao.addCriticsUser(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
+            userDao.addCriticsUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         }
 
 //        userDao.updateUsersList(user);

@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import app.model.Users.*;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
-public class UserDao {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import app.model.Users.*;
+import app.controller.UserController;
+
+public class UserDao extends DatabaseDao{
 
     private List<User> regularUsers;
     private List<User> adminUsers;
@@ -41,52 +49,149 @@ public class UserDao {
         ));
     }
 
+    public boolean addRegularUserToDatabase(User user){
+        String sql= "insert into regularuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+		try {
+            Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getSalt());
+			preparedStatement.setString(3, user.getHashedPassword());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getCountry());
+            preparedStatement.setString(6, user.getGender());
+            preparedStatement.setString(7, user.getFirstname());
+            preparedStatement.setString(8, user.getLastname());
+			return preparedStatement.executeUpdate()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return false;
+    }
+
+    public boolean addPCOUserToDatabase(User user){
+        String sql= "insert into pcouser(username,salt,hashedpassword,email,firstname,lastname) values(?,?,?,?,?,?)" ;
+		try {
+            Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getSalt());
+			preparedStatement.setString(3, user.getHashedPassword());
+			preparedStatement.setString(4, user.getEmail());
+			preparedStatement.setString(5, user.getFirstname());
+            preparedStatement.setString(6, user.getLastname());
+			return preparedStatement.executeUpdate()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return false;
+    }
+
+    public boolean addCriticsUserToDatabase(User user){
+        String sql= "insert into criticsuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+		try {
+            Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getSalt());
+			preparedStatement.setString(3, user.getHashedPassword());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getCountry());
+            preparedStatement.setString(6, user.getGender());
+            preparedStatement.setString(7, user.getFirstname());
+            preparedStatement.setString(8, user.getLastname());
+			return preparedStatement.executeUpdate()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return false;
+    }
+
+    public boolean addAdminUserToDatabase(User user){
+        String sql= "insert into adminuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+		try {
+            Connection connection = getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getSalt());
+			preparedStatement.setString(3, user.getHashedPassword());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getCountry());
+            preparedStatement.setString(6, user.getGender());
+            preparedStatement.setString(7, user.getFirstname());
+            preparedStatement.setString(8, user.getLastname());
+			return preparedStatement.executeUpdate()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return false;
+    }
+
+    public void initializeDatabase(){
+        for (User user : PCOUsers) {
+            if(UserController.duplicationCheck(user.getUsername())){
+                addPCOUserToDatabase(user);
+                System.out.println(user.getUsername()+" has been added in databese");
+            }
+        }
+        for (User user : regularUsers) {
+            if(UserController.duplicationCheck(user.getUsername())){
+                addRegularUserToDatabase(user);
+                System.out.println(user.getUsername()+" has been added in databese");
+            }
+        }
+        for (User user : adminUsers) {
+            if(UserController.duplicationCheck(user.getUsername())){
+                addAdminUserToDatabase(user);
+                System.out.println(user.getUsername()+" has been added in databese");
+            }
+        }
+        for (User user : criticsUsers) {
+            if(UserController.duplicationCheck(user.getUsername())){
+                addCriticsUserToDatabase(user);
+                System.out.println(user.getUsername()+" has been added in databese");
+            }
+        }
+    }
 
     public User getUserByUsername(String username) {
 
-        boolean foundUser = false;
         User user = null;
+        String sql;
 
-        for (int i = 0; i < regularUsers.size() && !foundUser; i++) {
-            if (regularUsers.get(i).getUsername().equals(username)) {
-                user = regularUsers.get(i);
-                foundUser = true;
+        try{
+            sql = "select * from regularuser,pcouser,criticsuser,adminuser where regularuser.username=? OR pcouser.username=? OR criticsuser.username=? OR adminuser.username=?";
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                user = new User(rs.getString("username"), rs.getString("salt"), rs.getString("hashedpassword"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("gender"), rs.getString("country"));
             }
-        }
-
-        for (int i = 0; i < criticsUsers.size() && !foundUser; i++) {
-            if (criticsUsers.get(i).getUsername().equals(username)) {
-                user = criticsUsers.get(i);
-                foundUser = true;
-            }
-        }
-
-        for (int i = 0; i < PCOUsers.size() && !foundUser; i++) {
-            if (PCOUsers.get(i).getUsername().equals(username)) {
-                user = PCOUsers.get(i);
-                foundUser = true;
-            }
-        }
-
-        for (int i = 0; i < adminUsers.size() && !foundUser; i++) {
-            if (adminUsers.get(i).getUsername().equals(username)) {
-                user = adminUsers.get(i);
-                foundUser = true;
-            }
-        }
+            return user;
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+        
         return user;
 
 //        return regularUsers.stream().filter(b -> b.username.equals(username)).findFirst().orElse(null);
     }
 
+    //add user to regularUsers (the ArrayList, not databse)
     public void addRegularUser(User user) {
         regularUsers.add(user);
     }
 
+    //add user to PCOUsers (the ArrayList, not database)
     public void addPCOUser(User user) {
         PCOUsers.add(user);
     }
 
+    //add user to criticsUsers (the ArrayList, not databse)
     public void addCriticsUser(User user) {
         criticsUsers.add(user);
     }

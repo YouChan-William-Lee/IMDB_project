@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CastDao {
+public class CastDao extends DatabaseDao{
 
     private static List<Cast> allCast = new ArrayList<Cast>();;
 

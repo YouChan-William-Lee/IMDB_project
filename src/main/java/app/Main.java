@@ -2,7 +2,7 @@ package app;
 
 import app.controller.*;
 import app.dao.CastDao;
-import app.dao.Model;
+import app.dao.DatabaseDao;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
@@ -23,16 +23,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String url="jdbc:mysql://localhost:3306/imdb";
-        String user = "root";
-        String password = "jainamdoshi";
-
-        Model.connectToDatabase(url, user, password);
+        // url, user and password of database are all in the paths/SQL.java
 
         // Instantiate your dependencies
         showDao = new ShowDao();
         userDao = new UserDao();
         castDao = new CastDao();
+
+        //cahnge  Model.java -> DatabaseDao.java
+        //test whether it can connect to database
+        DatabaseDao.getConnection();
+        DatabaseDao.closeConnection();
+
+        //initialize database
+        userDao.initializeDatabase();
+        //showDao.initializeDatabase(); not finished
+        //castDao.initializeDatabase(); not finished
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
