@@ -58,10 +58,7 @@ public class UserController {
             return false;
         }
         User user = userDao.getUserByUsername(username);
-        if (user == null) {
-            return true;
-        }
-        return false;
+        return user == null;
     }
 
 
@@ -74,7 +71,7 @@ public class UserController {
         }
     }
 
-    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender,String typeofuser, String country) {
+    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String typeofuser, String country) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
@@ -82,7 +79,7 @@ public class UserController {
         if (typeofuser.equals("regularUser")) {
             userDao.addRegularUser(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         } else if (typeofuser.equals("PCoUser")) {
-            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
+            userDao.addPCOUser(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email));
         } else if (typeofuser.equals("criticsUser")) {
             userDao.addCriticsUser(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
         }
