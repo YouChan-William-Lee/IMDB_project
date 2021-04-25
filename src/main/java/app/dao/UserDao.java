@@ -29,9 +29,9 @@ public class UserDao {
 
     private List<User> PCOUsers = new ArrayList<User>(Arrays.asList(
             //        Username    Salt for hash                    Hashed password (the password is "password" for all users)
-            new PCOUser("PCO1", "$2a$10$h.dl5J86rGH7I8bD9bZeZe", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", "Universal", "Pictures", "universalpictures@gmail.com", null, null),
-            new PCOUser("PCO2", "$2a$10$e0MYzXyjpJS7Pd0RVvHwHe", "$2a$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdEMLT83E1KDmUhCy", "Paramount", "Pictures", "paramountpictures@gmail.com", null, null),
-            new PCOUser("PCO3", "$2a$10$E3DgchtVry3qlYlzJCsyxe", "$2a$10$E3DgchtVry3qlYlzJCsyxeSK0fftK4v0ynetVCuDdxGVl1obL.ln2", "Warner", "Bros.", "warnerbros@gmail.com", null, null)
+            new PCOUser("PCO1", "$2a$10$h.dl5J86rGH7I8bD9bZeZe", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", "Universal", "Pictures", "universalpictures@gmail.com", "Male", "Australia"),
+            new PCOUser("PCO2", "$2a$10$e0MYzXyjpJS7Pd0RVvHwHe", "$2a$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdEMLT83E1KDmUhCy", "Paramount", "Pictures", "paramountpictures@gmail.com", "Male", "Australia"),
+            new PCOUser("PCO3", "$2a$10$E3DgchtVry3qlYlzJCsyxe", "$2a$10$E3DgchtVry3qlYlzJCsyxeSK0fftK4v0ynetVCuDdxGVl1obL.ln2", "Warner", "Bros.", "warnerbros@gmail.com", "Male", "Australia")
     ));
 
 

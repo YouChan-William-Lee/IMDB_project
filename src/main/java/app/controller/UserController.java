@@ -49,8 +49,8 @@ public class UserController {
         if (user == null) {
             return false;
         }
-        String hashedPassword = BCrypt.hashpw(password, user.salt);
-        return hashedPassword.equals(user.hashedPassword);
+        String hashedPassword = BCrypt.hashpw(password, user.getSalt());
+        return hashedPassword.equals(user.getHashedPassword());
     }
 
     public static boolean duplicationCheck(String username) {
