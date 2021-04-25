@@ -3,6 +3,9 @@ package app.model;
 
 import app.model.Users.PCOUser;
 
+import java.util.List;
+import java.util.Map;
+
 public class Show {
     private final int showId;
     private final String showTitle;
@@ -13,10 +16,10 @@ public class Show {
     private final PCOUser PCOUser;
     private final int year;
     private final String imageAddress;
-//    private List<Cast> cast;
+    private final Map<String, Cast> credits_roll;
 
 
-    public Show(int showId, String showTitle, String genre, double length, int movie, int series, PCOUser PCOUser, int year, String imageAddress) {
+    public Show(int showId, String showTitle, String genre, double length, int movie, int series, PCOUser PCOUser, int year, String imageAddress, Map<String, Cast> casts) {
         this.showId = showId;
         this.showTitle = showTitle;
         this.genre = genre;
@@ -26,9 +29,10 @@ public class Show {
         this.PCOUser = PCOUser;
         this.year = year;
         this.imageAddress = imageAddress;
+        this.credits_roll = casts;
     }
 
-    public int getshowID() {
+    public int getShowID() {
         return showId;
     }
 

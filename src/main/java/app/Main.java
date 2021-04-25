@@ -1,6 +1,7 @@
 package app;
 
 import app.controller.*;
+import app.dao.CastDao;
 import app.dao.Model;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
@@ -11,8 +12,6 @@ import app.controller.utils.HerokuUtil;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 
-import java.sql.*;
-
 import static io.javalin.apibuilder.ApiBuilder.before;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
@@ -20,6 +19,7 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 public class Main {
     public static ShowDao showDao;
     public static UserDao userDao;
+    public static CastDao castDao;
 
     public static void main(String[] args) {
 
@@ -32,6 +32,7 @@ public class Main {
         // Instantiate your dependencies
         showDao = new ShowDao();
         userDao = new UserDao();
+        castDao = new CastDao();
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
