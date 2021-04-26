@@ -15,7 +15,7 @@ public class DatabaseDao {
     //connect to database and return the connection
     public static Connection getConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(SQL.dbDriver);
             connection = DriverManager.getConnection(SQL.url, SQL.dbUser, SQL.dbPassword);
             System.out.println("successfully connect to database: "+SQL.url);
         } catch (ClassNotFoundException | SQLException e) {

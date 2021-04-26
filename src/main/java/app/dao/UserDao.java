@@ -50,7 +50,7 @@ public class UserDao extends DatabaseDao{
     }
 
     public boolean addRegularUserToDatabase(User user){
-        String sql= "insert into regularuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+        String sql= "insert into account(username,salt,password,email,country,gender,first_name,last_name,type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
 		try {
             Connection connection = getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -62,6 +62,7 @@ public class UserDao extends DatabaseDao{
             preparedStatement.setString(6, user.getGender());
             preparedStatement.setString(7, user.getFirstname());
             preparedStatement.setString(8, user.getLastname());
+            preparedStatement.setString(9, "regular_user");
 			return preparedStatement.executeUpdate()>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,7 +71,7 @@ public class UserDao extends DatabaseDao{
     }
 
     public boolean addPCOUserToDatabase(User user){
-        String sql= "insert into pcouser(username,salt,hashedpassword,email,firstname,lastname) values(?,?,?,?,?,?)" ;
+        String sql= "insert into account(username,salt,password,email,country,gender,first_name,last_name,type_of_user) values(?,?,?,?,null,null,?,?,?)" ;
 		try {
             Connection connection = getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -80,6 +81,7 @@ public class UserDao extends DatabaseDao{
 			preparedStatement.setString(4, user.getEmail());
 			preparedStatement.setString(5, user.getFirstname());
             preparedStatement.setString(6, user.getLastname());
+            preparedStatement.setString(7, "pco_user");
 			return preparedStatement.executeUpdate()>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,7 +90,7 @@ public class UserDao extends DatabaseDao{
     }
 
     public boolean addCriticsUserToDatabase(User user){
-        String sql= "insert into criticsuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+        String sql= "insert into account(username,salt,password,email,country,gender,first_name,last_name,type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
 		try {
             Connection connection = getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -100,6 +102,7 @@ public class UserDao extends DatabaseDao{
             preparedStatement.setString(6, user.getGender());
             preparedStatement.setString(7, user.getFirstname());
             preparedStatement.setString(8, user.getLastname());
+            preparedStatement.setString(9, "critics_user");
 			return preparedStatement.executeUpdate()>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -108,7 +111,7 @@ public class UserDao extends DatabaseDao{
     }
 
     public boolean addAdminUserToDatabase(User user){
-        String sql= "insert into adminuser(username,salt,hashedpassword,email,country,gender,firstname,lastname) values(?,?,?,?,?,?,?,?)" ;
+        String sql= "insert into account(username,salt,password,email,country,gender,first_name,last_name,type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
 		try {
             Connection connection = getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -120,6 +123,7 @@ public class UserDao extends DatabaseDao{
             preparedStatement.setString(6, user.getGender());
             preparedStatement.setString(7, user.getFirstname());
             preparedStatement.setString(8, user.getLastname());
+            preparedStatement.setString(9, "admin_user");
 			return preparedStatement.executeUpdate()>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -160,22 +164,18 @@ public class UserDao extends DatabaseDao{
         String sql;
 
         try{
-            sql = "select * from regularuser,pcouser,criticsuser,adminuser where regularuser.username=? OR pcouser.username=? OR criticsuser.username=? OR adminuser.username=?";
+            sql = "select * from account where username=?";
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, username);
-            preparedStatement.setString(4, username);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
-                user = new User(rs.getString("username"), rs.getString("salt"), rs.getString("hashedpassword"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getString("gender"), rs.getString("country"));
+                user = new User(rs.getString("username"), rs.getString("salt"), rs.getString("password"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("gender"), rs.getString("country"));
             }
             return user;
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
-        
         return user;
 
 //        return regularUsers.stream().filter(b -> b.username.equals(username)).findFirst().orElse(null);
