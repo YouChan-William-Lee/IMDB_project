@@ -8,7 +8,7 @@
     <h2><b>Released year:</b> $show.year</h2>
     <h2><b>Cast</b></h2>
     #foreach($credit in $show.credits_roll.keySet())
-        <h2>$show.credits_roll.get($credit).getName() --- $credit</h2>
+        <h2>$show.credits_roll.get($credit) --- $credit</h2>
     #end
 
     <div class="show">

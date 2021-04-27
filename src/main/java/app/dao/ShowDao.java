@@ -1,10 +1,12 @@
 package app.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
 import app.model.Show;
+import app.model.Users.User;
 
 public class ShowDao extends Database {
 
@@ -61,6 +63,25 @@ public class ShowDao extends Database {
 //        shows = ImmutableList.of(show1, show2, show3, show4, show5);
     }
 
+    public static void addShowToDatabase(Show show) {
+        String sql= "insert into show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
+        try {
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, show.getShowId());
+            preparedStatement.setString(2, show.getShowTitle());
+            preparedStatement.setString(3, show.getGenre());
+            preparedStatement.setDouble(4, Double.parseDouble(show.getLength()));
+            preparedStatement.setInt(5, Integer.parseInt(show.getMovie()));
+            preparedStatement.setInt(6, Integer.parseInt(show.getSeries()));
+            preparedStatement.setInt(7, Integer.parseInt(show.getPCO()));
+            preparedStatement.setInt(8, Integer.parseInt(show.getYear()));
+            preparedStatement.setString(9, show.getCover());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Iterable<Show> getAllShows() {
 
         List<Show> results = new ArrayList<Show>();
@@ -115,10 +136,25 @@ public class ShowDao extends Database {
         return results;
     }
 
+    public int getNumberOfShows() {
+        List<Show> shows = (List<Show>) getAllShows();
+        return shows.size();
+    }
+
     public Show getShowByShowId(String showId) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
             if(shows.get(i).getShowID() == Integer.parseInt(showId)) {
+                return shows.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Show getShowByShowTitle(String showTitle) {
+        List<Show> shows = (List<Show>) getAllShows();
+        for(int i = 0; i < shows.size(); i++) {
+            if(shows.get(i).getShowTitle().equals(showTitle)) {
                 return shows.get(i);
             }
         }
