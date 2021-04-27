@@ -102,8 +102,7 @@ public class ShowDao extends Database {
                     }
 
 
-                    results.add(new Show(Integer.parseInt(showRS.getString("showid")), showRS.getString("show_title"), showRS.getString("genre"), showRS.getString("length"), showRS.getString("movie"), showRS.getString("series"), productionRS.getString("proco_name"), showRS.getString("year"), showRS.getString("imageAddress"), cast));
-//                    results.add(new Show);
+                    addShowToList(results, new Show(Integer.parseInt(showRS.getString("showid")), showRS.getString("show_title"), showRS.getString("genre"), showRS.getString("length"), showRS.getString("movie"), showRS.getString("series"), production, showRS.getString("year"), showRS.getString("imageAddress"), cast));
 
                 } else {
                     break;
@@ -129,16 +128,20 @@ public class ShowDao extends Database {
         List<Show> shows = (List<Show>) getAllShows();
         return shows.get(new Random().nextInt(shows.size()));
     }
-//
+
     public Iterable<Show> getSearchedShowsByShowTitles(String searching) {
         List<Show> searchedShows = new ArrayList<Show>();
         List<Show> shows = (List<Show>) getAllShows();
-        for(int i = 0; i < shows.size(); i++) {
-            if(shows.get(i).getShowTitle().toUpperCase().contains(searching.toUpperCase())) {
-                searchedShows.add(shows.get(i));
+        for(Show s : shows) {
+            String title = s.getShowTitle();
+            if(title.toUpperCase().contains(searching.toUpperCase())) {
+                addShowToList(searchedShows, s);
             }
         }
-//
         return searchedShows;
+    }
+
+    public void addShowToList(List<Show> list, Show s) {
+        list.add(s);
     }
 }
