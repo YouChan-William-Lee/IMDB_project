@@ -57,6 +57,40 @@ public class RequestUtil {
         return (String) ctx.sessionAttribute("currentUser");
     }
 
+    public static String getQueryShowid(Context ctx) { return ctx.formParam("showid"); }
+
+    public static String getQueryShowtitle(Context ctx) { return ctx.formParam("showtitle"); }
+
+    public static String getQueryShowgenre(Context ctx) { return ctx.formParam("showgenre"); }
+
+    public static String getQueryShowlength(Context ctx) { return ctx.formParam("showlength"); }
+
+    public static String getQueryShowmovie(Context ctx) { return ctx.formParam("showmovie"); }
+
+    public static String getQueryShowseries(Context ctx) { return ctx.formParam("showseries"); }
+
+    public static String getQueryShowPCO(Context ctx) { return ctx.formParam("showPCO"); }
+
+    public static String getQueryShowyear(Context ctx) { return ctx.formParam("showyear"); }
+
+    public static String getQueryShowimageaddress(Context ctx) { return ctx.formParam("showimageAddress"); }
+
+    public static String getQueryShowcreditsroll1actorname(Context ctx) { return ctx.formParam("showcreditsroll1actorname"); }
+
+    public static String getQueryShowcreditsroll1charactername(Context ctx) { return ctx.formParam("showcreditsroll1charactername"); }
+
+    public static String getQueryShowcreditsroll1birthday(Context ctx) { return ctx.formParam("showcreditsroll1birthday"); }
+
+    public static String getQueryShowcreditsroll1bio(Context ctx) { return ctx.formParam("showcreditsroll1bio"); }
+
+    public static String getQueryShowcreditsroll2actorname(Context ctx) { return ctx.formParam("showcreditsroll2actorname"); }
+
+    public static String getQueryShowcreditsroll2charactername(Context ctx) { return ctx.formParam("showcreditsroll2charactername"); }
+
+    public static String getQueryShowcreditsroll2birthday(Context ctx) { return ctx.formParam("showcreditsroll2birthday"); }
+
+    public static String getQueryShowcreditsroll2bio(Context ctx) { return ctx.formParam("showcreditsroll2bio"); }
+
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");
         ctx.sessionAttribute("loggedOut", null);

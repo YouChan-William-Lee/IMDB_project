@@ -1,0 +1,42 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form id="signinForm" method="post">
+    #if($duplicationCheckFailed)
+        <p class="bad notification">$msg.get("SHOWS_FAILED")</p>
+    #elseif($duplicationCheckSucceeded)
+        <p class="good notification">$msg.get("SHOWS_SUCCEEDED")</p>
+    #end
+    <h1>$msg.get("SHOWS_ADMIN_ADD_NEW_SHOW")</h1>
+    <label>$msg.get("SHOWS_SHOWID")</label>
+    <label>$showid</label>
+    <br>
+    <label>$msg.get("SHOWS_SHOWTITLE")</label>
+    <input type="text" name="showtitle" placeholder="$msg.get("SHOWS_SHOWTITLE")" value="" required>
+    <label>$msg.get("SHOWS_GENRE")</label>
+    <input type="text" name="showgenre" placeholder="$msg.get("SHOWS_GENRE")" value="" required>
+    <label>$msg.get("SHOWS_LENGTH")</label>
+    <input type="text" name="showlength" placeholder="$msg.get("SHOWS_LENGTH")" value="" required>
+    <label>$msg.get("SHOWS_MOVIE")</label>
+    <input type="text" name="showmovie" placeholder="$msg.get("SHOWS_MOVIE")" value="" required>
+    <label>$msg.get("SHOWS_SERIES")</label>
+    <input type="text" name="showseries" placeholder="$msg.get("SHOWS_SERIES")" value="" required>
+    <label>$msg.get("SHOWS_PCO")</label>
+    <input type="text" name="showPCO" placeholder="$msg.get("SHOWS_PCO")" value="" required>
+    <label>$msg.get("SHOWS_YEAR")</label>
+    <input type="text" name="showyear" placeholder="$msg.get("SHOWS_YEAR")" value="" required>
+    <label>$msg.get("SHOWS_IMAGEADDRESS")</label>
+    <input type="text" name="showimageAddress" placeholder="$msg.get("SHOWS_IMAGEADDRESS")" value="" required>
+    <label>$msg.get("SHOWS_CREDITSROLL1")</label>
+    <input type="text" name="showcreditsroll1actorname" placeholder="$msg.get("SHOWS_CREDITSROLLACTORNAME")" value="" required>
+    <input type="text" name="showcreditsroll1charactername" placeholder="$msg.get("SHOWS_CREDITSROLLCHARACTERNAME")" value="" required>
+    <input type="text" name="showcreditsroll1birthday" placeholder="$msg.get("SHOWS_CREDITSROLLBIRTHDAY")" value="" required>
+    <input type="text" name="showcreditsroll1bio" placeholder="$msg.get("SHOWS_CREDITSROLLBIO")" value="" required>
+    <label>$msg.get("SHOWS_ADMIN_CREDITSROLL2")</label>
+    <input type="text" name="showcreditsroll2actorname" placeholder="$msg.get("SHOWS_CREDITSROLLACTORNAME")" value="" required>
+    <input type="text" name="showcreditsroll2charactername" placeholder="$msg.get("SHOWS_CREDITSROLLCHARACTERNAME")" value="" required>
+    <input type="text" name="showcreditsroll2birthday" placeholder="$msg.get("SHOWS_CREDITSROLLBIRTHDAY")" value="" required>
+    <input type="text" name="showcreditsroll2bio" placeholder="$msg.get("SHOWS_CREDITSROLLBIO")" value="" required>
+    <br>
+    <input type="submit" value="$msg.get("SHOWS_ADMIN_SAVE")">
+</form>
+#end

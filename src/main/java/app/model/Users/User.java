@@ -9,9 +9,6 @@ public class User implements UserInterface {
     private String email;
     private String gender;
     private String country;
-
-
-
     private String typeOfUser;
 
     public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender, String country, String typeOfUser) {

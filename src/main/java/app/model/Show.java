@@ -38,11 +38,17 @@ public class Show {
 
     public String getGenre() { return genre; }
 
-    public String getLengthHour() { return length; }
+    public String getLength() { return length; }
 
-    public Double getLengthMinute() { return Double.parseDouble(length) * 60; }
+    public String getLengthHour() { return String.valueOf((int)(Double.parseDouble(length))); }
+
+    public int getLengthMinute() { return (int)((Double.parseDouble(length) - ((int)(Double.parseDouble(length)))) * 100); }
+
+    public String getMovie() { return movie; }
 
     public String getSeries() { return series; }
+
+    public String getPCO() { return PCO; }
 
     public String getYear() { return String.valueOf(year); }
 
