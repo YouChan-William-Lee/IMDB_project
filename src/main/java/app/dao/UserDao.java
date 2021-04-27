@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import app.model.Users.*;
 
-public class UserDao {
+public class UserDao extends Database {
 
     public void addUserToDatabase(User user) {
         String sql= "insert into account(username, salt, password, email, country, gender, first_name, last_name, type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
@@ -38,8 +38,7 @@ public class UserDao {
 
         try{
             sql = "select * from account where username=?";
-            Connection connection = Database.connection;
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            setPreparedStatement(sql);
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
@@ -56,8 +55,7 @@ public class UserDao {
         String sql;
         try{
             sql = "select * from account";
-            Connection connection = Database.connection;
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            setPreparedStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (true) {
@@ -80,8 +78,7 @@ public class UserDao {
         String sql;
         try{
             sql = "select * from account";
-            Connection connection = Database.connection;
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            setPreparedStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (true) {

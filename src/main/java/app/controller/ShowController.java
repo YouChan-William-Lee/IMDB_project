@@ -29,8 +29,6 @@ public class ShowController {
     public static Handler fetchSearchedShowsPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
-        System.out.println(getParamSearchtext(ctx));
-
         if(getParamSearchoption(ctx).equals("Titles")) {
             model.put("shows", showDao.getSearchedShowsByShowTitles(getParamSearchtext(ctx)));
             model.put("searchedText", getParamSearchtext(ctx));

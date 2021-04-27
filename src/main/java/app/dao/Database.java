@@ -2,18 +2,19 @@ package app.dao;
 
 import java.sql.*;
 
-import app.controller.paths.SQL;
+import app.controller.paths.mySQL;
 
 public class Database {
 
-    public static Connection connection;
+    protected static Connection connection;
+    protected static PreparedStatement preparedStatement;
 
     //connect to database and return the connection
     public static Connection startConnection() {
         try {
-            Class.forName(SQL.dbDriver);
-            connection = DriverManager.getConnection(SQL.url, SQL.dbUser, SQL.dbPassword);
-            System.out.println("successfully connect to database: "+SQL.url);
+            Class.forName(mySQL.dbDriver);
+            connection = DriverManager.getConnection(mySQL.url, mySQL.dbUser, mySQL.dbPassword);
+            System.out.println("successfully connect to database: "+ mySQL.url);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -32,4 +33,12 @@ public class Database {
         }
     }
 
+    public PreparedStatement setPreparedStatement(String sql) {
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return preparedStatement;
+    }
 }
