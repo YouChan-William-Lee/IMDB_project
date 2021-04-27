@@ -75,17 +75,17 @@ public class UserController {
     }
 
     //create a new user, now the new user is stored in database instead of buffer, it means if the server is closed, new user will not disappear when open server next time.
-    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String typeofuser, String country) {
+    public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String typeOfUser, String country) {
 
         String newSalt = BCrypt.gensalt();
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
-        if (typeofuser.equals("regularUser")) {
-            userDao.addRegularUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
-        } else if (typeofuser.equals("PCoUser")) {
-            userDao.addPCOUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email));
-        } else if (typeofuser.equals("criticsUser")) {
-            userDao.addCriticsUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country));
+        if (typeOfUser.equals("regularUser")) {
+            userDao.addUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "regular"));
+        } else if (typeOfUser.equals("PCoUser")) {
+            userDao.addUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, "pco"));
+        } else if (typeOfUser.equals("criticsUser")) {
+            userDao.addUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "critics"));
         }
 
 //        userDao.updateUsersList(user);

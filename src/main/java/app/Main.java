@@ -2,7 +2,7 @@ package app;
 
 import app.controller.*;
 import app.dao.CastDao;
-import app.dao.DatabaseDao;
+import app.dao.Database;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import app.dao.ShowDao;
@@ -32,11 +32,11 @@ public class Main {
 
         //cahnge  Model.java -> DatabaseDao.java
         //test whether it can connect to database
-        DatabaseDao.getConnection();
-        DatabaseDao.closeConnection();
+        Database.startConnection();
+//        DatabaseDao.closeConnection();
 
         //initialize database
-        userDao.initializeDatabase();
+//        userDao.initializeDatabase();
         //showDao.initializeDatabase(); not finished
         //castDao.initializeDatabase(); not finished
 

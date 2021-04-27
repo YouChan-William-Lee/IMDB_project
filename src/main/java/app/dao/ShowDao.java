@@ -7,13 +7,13 @@ import app.model.Show;
 import app.model.Users.PCOUser;
 import com.google.common.collect.ImmutableList;
 
-public class ShowDao extends DatabaseDao {
+public class ShowDao extends Database {
 
     private final List<Show> shows;
 
     public ShowDao() {
 
-        PCOUser waltDisney = new PCOUser("waltdisneypictures", "$2a$10$h.dl5J86rGH7I8bD9bZeZe", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", "Walt Disney", "Pictures", "waltdisneypictures@gmail.com");
+        PCOUser waltDisney = new PCOUser("waltdisneypictures", "$2a$10$h.dl5J86rGH7I8bD9bZeZe", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", "Walt Disney", "Pictures", "waltdisneypictures@gmail.com", "pco");
         Map<String, Cast> creditsRoll1 = new HashMap<String, Cast>();
         Cast person1 = CastDao.getPerson("Ewan McGregor", new Date(39211200000L), "Ewan Gordon McGregor was born on March 31, 1971 in Perth, Perthshire, Scotland, to Carol Diane (Lawson) and James Charles McGregor, both teachers. His uncle is actor Denis Lawson. He was raised in Crieff. At age 16, he left Morrison Academy to join the Perth Repertory Theatre");
         Cast person2 = CastDao.getPerson("Natalie Portman", new Date(360878400000L), "Natalie Portman is the first person born in the 1980s to have won the Academy Award for Best Actress (for Black Swan (2010)). Natalie was born Natalie Hershlag on June 9, 1981, in Jerusalem, Israel.");

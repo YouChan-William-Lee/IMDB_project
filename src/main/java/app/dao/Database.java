@@ -2,18 +2,14 @@ package app.dao;
 
 import java.sql.*;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
-import com.google.thirdparty.publicsuffix.PublicSuffixPatterns;
-
 import app.controller.paths.SQL;
 
-public class DatabaseDao {
+public class Database {
 
-    protected static Connection connection;
+    public static Connection connection;
 
     //connect to database and return the connection
-    public static Connection getConnection() {
+    public static Connection startConnection() {
         try {
             Class.forName(SQL.dbDriver);
             connection = DriverManager.getConnection(SQL.url, SQL.dbUser, SQL.dbPassword);
