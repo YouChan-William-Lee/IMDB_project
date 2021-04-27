@@ -52,8 +52,6 @@ public class Show {
 
     public String getYear() { return String.valueOf(year); }
 
-    public int getShowId() { return showId; }
-
     public String getCover() { return this.imageAddress; }
 
     public Map<String, String> getCredits_roll() { return this.credits_roll; }

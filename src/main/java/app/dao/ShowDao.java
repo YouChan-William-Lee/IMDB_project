@@ -8,6 +8,8 @@ import java.util.*;
 import app.model.Show;
 import app.model.Users.User;
 
+import static app.Main.showDao;
+
 public class ShowDao extends Database {
 
 //    private final List<Show> shows;
@@ -63,26 +65,47 @@ public class ShowDao extends Database {
 //        shows = ImmutableList.of(show1, show2, show3, show4, show5);
     }
 
-    public static void addShowToDatabase(Show show) {
-        String sql= "insert into show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
+    public static void addShow(Show show) {
+        String sql= "insert into imdb.show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
-            preparedStatement.setInt(1, show.getShowId());
+            preparedStatement.setInt(1, show.getShowID());
             preparedStatement.setString(2, show.getShowTitle());
             preparedStatement.setString(3, show.getGenre());
-            preparedStatement.setDouble(4, Double.parseDouble(show.getLength()));
-            preparedStatement.setInt(5, Integer.parseInt(show.getMovie()));
-            preparedStatement.setInt(6, Integer.parseInt(show.getSeries()));
-            preparedStatement.setInt(7, Integer.parseInt(show.getPCO()));
-            preparedStatement.setInt(8, Integer.parseInt(show.getYear()));
+            preparedStatement.setString(4, show.getLength());
+            preparedStatement.setString(5, show.getMovie());
+            preparedStatement.setString(6, show.getSeries());
+            preparedStatement.setString(7, show.getPCO());
+            preparedStatement.setString(8, show.getYear());
             preparedStatement.setString(9, show.getCover());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+//        Show newShow = new Show(showDao.getNumberOfShows() + 1, "Titanic", "Drama", "3.14", "1", "0", "3", "1997", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhYjUIu2o5v5u3rfJpCq5Cz0Q9WK--XdYxai_N2d0ImohPiIOp", creditsRoll);
+//        String sql= "insert into imdb.show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
+//        try {
+//            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+//            preparedStatement.setInt(1, showDao.getNumberOfShows() + 1);
+//            preparedStatement.setString(2, "Titanic");
+//            preparedStatement.setString(3, "Drama");
+//            preparedStatement.setString(4, "3.14");
+//            preparedStatement.setString(5, "1");
+//            preparedStatement.setString(6, "0");
+//            preparedStatement.setString(7, "3");
+//            preparedStatement.setString(8, "1997");
+//            preparedStatement.setString(9, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhYjUIu2o5v5u3rfJpCq5Cz0Q9WK--XdYxai_N2d0ImohPiIOp");
+//            System.out.println("Here");
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
-    public Iterable<Show> getAllShows() {
+    public static Iterable<Show> getAllShows() {
 
         List<Show> results = new ArrayList<Show>();
         String sql;
@@ -140,7 +163,7 @@ public class ShowDao extends Database {
         return shows.size();
     }
 
-    public Show getShowByShowId(String showId) {
+    public static Show getShowByShowId(String showId) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
             if(shows.get(i).getShowID() == Integer.parseInt(showId)) {
@@ -177,7 +200,7 @@ public class ShowDao extends Database {
         return searchedShows;
     }
 
-    public void addShowToList(List<Show> list, Show s) {
+    public static void addShowToList(List<Show> list, Show s) {
         list.add(s);
     }
 }

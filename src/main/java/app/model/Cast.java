@@ -1,23 +1,26 @@
 package app.model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Cast {
 
-    private String name;
-    private Date birthdate;
-    private String bio;
-    private List<Show> shows;
+    private final int id;
+    private final String name;
+    private final Date birthdate;
+    private final String bio;
+    private final String role;
 
-    public Cast(String name, Date birthdate, String bio) {
+    public Cast(int id, String name, String role, Date birthdate, String bio) {
+        this.id = id;
         this.name = name;
+        this.role = role;
         this.bio = bio;
         this.birthdate = birthdate;
-        this.shows = new ArrayList<Show>();
     }
 
+    public int getID() { return id; }
     public String getName() {
         return name;
     }
@@ -27,13 +30,8 @@ public class Cast {
     public String getBio() {
         return bio;
     }
-
-    public List<Show> getAllShows() {
-        return shows;
-    }
-
-    public void addShow(Show show) {
-        shows.add(show);
+    public String getRole() {
+        return role;
     }
 
 }

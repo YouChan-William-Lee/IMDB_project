@@ -33,7 +33,7 @@ public class Database {
         }
     }
 
-    public PreparedStatement setPreparedStatement(String sql) {
+    public static PreparedStatement setPreparedStatement(String sql) {
         try {
             preparedStatement = connection.prepareStatement(sql);
         } catch (SQLException throwables) {
