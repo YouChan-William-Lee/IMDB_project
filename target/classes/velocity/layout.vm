@@ -1,0 +1,61 @@
+#macro(mainLayout)
+<html>
+<head>
+    <title>$msg.get("COMMON_TITLE")</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="icon" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <nav>
+        <table width="800px">
+            <tr>
+                <td>
+                    <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
+                </td>
+                <td valign="bottom">
+                    <form method="post" action="/search">
+                        <select name="searchOption">
+                            ##<option selected="selected" value="All">All</option>
+                            <option selected="selected" value="Titles">Titles</option>
+                            <option value="Actors">Actors</option>
+                        </select>
+                        <input type="text" name="searchText" class="input_text" placeholder="search IMDB">
+                        <input type="submit" value="search">
+                    </form>
+                </td>
+                <td width="15%" align="center">
+                    <a style="color:White" href="/shows">$msg.get("COMMON_NAV_ALLSHOWS")</a>
+                </td>
+                <td width="12%" align="center">
+                    #if($currentUser)
+                        <a style="color:pink" href="/user/$currentUser">$currentUser</a>
+                    #else
+                        <a style="color:White" href="/login">$msg.get("COMMON_NAV_LOGIN")</a>
+                    #end
+                </td>
+                <td width="12%" align="center">
+                    #if($currentUser)
+                        <form method="post" action="/logout">
+                            <button id="button_logout">$msg.get("COMMON_NAV_LOGOUT")</button>
+                        </form>
+                    #else
+                        <a style="color:White" href="/signin">$msg.get("COMMON_NAV_SIGNIN")</a>
+                    #end
+                </td>
+            </tr>
+        </table>
+    </nav>
+</header>
+<main>
+    <div id="content">
+        $bodyContent
+    </div>
+</main>
+<footer>
+    $msg.get("COMMON_FOOTER_TEXT")
+</footer>
+</body>
+</html>
+#end
