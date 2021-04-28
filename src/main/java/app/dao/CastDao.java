@@ -42,7 +42,16 @@ public class CastDao extends Database {
 
                     while (true) {
                         if (creditRollRS.next()) {
-                            searchedShows.add(ShowDao.getShowByShowId(creditRollRS.getString("show_id")));
+                            boolean duplication = false;
+                            for(int i = 0; i < searchedShows.size(); i++) {
+                                if(searchedShows.get(i).getShowTitle().equals(ShowDao.getShowByShowId(creditRollRS.getString("show_id")).getShowTitle())) {
+                                    duplication = true;
+                                    break;
+                                }
+                            }
+                            if(!duplication) {
+                                searchedShows.add(ShowDao.getShowByShowId(creditRollRS.getString("show_id")));
+                            }
                         } else {
                             break;
                         }

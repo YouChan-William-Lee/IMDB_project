@@ -11,7 +11,7 @@
 <div class="row row-3">
     #foreach($show in $shows)
         <div class="col">
-            <a class="show" href="/shows/$show.showId">
+            <a class="show" href="/shows/$show.showID">
                 <div class="showCover">
                     <img src="$show.Cover" alt="$show.showTitle">
                 </div>
