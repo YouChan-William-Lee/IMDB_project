@@ -34,7 +34,7 @@ public class ShowController {
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         ctx.render(Template.SHOWS_ONE, model);
     };
-
+        // searching shows via titles or actors
     public static Handler fetchSearchedShowsPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
@@ -59,6 +59,7 @@ public class ShowController {
         ctx.render(Template.ADDMINADDSHOW, model);
     };
 
+    //adding new shows
     public static Handler fetchAddNewPagePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         if (!ShowController.duplicationCheck(getQueryShowtitle(ctx))) {

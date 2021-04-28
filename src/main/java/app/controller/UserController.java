@@ -23,6 +23,7 @@ public class UserController {
         ctx.render(Template.USER, model);
     };
 
+    // Editing user info.
     public static Handler serveProfileEditPageGet = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
