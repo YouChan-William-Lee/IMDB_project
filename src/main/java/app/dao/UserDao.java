@@ -12,7 +12,7 @@ import app.model.Users.*;
 
 public class UserDao extends Database {
 
-    public void addUserToDatabase(User user) {
+    public void addUserToDatabase(User user) { // Adding users onto the DB.
         String sql= "insert into account(username, salt, password, email, country, gender, first_name, last_name, type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
@@ -31,7 +31,7 @@ public class UserDao extends Database {
         }
     }
 
-    public User getUserByUsername(String username) {
+    public User getUserByUsername(String username) { // Obtaining user via name searching
 
         User user = null;
         String sql;

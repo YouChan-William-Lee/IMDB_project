@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ProductionCoDao extends Database {
 
+     // Obtain all the production companies.
     public static Iterable<ProductionCo> getAllProductionCo() {
         List<ProductionCo> allProductionCo = new ArrayList<ProductionCo>();
 
@@ -35,6 +36,7 @@ public class ProductionCoDao extends Database {
         return allProductionCo;
     }
 
+    // Getting a production company
     public static ProductionCo getProductionCo(String name) {
         List<ProductionCo> allProductionCo = (List<ProductionCo>) getAllProductionCo();
 
@@ -46,6 +48,7 @@ public class ProductionCoDao extends Database {
         return null;
     }
 
+    // Showing the number of production companies
     public static int getNumberOfProductionCo() {
         return ((List<ProductionCo>) getAllProductionCo()).size();
     }

@@ -28,6 +28,8 @@ public class CastDao extends Database {
 //        return newPerson;
 //    }
 
+
+    // Obtain shows via casts searching
     public static Iterable<Show> getSearchedShowsByActors(String searching) {
 
         List<Show> searchedShows = new ArrayList<Show>();
@@ -65,6 +67,7 @@ public class CastDao extends Database {
         return searchedShows;
     }
 
+    // Get the cast list of a show
     public static Iterable<Cast> getAllCast() {
         List<Cast> allCast = new ArrayList<Cast>();
 
@@ -89,6 +92,7 @@ public class CastDao extends Database {
         return allCast;
     }
 
+    // Get a cast of a show
     public static Cast getCast(String name) {
         List<Cast> casts = (List<Cast>) getAllCast();
 
@@ -100,6 +104,7 @@ public class CastDao extends Database {
         return null;
     }
 
+    // Adding casts process
     public static void addCast(Cast cast) {
         String sql= "insert into person(person_id, fullname, role, birthdate, bio) values(?,?,?,?,?)" ;
         try {

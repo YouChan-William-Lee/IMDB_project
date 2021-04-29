@@ -12,6 +12,7 @@ public class Cast {
     private final String bio;
     private final String role;
 
+    //Cast constructor
     public Cast(int id, String name, String role, Date birthdate, String bio) {
         this.id = id;
         this.name = name;

@@ -65,6 +65,8 @@ public class ShowDao extends Database {
 //        shows = ImmutableList.of(show1, show2, show3, show4, show5);
     }
 
+
+    // Adding shows process
     public static void addShow(Show show) {
         String sql= "insert into imdb.show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
         try {
@@ -105,6 +107,7 @@ public class ShowDao extends Database {
 
     }
 
+    // Get the list of the shows
     public static Iterable<Show> getAllShows() {
 
         List<Show> results = new ArrayList<Show>();
@@ -163,6 +166,7 @@ public class ShowDao extends Database {
         return shows.size();
     }
 
+    // Obtaining the ID of a show
     public static Show getShowByShowId(String showId) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
@@ -173,6 +177,7 @@ public class ShowDao extends Database {
         return null;
     }
 
+    // Getting the title of a specific show
     public Show getShowByShowTitle(String showTitle) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
@@ -183,6 +188,7 @@ public class ShowDao extends Database {
         return null;
     }
 
+    // Showing a random show
     public Show getRandomShow() {
         List<Show> shows = (List<Show>) getAllShows();
         return shows.get(new Random().nextInt(shows.size()));
@@ -200,6 +206,8 @@ public class ShowDao extends Database {
         return searchedShows;
     }
 
+
+    //Adding show to the show list
     public static void addShowToList(List<Show> list, Show s) {
         list.add(s);
     }
