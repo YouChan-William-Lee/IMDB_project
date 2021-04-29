@@ -66,19 +66,19 @@ public class ShowController {
             model.put("duplicationCheckFailed", true);
             ctx.render(Template.ADDMINADDSHOW, model);
         } else {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
-            String productionID = "";
+
             ProductionCo productionCo = ProductionCoDao.getProductionCo(getQueryShowPCO(ctx));
-            if (productionCo != null) {
-                productionID = String.valueOf(productionCo.getId());
-            } else {
-                productionID = String.valueOf(ProductionCoDao.getNumberOfProductionCo() + 1);
+            if (productionCo == null) {
+                productionCo = new ProductionCo(ProductionCoDao.getNumberOfProductionCo() + 1, getQueryShowPCO(ctx));
+                ProductionCoDao.addProductionCo(productionCo);
             }
 
             int showId = showDao.getNumberOfShows() + 1;
-            Show newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), productionID, getQueryShowyear(ctx), getQueryShowimageaddress(ctx), null);
+            Show newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), getQueryShowimageaddress(ctx), null);
             ShowDao.addShow(newShow);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
             Cast cast1 = CastDao.getCast(getQueryShowcreditsroll1actorname(ctx));
             if (cast1 == null) {

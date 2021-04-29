@@ -3,6 +3,7 @@ package app.dao;
 import app.model.Cast;
 import app.model.ProductionCo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,4 +50,16 @@ public class ProductionCoDao extends Database {
         return ((List<ProductionCo>) getAllProductionCo()).size();
     }
 
+    public static void addProductionCo(ProductionCo productionCo) {
+        String sql= "insert into production_company(proco_id, proco_name) values(?,?)" ;
+        try {
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, productionCo.getId());
+            preparedStatement.setString(2, productionCo.getName());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
