@@ -1,22 +1,15 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-<h1>$msg.get("INDEX_HEADING")</h1>
-<h2>$msg.get("INDEX_REGISTERED_USERS", $users.size())</h2>
-<ul>
-    #foreach($user in $users)
-        <li>$user.username</li>
-    #end
-</ul>
-<p>$msg.get("INDEX_PASSWORD_INFO")</p>
-    #if($show)
-    <h2>$msg.get("INDEX_SHOW_OF_THE_DAY_TEXT")</h2>
-    <div class="row row-2">
-        <div class="col">
-            <a href="/shows/$show.showId">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.showTitle)</a>
-        </div>
-        <div class="col">
-            <img src="$show.Cover" alt="$show.showTitle">
-        </div>
-    </div>
-    #end
+<center><h1>$msg.get("INDEX_HEADING")</h1></center>
+<br>
+<br>
+#if($show)
+<center><h2>$msg.get("INDEX_SHOW_OF_THE_DAY_TEXT")</h2></center>
+<div class="column">
+    <center><a href="/shows/$show.showId">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.showTitle)</a></center>
+    <br>
+    <br>
+    <center><img style="max-width: 70%" src="$show.Cover" alt="$show.showTitle"></center>
+</div>
+#end
 #end
