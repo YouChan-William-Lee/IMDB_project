@@ -16,6 +16,7 @@ import static app.controller.utils.RequestUtil.*;
 
 public class UserController {
 
+    // Get user info.
     public static Handler serveProfilePageGet = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
@@ -30,7 +31,7 @@ public class UserController {
         model.put("user", user);
         ctx.render(Template.USEREDIT, model);
     };
-
+    // Save the edited uer info. and render the user info. page.
     public static Handler serveProfileEditPagePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));

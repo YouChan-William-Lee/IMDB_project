@@ -20,6 +20,9 @@ public class LoginController {
         ctx.render(Template.LOGIN, model);
     };
 
+
+    // Login Cases: login failed, system returns to login page/ login succeed + if
+    // there's a uri to redirect the user to after login?, then renders the page.
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {

@@ -20,14 +20,14 @@ import app.model.Show;
 
 public class ShowController {
 
-    public static Handler fetchAllShows = ctx -> {
+    public static Handler fetchAllShows = ctx -> { //Get all shows
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("shows", showDao.getAllShows());
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         ctx.render(Template.SHOWS_ALL, model);
     };
 
-    public static Handler fetchOneShow = ctx -> {
+    public static Handler fetchOneShow = ctx -> { //Get a show via showID,Username,casts
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
@@ -50,7 +50,7 @@ public class ShowController {
         ctx.render(Template.SEARCH, model);
     };
 
-    public static Handler fetchAddNewPage = ctx -> {
+    public static Handler fetchAddNewPage = ctx -> { // adding new show page
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
@@ -59,7 +59,8 @@ public class ShowController {
         ctx.render(Template.ADDMINADDSHOW, model);
     };
 
-    //adding new shows
+    //adding new shows cases: 1. show already exist 2. show is new, then system asks for more
+    // info. of the new show
     public static Handler fetchAddNewPagePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         if (!ShowController.duplicationCheck(getQueryShowtitle(ctx))) {

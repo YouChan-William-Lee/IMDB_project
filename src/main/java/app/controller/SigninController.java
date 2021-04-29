@@ -9,13 +9,16 @@ import static app.controller.utils.RequestUtil.*;
 
 public class SigninController {
 
-    public static Handler serveSigninPage = ctx -> {
+    public static Handler serveSigninPage = ctx -> { // logout, then return to signin page again
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
         model.put("signinRedirect", removeSessionAttrLoginRedirect(ctx));
         ctx.render(Template.SIGNIN, model);
     };
 
+
+    //Sign in Cases: 1. username already exist, then rerurn to signin page again
+    //               2. username is new, signin succeed, then renders the page
     public static Handler handleSigninPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         if (!UserController.duplicationCheck(getQueryUsername(ctx))) {
