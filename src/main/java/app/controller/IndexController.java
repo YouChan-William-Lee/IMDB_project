@@ -6,7 +6,7 @@ import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.Main.*;
 
-
+// index of users + shows
 public class IndexController {
     public static Handler serveIndexPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);

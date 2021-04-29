@@ -12,6 +12,7 @@ import static app.controller.utils.RequestUtil.*;
 
 public class LoginController {
 
+    // logout and then return to login page
     public static Handler serveLoginPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
