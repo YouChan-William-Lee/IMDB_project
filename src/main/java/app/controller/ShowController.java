@@ -29,7 +29,6 @@ public class ShowController {
 
     public static Handler fetchOneShow = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        // System.out.println(getParamShowId(ctx));
         model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         ctx.render(Template.SHOWS_ONE, model);

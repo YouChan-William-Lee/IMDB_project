@@ -6,6 +6,7 @@
     <h2><b>Length:</b> $show.getLengthHour()h $show.getLengthMinute()m</h2>
     <h2><b>Series:</b> $show.series</h2>
     <h2><b>Released year:</b> $show.year</h2>
+    <h2><b>Production company:</b> $show.PCO</h2>
     <h2><b>Cast</b></h2>
     #foreach($credit in $show.credits_roll.keySet())
         <h2>$show.credits_roll.get($credit) --- $credit</h2>
