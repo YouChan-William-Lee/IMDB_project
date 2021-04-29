@@ -1,17 +1,31 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show)
-    <h1><b>$show.showTitle</b></h1>
-    <h2><b>Genre:</b> $show.genre</h2>
-    <h2><b>Length:</b> $show.getLengthHour()h $show.getLengthMinute()m</h2>
-    <h2><b>Series:</b> $show.series</h2>
-    <h2><b>Released year:</b> $show.year</h2>
-    <h2><b>Production company:</b> $show.PCO</h2>
-    <h2><b>Cast</b></h2>
-    #foreach($credit in $show.credits_roll.keySet())
-        <h2>$show.credits_roll.get($credit) --- $credit</h2>
-    #end
-
+        <center><h2><b>$show.showTitle</b></h2></center>
+        <br>
+        <div class="row row-2">
+            <div class="col">
+                <h2><b>Genre:</b><br>$show.genre</h2>
+                <h2><b>Length:</b><br>$show.getLengthHour()h $show.getLengthMinute()m</h2>
+                <h2><b>Series:</b><br>$show.series</h2>
+                <h2><b>Released year:</b><br>$show.year</h2>
+                <h2><b>Production company:</b><br>$show.PCO</h2>
+            </div>
+            <div class="col">
+                <h2><b>Cast</b></h2>
+                #foreach($credit in $show.credits_roll.keySet())
+                    <h2>$show.credits_roll.get($credit)</h2>
+                    <h3>-> Role: $credit</h3>
+                    #foreach($cast in $casts)
+                        #if($cast.getName().equals($show.credits_roll.get($credit)))
+                            <h3>-> DOB: $cast.getBirthdate()</h3>
+                            <h3>-> BIO: $cast.getBio()</h3>
+                        #end
+                    #end
+                    <br>
+                #end
+            </div>
+        </div>
     <div class="show">
         <div class="showCover">
             <img src="$show.Cover" alt="$show.showTitle">

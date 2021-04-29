@@ -31,6 +31,7 @@ public class ShowController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+        model.put("casts", castDao.getAllCast());
         ctx.render(Template.SHOWS_ONE, model);
     };
         // searching shows via titles or actors
