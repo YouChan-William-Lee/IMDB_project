@@ -24,23 +24,6 @@ public class UserController {
         ctx.render(Template.USER, model);
     };
 
-    // Editing user info.
-    public static Handler serveProfileEditPageGet = ctx -> {
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
-        model.put("user", user);
-        ctx.render(Template.USEREDIT, model);
-    };
-    // Save the edited uer info. and render the user info. page.
-    public static Handler serveProfileEditPagePost = ctx -> {
-        Map<String, Object> model = ViewUtil.baseModel(ctx);
-        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
-        user.updateUserInfo(getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryTypeOfUser(ctx), getQueryCountry(ctx));
-        model.put("saveSuccess", true);
-        model.put("user", user);
-        ctx.render(Template.USEREDIT, model);
-    };
-
     // Authenticate the user by hashing the inputted password using the stored salt,
     // then comparing the generated hashed password to the stored hashed password
     public static boolean authenticate(String username, String password) {

@@ -8,8 +8,6 @@
         <h2><strong>Email</strong>: $user.email</h2>
         <h2><strong>Gender</strong>: $user.gender</h2>
         <h2><strong>Country</strong>: $user.country</h2>
-        <br>
-        <a href="$currentUser/edit">$msg.get("USERINFO_EDIT")</a>
     #else
         <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
     #end

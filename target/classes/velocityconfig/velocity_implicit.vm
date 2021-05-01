@@ -1,8 +1,8 @@
 #* @implicitly included *#
 #* @vtlvariable name="WebPath" type="app.front.Path.Web" *#
 #* @vtlvariable name="msg" type="app.controller.localisation.MessageBundle" *#
-#* @vtlvariable name="shows" type="java.lang.Iterable<app.model.Show>" *#
-#* @vtlvariable name="show" type="app.model.Show" *#
+#* @vtlvariable name="shows" type="java.lang.Iterable<app.model.ShowEntities.Show>" *#
+#* @vtlvariable name="show" type="app.model.ShowEntities.Show" *#
 #* @vtlvariable name="users" type="java.lang.Iterable<app.model.Users.User>" *#
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
 #* @vtlvariable name="loggedOut" type="java.lang.String" *#

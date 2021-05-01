@@ -8,7 +8,6 @@ public class Template {  // template engine,separates Java code from the web pag
     public static final String NOT_FOUND = "/velocity/notFound.vm";
     public static final String SIGNIN = "/velocity/signin/signin.vm";
     public static final String USER = "/velocity/user/user.vm";
-    public static final String USEREDIT = "/velocity/user/useredit.vm";
     public static final String SEARCH = "/velocity/search/search.vm";
     public static final String ADDMINADDSHOW = "/velocity/show/adminaddshow.vm";
 }

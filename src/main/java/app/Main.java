@@ -46,12 +46,10 @@ public class Main {
             get(Web.LOGIN, LoginController.serveLoginPage);
             get(Web.SIGNIN, SigninController.serveSigninPage);
             get(Web.USER, UserController.serveProfilePageGet);
-            get(Web.USEREDIT, UserController.serveProfileEditPageGet);
             get(Web.ADDMINADDSHOW, ShowController.fetchAddNewPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
             post(Web.SIGNIN, SigninController.handleSigninPost);
-            post(Web.USEREDIT, UserController.serveProfileEditPagePost);
             post(Web.SEARCH, ShowController.fetchSearchedShowsPost);
             post(Web.ADDMINADDSHOW, ShowController.fetchAddNewPagePost);
         });
