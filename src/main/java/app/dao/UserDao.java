@@ -3,7 +3,7 @@ package app.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,28 +48,6 @@ public class UserDao extends Database {
 			e.printStackTrace();
 		}
         return user;
-    }
-
-    public Iterable<String> getAllUserNames() {
-        List<String> results = new ArrayList<String>();
-        String sql;
-        try{
-            sql = "select * from account";
-            setPreparedStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (true) {
-                if (rs.next()) {
-                    results.add(rs.getString("username"));
-
-                } else {
-                    break;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return results;
     }
 
     public Iterable<User> getAllUsers() {

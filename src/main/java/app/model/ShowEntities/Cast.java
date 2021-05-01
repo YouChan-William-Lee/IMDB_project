@@ -1,8 +1,6 @@
-package app.model;
+package app.model.ShowEntities;
 
-import java.util.ArrayList;
 import java.sql.Date;
-import java.util.List;
 
 public class Cast {
 

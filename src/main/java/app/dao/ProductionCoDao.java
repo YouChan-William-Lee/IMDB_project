@@ -1,7 +1,6 @@
 package app.dao;
 
-import app.model.Cast;
-import app.model.ProductionCo;
+import app.model.ShowEntities.ProductionCo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.util.List;
 public class ProductionCoDao extends Database {
 
      // Obtain all the production companies.
-    public static Iterable<ProductionCo> getAllProductionCo() {
+    public Iterable<ProductionCo> getAllProductionCo() {
         List<ProductionCo> allProductionCo = new ArrayList<ProductionCo>();
 
         String sql;
@@ -37,7 +36,7 @@ public class ProductionCoDao extends Database {
     }
 
     // Getting a production company
-    public static ProductionCo getProductionCo(String name) {
+    public ProductionCo getProductionCo(String name) {
         List<ProductionCo> allProductionCo = (List<ProductionCo>) getAllProductionCo();
 
         for (ProductionCo p : allProductionCo) {
@@ -49,11 +48,11 @@ public class ProductionCoDao extends Database {
     }
 
     // Showing the number of production companies
-    public static int getNumberOfProductionCo() {
+    public int getNumberOfProductionCo() {
         return ((List<ProductionCo>) getAllProductionCo()).size();
     }
 
-    public static void addProductionCo(ProductionCo productionCo) {
+    public void addProductionCo(ProductionCo productionCo) {
         String sql= "insert into production_company(proco_id, proco_name) values(?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);

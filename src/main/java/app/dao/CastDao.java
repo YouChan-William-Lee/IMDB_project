@@ -1,36 +1,20 @@
 package app.dao;
 
-import app.model.Cast;
-import app.model.Show;
-import app.model.Users.User;
+import app.model.ShowEntities.Cast;
+import app.model.ShowEntities.Show;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import static app.Main.showDao;
 
 public class CastDao extends Database {
 
-//    private static List<Cast> allCast = new ArrayList<Cast>();
-
-//    public static Cast getPerson(String name, Date birthdate, String bio) {
-//
-//        for (Cast person : allCast) {
-//            if (person.getName().equals(name)) {
-//                return person;
-//            }
-//        }
-//
-//        Cast newPerson = new Cast(name, birthdate, bio);
-//        allCast.add(newPerson);
-//        return newPerson;
-//    }
-
-
     // Obtain shows via casts searching
-    public static Iterable<Show> getSearchedShowsByActors(String searching) {
+    public Iterable<Show> getSearchedShowsByActors(String searching) {
 
         List<Show> searchedShows = new ArrayList<Show>();
         List<Cast> casts = (List<Cast>) getAllCast();
@@ -46,13 +30,13 @@ public class CastDao extends Database {
                         if (creditRollRS.next()) {
                             boolean duplication = false;
                             for(int i = 0; i < searchedShows.size(); i++) {
-                                if(searchedShows.get(i).getShowTitle().equals(ShowDao.getShowByShowId(creditRollRS.getString("show_id")).getShowTitle())) {
+                                if(searchedShows.get(i).getShowTitle().equals(showDao.getShowByShowId(creditRollRS.getString("show_id")).getShowTitle())) {
                                     duplication = true;
                                     break;
                                 }
                             }
                             if(!duplication) {
-                                searchedShows.add(ShowDao.getShowByShowId(creditRollRS.getString("show_id")));
+                                searchedShows.add(showDao.getShowByShowId(creditRollRS.getString("show_id")));
                             }
                         } else {
                             break;
@@ -68,7 +52,7 @@ public class CastDao extends Database {
     }
 
     // Get the cast list of a show
-    public static Iterable<Cast> getAllCast() {
+    public Iterable<Cast> getAllCast() {
         List<Cast> allCast = new ArrayList<Cast>();
 
         String sql;
@@ -93,7 +77,7 @@ public class CastDao extends Database {
     }
 
     // Get a cast of a show
-    public static Cast getCast(String name) {
+    public Cast getCast(String name) {
         List<Cast> casts = (List<Cast>) getAllCast();
 
         for (Cast c : casts) {
@@ -105,7 +89,7 @@ public class CastDao extends Database {
     }
 
     // Adding casts process
-    public static void addCast(Cast cast) {
+    public void addCast(Cast cast) {
         String sql= "insert into person(person_id, fullname, role, birthdate, bio) values(?,?,?,?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
@@ -120,11 +104,11 @@ public class CastDao extends Database {
         }
     }
 
-    public static int getNumberOfCasts() {
+    public int getNumberOfCasts() {
         return ((List<Cast>) getAllCast()).size();
     }
 
-    public static void addCastToShow(Cast cast, Show show, String characterName) {
+    public void addCastToShow(Cast cast, Show show, String characterName) {
         String sql= "insert into credits_roll(person_id, role, show_id, start_year, end_year, character_name) values(?,?,?,?,?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);

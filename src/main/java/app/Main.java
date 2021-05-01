@@ -1,12 +1,9 @@
 package app;
 
 import app.controller.*;
-import app.dao.CastDao;
-import app.dao.Database;
+import app.dao.*;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
-import app.dao.ShowDao;
-import app.dao.UserDao;
 import app.controller.localisation.Filters;
 import app.controller.utils.HerokuUtil;
 import app.controller.paths.Web;
@@ -20,25 +17,18 @@ public class Main {
     public static ShowDao showDao;
     public static UserDao userDao;
     public static CastDao castDao;
-        //
+    public static ProductionCoDao productionCoDao;
+
     public static void main(String[] args) {
 
-        // url, user and password of database are all in the paths/SQL.java
 
         // Instantiate your dependencies
         showDao = new ShowDao();
         userDao = new UserDao();
         castDao = new CastDao();
+        productionCoDao = new ProductionCoDao();
 
-        //cahnge  Model.java -> DatabaseDao.java
-        //test whether it can connect to database
         Database.startConnection();
-//        DatabaseDao.closeConnection();
-
-        //initialize database
-//        userDao.initializeDatabase();
-        //showDao.initializeDatabase(); not finished
-        //castDao.initializeDatabase(); not finished
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
@@ -58,7 +48,6 @@ public class Main {
             get(Web.USER, UserController.serveProfilePageGet);
             get(Web.USEREDIT, UserController.serveProfileEditPageGet);
             get(Web.ADDMINADDSHOW, ShowController.fetchAddNewPage);
-            //get(Web.SEARCH, ShowController.fetchSearchedShowsGet);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
             post(Web.SIGNIN, SigninController.handleSigninPost);

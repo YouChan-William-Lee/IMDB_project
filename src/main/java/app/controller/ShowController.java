@@ -1,21 +1,17 @@
 package app.controller;
 
 import app.controller.paths.Template;
-import app.dao.CastDao;
-import app.dao.ProductionCoDao;
-import app.dao.ShowDao;
-import app.model.Cast;
-import app.model.ProductionCo;
+import app.model.ShowEntities.Cast;
+import app.model.ShowEntities.ProductionCo;
 import io.javalin.http.Handler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.Main.*;
 import static app.controller.utils.RequestUtil.*;
-import app.model.Show;
+import app.model.ShowEntities.Show;
 
 
 public class ShowController {
@@ -69,47 +65,35 @@ public class ShowController {
         } else {
 
 
-            ProductionCo productionCo = ProductionCoDao.getProductionCo(getQueryShowPCO(ctx));
+            ProductionCo productionCo = productionCoDao.getProductionCo(getQueryShowPCO(ctx));
             if (productionCo == null) {
-                productionCo = new ProductionCo(ProductionCoDao.getNumberOfProductionCo() + 1, getQueryShowPCO(ctx));
-                ProductionCoDao.addProductionCo(productionCo);
+                productionCo = new ProductionCo(productionCoDao.getNumberOfProductionCo() + 1, getQueryShowPCO(ctx));
+                productionCoDao.addProductionCo(productionCo);
             }
 
             int showId = showDao.getNumberOfShows() + 1;
             Show newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), getQueryShowimageaddress(ctx), null);
-            ShowDao.addShow(newShow);
+            showDao.addShow(newShow);
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 
-            Cast cast1 = CastDao.getCast(getQueryShowcreditsroll1actorname(ctx));
+            Cast cast1 = castDao.getCast(getQueryShowcreditsroll1actorname(ctx));
             if (cast1 == null) {
                 long date1 = ((Date)formatter.parse(getQueryShowcreditsroll1birthday(ctx))).getTime();
-                cast1 = new Cast(CastDao.getNumberOfCasts() + 1, getQueryShowcreditsroll1actorname(ctx), "Actor", new java.sql.Date(date1), getQueryShowcreditsroll1bio(ctx));
-                CastDao.addCast(cast1);
+                cast1 = new Cast(castDao.getNumberOfCasts() + 1, getQueryShowcreditsroll1actorname(ctx), "Actor", new java.sql.Date(date1), getQueryShowcreditsroll1bio(ctx));
+                castDao.addCast(cast1);
             }
 
-            Cast cast2 = CastDao.getCast(getQueryShowcreditsroll2actorname(ctx));
+            Cast cast2 = castDao.getCast(getQueryShowcreditsroll2actorname(ctx));
             if (cast2 == null) {
                 long date2 = ((Date)formatter.parse(getQueryShowcreditsroll2birthday(ctx))).getTime();
-                cast2 = new Cast(CastDao.getNumberOfCasts() + 1, getQueryShowcreditsroll2actorname(ctx), "Actor", new java.sql.Date(date2), getQueryShowcreditsroll2bio(ctx));
-                CastDao.addCast(cast2);
+                cast2 = new Cast(castDao.getNumberOfCasts() + 1, getQueryShowcreditsroll2actorname(ctx), "Actor", new java.sql.Date(date2), getQueryShowcreditsroll2bio(ctx));
+                castDao.addCast(cast2);
             }
 
-            CastDao.addCastToShow(cast1, newShow, getQueryShowcreditsroll1charactername(ctx));
-            CastDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
+            castDao.addCastToShow(cast1, newShow, getQueryShowcreditsroll1charactername(ctx));
+            castDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
 
-
-
-//            Cast person1 = CastDao.getPerson(getQueryShowcreditsroll1actorname(ctx), date1, getQueryShowcreditsroll1bio(ctx));
-//            Cast person2 = CastDao.getPerson(getQueryShowcreditsroll2actorname(ctx), date2, getQueryShowcreditsroll2bio(ctx));
-//            Map<String, String> creditsRoll = new HashMap<String, String>();
-//            creditsRoll.put(getQueryShowcreditsroll1charactername(ctx), person1.getName());
-//            creditsRoll.put(getQueryShowcreditsroll2charactername(ctx), person2.getName());
-
-
-//            creditsRoll.put("Jack Dawson", "Leonardo DiCaprio");
-//            creditsRoll.put("Rose Dewitt Bukater", "Kate Winslet");
-//            Show newShow = new Show(showDao.getNumberOfShows() + 1, "Titanic", "Drama", "3.14", "1", "0", "3", "1997", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhYjUIu2o5v5u3rfJpCq5Cz0Q9WK--XdYxai_N2d0ImohPiIOp", creditsRoll);
 
             model.put("duplicationCheckSucceeded", true);
             ctx.render(Template.ADDMINADDSHOW, model);
