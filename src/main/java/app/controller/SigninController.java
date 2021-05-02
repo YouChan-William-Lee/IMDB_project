@@ -8,8 +8,8 @@ import app.controller.utils.ViewUtil;
 import static app.controller.utils.RequestUtil.*;
 
 public class SigninController {
-
-    public static Handler serveSigninPage = ctx -> { // logout, then return to signin page again
+    // logout, then return to signin page again
+    public static Handler serveSigninPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
         model.put("signinRedirect", removeSessionAttrLoginRedirect(ctx));
@@ -17,14 +17,16 @@ public class SigninController {
     };
 
 
-    //Sign in Cases: 1. username already exist, then rerurn to signin page again
+    //Sign in Cases: 1. username already exists, then return to signin page again
     //               2. username is new, signin succeed, then renders the page
     public static Handler handleSigninPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        //Check whether this username already exists
         if (!UserController.duplicationCheck(getQueryUsername(ctx))) {
             model.put("duplicationCheckFailed", true);
             ctx.render(Template.SIGNIN, model);
         } else {
+            //Add this user into database
             UserController.newUser(getQueryUsername(ctx), getQueryPassword(ctx), getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx),getQueryTypeOfUser(ctx), getQueryCountry(ctx));
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("duplicationCheckSucceeded", true);

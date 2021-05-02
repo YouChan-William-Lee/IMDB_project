@@ -1,6 +1,7 @@
 package app.controller.paths;
 
-public class Template {  // template engine,separates Java code from the web pages
+public class Template {
+    // template engine,separates Java code from the web pages
     public static final String INDEX = "/velocity/index/index.vm";
     public static final String LOGIN = "/velocity/login/login.vm";
     public static final String SHOWS_ALL = "/velocity/show/all.vm";

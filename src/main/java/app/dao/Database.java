@@ -1,7 +1,6 @@
 package app.dao;
 
 import java.sql.*;
-
 import app.controller.paths.mySQL;
 
 public class Database {
@@ -9,7 +8,7 @@ public class Database {
     protected static Connection connection;
     protected static PreparedStatement preparedStatement;
 
-    //connect to database and return the connection
+    //Connect to database and return the connection
     public static Connection startConnection() {
         try {
             Class.forName(mySQL.dbDriver);
@@ -21,7 +20,7 @@ public class Database {
         return connection;
     }
 
-    //database disconnect
+    //Disconnect to database
     public static void closeConnection(){
         if(connection != null){
             try{
@@ -33,6 +32,7 @@ public class Database {
         }
     }
 
+    //Perform this query
     public static PreparedStatement setPreparedStatement(String sql) {
         try {
             preparedStatement = connection.prepareStatement(sql);

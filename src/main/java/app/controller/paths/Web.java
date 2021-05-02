@@ -1,9 +1,8 @@
 package app.controller.paths;
 
 
-// All the Addresses
-
 public class Web {
+    // All web addresses
     public static final String INDEX = "/index";
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";

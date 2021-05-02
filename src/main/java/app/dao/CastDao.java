@@ -13,14 +13,16 @@ import static app.Main.showDao;
 
 public class CastDao extends Database {
 
-    // Obtain shows via casts searching
+    //Obtain all the shows which cast this actor(searching)
     public Iterable<Show> getSearchedShowsByActors(String searching) {
-
+        //Create a new show list
         List<Show> searchedShows = new ArrayList<Show>();
+        //Bring all the casts
         List<Cast> casts = (List<Cast>) getAllCast();
         for(Cast c : casts) {
+            //Check whether any cast has this name(searching)
             if (c.getName().toUpperCase().contains(searching.toUpperCase())) {
-
+                //Search in database
                 String sql = "select show_id from credits_roll where person_id=?";
                 try {
                     setPreparedStatement(sql).setInt(1, c.getID());
@@ -30,11 +32,13 @@ public class CastDao extends Database {
                         if (creditRollRS.next()) {
                             boolean duplication = false;
                             for(int i = 0; i < searchedShows.size(); i++) {
+                                //Finds shows which cast this actor
                                 if(searchedShows.get(i).getShowTitle().equals(showDao.getShowByShowId(creditRollRS.getString("show_id")).getShowTitle())) {
                                     duplication = true;
                                     break;
                                 }
                             }
+                            //Check whether searchedShows list already has this show to avoid duplication
                             if(!duplication) {
                                 searchedShows.add(showDao.getShowByShowId(creditRollRS.getString("show_id")));
                             }
@@ -51,7 +55,7 @@ public class CastDao extends Database {
         return searchedShows;
     }
 
-    // Get the cast list of a show
+    //Get all the casts
     public Iterable<Cast> getAllCast() {
         List<Cast> allCast = new ArrayList<Cast>();
 
@@ -76,7 +80,7 @@ public class CastDao extends Database {
         return allCast;
     }
 
-    // Get a cast of a show
+    //Get a cast by cast name
     public Cast getCast(String name) {
         List<Cast> casts = (List<Cast>) getAllCast();
 
@@ -88,7 +92,7 @@ public class CastDao extends Database {
         return null;
     }
 
-    // Adding casts process
+    //Add this cast into database
     public void addCast(Cast cast) {
         String sql= "insert into person(person_id, fullname, role, birthdate, bio) values(?,?,?,?,?)" ;
         try {
@@ -104,10 +108,12 @@ public class CastDao extends Database {
         }
     }
 
+    //Get the number of casts
     public int getNumberOfCasts() {
         return ((List<Cast>) getAllCast()).size();
     }
 
+    //Add this cast to this show with character name(role)
     public void addCastToShow(Cast cast, Show show, String characterName) {
         String sql= "insert into credits_roll(person_id, role, show_id, start_year, end_year, character_name) values(?,?,?,?,?,?)" ;
         try {

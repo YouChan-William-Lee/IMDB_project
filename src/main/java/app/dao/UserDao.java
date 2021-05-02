@@ -12,7 +12,8 @@ import app.model.Users.*;
 
 public class UserDao extends Database {
 
-    public void addUserToDatabase(User user) { // Adding users onto the DB.
+    public void addUserToDatabase(User user) {
+        // Add this user into database.
         String sql= "insert into account(username, salt, password, email, country, gender, first_name, last_name, type_of_user) values(?,?,?,?,?,?,?,?,?)" ;
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
@@ -31,6 +32,7 @@ public class UserDao extends Database {
         }
     }
 
+    //Get the user by user name
     public User getUserByUsername(String username) { // Obtaining user via name searching
 
         User user = null;
@@ -50,6 +52,7 @@ public class UserDao extends Database {
         return user;
     }
 
+    //Get all the users
     public Iterable<User> getAllUsers() {
         List<User> allUsers = new ArrayList<User>();
 

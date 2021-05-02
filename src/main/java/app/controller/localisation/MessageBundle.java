@@ -4,7 +4,8 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class MessageBundle {   // formatting messages
+// formatting messages
+public class MessageBundle {
 
     private ResourceBundle messages;
 

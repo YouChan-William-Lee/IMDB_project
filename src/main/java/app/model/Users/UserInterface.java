@@ -1,5 +1,6 @@
 package app.model.Users;
 
+//User interface
 public interface UserInterface {
     public abstract String getUsername();
     public abstract String getSalt();

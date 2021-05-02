@@ -16,7 +16,7 @@ import static app.controller.utils.RequestUtil.*;
 
 public class UserController {
 
-    // Get user info.
+    // Get user's information
     public static Handler serveProfilePageGet = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
@@ -72,7 +72,5 @@ public class UserController {
         } else if (typeOfUser.equals("criticsUser")) {
             userDao.addUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "critics"));
         }
-
-//        userDao.updateUsersList(user);
     }
 }

@@ -10,7 +10,7 @@ import app.model.ShowEntities.Show;
 public class ShowDao extends Database {
 
 
-    // Adding shows process
+    //Add this show into database
     public void addShow(Show show) {
         String sql= "insert into imdb.show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
         try {
@@ -30,7 +30,7 @@ public class ShowDao extends Database {
         }
     }
 
-    // Get the list of the shows
+    //Get all the shows
     public Iterable<Show> getAllShows() {
 
         List<Show> results = new ArrayList<Show>();
@@ -84,12 +84,13 @@ public class ShowDao extends Database {
         return results;
     }
 
+    //Get the number of shows
     public int getNumberOfShows() {
         List<Show> shows = (List<Show>) getAllShows();
         return shows.size();
     }
 
-    // Obtaining the ID of a show
+    //Get the show by show id
     public Show getShowByShowId(String showId) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
@@ -100,7 +101,7 @@ public class ShowDao extends Database {
         return null;
     }
 
-    // Getting the title of a specific show
+    //Get the show by show title
     public Show getShowByShowTitle(String showTitle) {
         List<Show> shows = (List<Show>) getAllShows();
         for(int i = 0; i < shows.size(); i++) {
@@ -111,12 +112,13 @@ public class ShowDao extends Database {
         return null;
     }
 
-    // Showing a random show
+    //Get a random show
     public Show getRandomShow() {
         List<Show> shows = (List<Show>) getAllShows();
         return shows.get(new Random().nextInt(shows.size()));
     }
 
+    //Get the shows by show title by user
     public Iterable<Show> getSearchedShowsByShowTitles(String searching) {
         List<Show> searchedShows = new ArrayList<Show>();
         List<Show> shows = (List<Show>) getAllShows();
@@ -130,7 +132,7 @@ public class ShowDao extends Database {
     }
 
 
-    //Adding show to the show list
+    //Add this show to the show list
     public void addShowToList(List<Show> list, Show s) {
         list.add(s);
     }

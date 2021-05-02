@@ -7,9 +7,6 @@ import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.controller.utils.RequestUtil.*;
 
-
-
-
 public class LoginController {
 
     // logout and then return to login page
@@ -20,15 +17,17 @@ public class LoginController {
         ctx.render(Template.LOGIN, model);
     };
 
-
-    // Login Cases: login failed, system returns to login page/ login succeed + if
-    // there's a uri to redirect the user to after login?, then renders the page.
+    // Login Cases: login failed, system returns to login page/ login succeed
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        // When the information from user does not match with the user in database, it shows "fail"
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
             ctx.render(Template.LOGIN, model);
-        } else {
+        // When the information from user matches with the user in database, it shows "success"
+        }
+        else {
+            // make this user to current session user
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
@@ -40,22 +39,9 @@ public class LoginController {
     };
 
     public static Handler handleLogoutPost = ctx -> {
+        // When user presses log out button
         ctx.sessionAttribute("currentUser", null);
         ctx.sessionAttribute("loggedOut", "true");
         ctx.redirect(Web.LOGIN);
     };
-
-
-    // The origin of the request (request.pathInfo()) is saved in the session so
-    // the user can be redirected back after login
-//    public static Handler ensureLoginBeforeViewingShows = ctx -> {
-//        if (!ctx.path().startsWith("/shows")) {
-//            return;
-//        }
-//        if (ctx.sessionAttribute("currentUser") == null) {
-//            ctx.sessionAttribute("loginRedirect", ctx.path());
-//            ctx.redirect(Web.LOGIN);
-//        }
-//    };
-
 }

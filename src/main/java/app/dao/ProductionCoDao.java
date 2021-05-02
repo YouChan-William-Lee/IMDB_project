@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProductionCoDao extends Database {
 
-     // Obtain all the production companies.
+     //Get all the production companies
     public Iterable<ProductionCo> getAllProductionCo() {
         List<ProductionCo> allProductionCo = new ArrayList<ProductionCo>();
 
@@ -35,7 +35,7 @@ public class ProductionCoDao extends Database {
         return allProductionCo;
     }
 
-    // Getting a production company
+    //Get a production company by production company name
     public ProductionCo getProductionCo(String name) {
         List<ProductionCo> allProductionCo = (List<ProductionCo>) getAllProductionCo();
 
@@ -47,11 +47,12 @@ public class ProductionCoDao extends Database {
         return null;
     }
 
-    // Showing the number of production companies
+    //Get the number of production companies
     public int getNumberOfProductionCo() {
         return ((List<ProductionCo>) getAllProductionCo()).size();
     }
 
+    //Add this production company into database
     public void addProductionCo(ProductionCo productionCo) {
         String sql= "insert into production_company(proco_id, proco_name) values(?,?)" ;
         try {

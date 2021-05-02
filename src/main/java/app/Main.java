@@ -20,14 +20,12 @@ public class Main {
     public static ProductionCoDao productionCoDao;
 
     public static void main(String[] args) {
-
-
         // Instantiate your dependencies
         showDao = new ShowDao();
         userDao = new UserDao();
         castDao = new CastDao();
         productionCoDao = new ProductionCoDao();
-
+        //Connect to database
         Database.startConnection();
 
         Javalin app = Javalin.create(config -> {
@@ -35,11 +33,11 @@ public class Main {
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
 
+        //Serve index page when user firstly enters to IMDB
         app.get("/", IndexController.serveIndexPage);
 
         app.routes(() -> {
             before(Filters.handleLocaleChange);
-//            before(LoginController.ensureLoginBeforeViewingShows);
             get(Web.INDEX, IndexController.serveIndexPage);
             get(Web.SHOWS, ShowController.fetchAllShows);
             get(Web.ONE_SHOW, ShowController.fetchOneShow);
