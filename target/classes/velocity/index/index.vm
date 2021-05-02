@@ -1,0 +1,15 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<center><h1>$msg.get("INDEX_HEADING")</h1></center>
+<br>
+<br>
+#if($show)
+<center><h2>$msg.get("INDEX_SHOW_OF_THE_DAY_TEXT")</h2></center>
+<div class="column">
+    <center><a href="/shows/$show.showID">$msg.get("INDEX_SHOW_OF_THE_DAY_LINK", $show.showTitle)</a></center>
+    <br>
+    <br>
+    <center><img style="max-width: 70%" src="$show.Cover" alt="$show.showTitle"></center>
+</div>
+#end
+#end

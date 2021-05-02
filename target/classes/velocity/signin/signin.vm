@@ -1,0 +1,45 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form id="signinForm" method="post">
+    #if($duplicationCheckFailed)
+        <p class="bad notification">$msg.get("SIGNIN_FAILED")</p>
+    #elseif($duplicationCheckSucceeded)
+        <p class="good notification">$msg.get("SIGNIN_SUCCEEDED", $currentUser)</p>
+    #elseif($loggedOut)
+        <p class="notification">$msg.get("LOGIN_LOGGED_OUT")</p>
+    #end
+    <h1>$msg.get("SIGNIN_HEADING")</h1>
+    <p>$msg.get("SIGNIN_INSTRUCTIONS", "/index")</p>
+    <label>$msg.get("SIGNIN_LABEL_USERNAME")</label>
+    <input type="text" name="username" placeholder="$msg.get("SIGNIN_LABEL_USERNAME")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_PASSWORD")</label>
+    <input type="password" name="password" placeholder="$msg.get("SIGNIN_LABEL_PASSWORD")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_FIRSTNAME")</label>
+    <input type="text" name="firstname" placeholder="$msg.get("SIGNIN_LABEL_FIRSTNAME")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_LASTNAME")</label>
+    <input type="text" name="lastname" placeholder="$msg.get("SIGNIN_LABEL_LASTNAME")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_EMAIL")</label>
+    <input type="text" name="email" placeholder="$msg.get("SIGNIN_LABEL_EMAIL")" value="" required>
+    <label>$msg.get("SIGNIN_LABEL_GENDER")</label>
+    <select id="genders" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+    <label>$msg.get("SIGNIN_LABEL_TYPEOFUSER")</label>
+    <select id="type of user" name="typeofuser">
+        <option value="regularUser" >Regular User</option>
+        <option value="PCoUser" >Product Company Owner</option>
+        <option value="criticsUser" >Critics</option>
+
+    </select>
+    <br>
+    <br>
+    <label>$msg.get("SIGNIN_LABEL_COUNTRY")</label>
+    <input type="text" name="country" placeholder="$msg.get("SIGNIN_LABEL_COUNTRY")" value="" required>
+    #if($loginRedirect)
+        <input type="hidden" name="loginRedirect" value="$loginRedirect">
+    #end
+    <input type="submit" value="$msg.get("SIGNIN_BUTTON_LOGIN")">
+</form>
+#end
