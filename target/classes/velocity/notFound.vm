@@ -2,3 +2,5 @@
 #@mainLayout()
 <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
 #end
+
+## REFERENCE notFound.vm in sef-2021-s1/practice-javalin-mvc

@@ -20,3 +20,5 @@
     <input type="submit" value="$msg.get("LOGIN_BUTTON_LOGIN")">
 </form>
 #end
+
+## REFERENCE login.vm in sef-2021-s1/practice-javalin-mvc
