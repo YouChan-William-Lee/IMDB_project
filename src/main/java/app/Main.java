@@ -50,6 +50,7 @@ public class Main {
             post(Web.SIGNIN, SigninController.handleSigninPost);
             post(Web.SEARCH, ShowController.fetchSearchedShowsPost);
             post(Web.ADDMINADDSHOW, ShowController.fetchAddNewPagePost);
+            post(Web.ONE_SHOW, ShowController.fetchDeleteShowPost);
         });
 
         app.error(404, ViewUtil.notFound);

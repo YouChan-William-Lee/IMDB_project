@@ -9,7 +9,6 @@ import app.model.ShowEntities.Show;
 
 public class ShowDao extends Database {
 
-
     //Add this show into database
     public void addShow(Show show) {
         String sql= "insert into imdb.show(showid, show_title, genre, length, movie, series, proco_id, year, imageAddress) values(?,?,?,?,?,?,?,?,?)" ;
@@ -24,6 +23,28 @@ public class ShowDao extends Database {
             preparedStatement.setString(7, show.getPCO());
             preparedStatement.setString(8, show.getYear());
             preparedStatement.setString(9, show.getCover());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteShow(Show show) {
+        //Delete credits_roll in this show
+        String sql= "delete from imdb.credits_roll where show_id = ?" ;
+        try {
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, show.getShowID());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //Delete show
+        sql= "delete from imdb.show where showid = ?" ;
+        try {
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            preparedStatement.setInt(1, show.getShowID());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

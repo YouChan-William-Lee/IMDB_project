@@ -18,6 +18,7 @@ public class ShowController {
     //Get all shows and current user name
     public static Handler fetchAllShows = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("deleteSucceded", false);
         model.put("shows", showDao.getAllShows());
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         ctx.render(Template.SHOWS_ALL, model);
@@ -103,6 +104,18 @@ public class ShowController {
             model.put("duplicationCheckSucceeded", true);
             ctx.render(Template.ADDMINADDSHOW, model);
         }
+    };
+
+    public static Handler fetchDeleteShowPost = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("deletedShowTitle", showDao.getShowByShowId(getParamShowId(ctx)).getShowTitle());
+        showDao.deleteShow(showDao.getShowByShowId(getParamShowId(ctx)));
+
+        model.put("deleteSucceded", true);
+        model.put("shows", showDao.getAllShows());
+        model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+
+        ctx.render(Template.SHOWS_ALL, model);
     };
 
     //Check whether show title already exists

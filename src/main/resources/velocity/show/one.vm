@@ -1,5 +1,12 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+    #if($user)
+        #if($user.typeOfUser.equals("admin"))
+        <form id="signinForm" method="post">
+            <input type="submit" value="Delete this movie">
+        </form>
+        #end
+    #end
     #if($show)
         <center><h2><b>$show.showTitle</b></h2></center>
         <br>
