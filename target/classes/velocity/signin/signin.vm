@@ -1,6 +1,10 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 <form id="signinForm" method="post">
+    #if($approvedFailed)
+        <p class="bad notification">$msg.get("LOGIN_PENDING")</p>
+    #end
+
     #if($duplicationCheckFailed)
         <p class="bad notification">$msg.get("SIGNIN_FAILED")</p>
     #elseif($duplicationCheckSucceeded)

@@ -335,6 +335,19 @@ a .showCover img {
     background: #bb0000;
 }
 
+.critic_button {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    width: 20%;
+    border-radius: 3px;
+    margin: 2px 0 20px 0;
+    text-align: center;
+    color: black;
+    background: #f5c518;
+    border: 0;
+    cursor: pointer;
+}
+
 /* Current User */
 #currentuser {
     top: -5px;

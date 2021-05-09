@@ -10,9 +10,10 @@ public class User implements UserInterface {
     private String gender;
     private String country;
     private String typeOfUser;
+    private boolean approved;
 
     //User constructor
-    public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender, String country, String typeOfUser) {
+    public User(String username, String salt, String hashedPassword, String firstname, String lastname, String email, String gender, String country, String typeOfUser, boolean approved) {
         this.username = username;
         this.salt = salt;
         this.hashedPassword = hashedPassword;
@@ -22,6 +23,7 @@ public class User implements UserInterface {
         this.gender = gender;
         this.country = country;
         this.typeOfUser = typeOfUser;
+        this.approved = approved;
     }
 
     public String getUsername() { return username; }
@@ -35,5 +37,10 @@ public class User implements UserInterface {
     public String getTypeOfUser() {
         return typeOfUser;
     }
+    public boolean getApproved() { return approved; }
+    public void setApproved(boolean approved) {
+        System.out.println("Inside of setApproved:" + this.approved + approved);
+        this.approved = approved;
+        System.out.println(this.approved); }
 }
 

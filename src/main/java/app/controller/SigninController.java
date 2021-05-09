@@ -26,14 +26,23 @@ public class SigninController {
             model.put("duplicationCheckFailed", true);
             ctx.render(Template.SIGNIN, model);
         } else {
-            //Add this user into database
-            UserController.newUser(getQueryUsername(ctx), getQueryPassword(ctx), getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx),getQueryTypeOfUser(ctx), getQueryCountry(ctx));
-            ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
-            model.put("duplicationCheckSucceeded", true);
-            model.put("currentUser", getQueryUsername(ctx));
-            if (getQueryLoginRedirect(ctx) != null) {
-                ctx.redirect(getQueryLoginRedirect(ctx));
+            UserController.newUser(getQueryUsername(ctx), getQueryPassword(ctx), getQueryFirstname(ctx), getQueryLastname(ctx), getQueryEmail(ctx), getQueryGender(ctx), getQueryTypeOfUser(ctx), getQueryCountry(ctx));
+            // Check if this user's request is pending
+            if(LoginController.approvedCheck(getQueryUsername(ctx))) {
+                //Add this user into database
+                ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
+                model.put("duplicationCheckSucceeded", true);
+                model.put("currentUser", getQueryUsername(ctx));
+                if (getQueryLoginRedirect(ctx) != null) {
+                    ctx.redirect(getQueryLoginRedirect(ctx));
+                }
+                ctx.render(Template.SIGNIN, model);
             }
-            ctx.render(Template.SIGNIN, model);
+            else {
+                model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
+                model.put("signinRedirect", removeSessionAttrLoginRedirect(ctx));
+                model.put("approvedFailed", true);
+                ctx.render(Template.SIGNIN, model);
+            }
         }
     };}

@@ -10,4 +10,5 @@ public interface UserInterface {
     public abstract String getEmail();
     public abstract String getGender();
     public abstract String getCountry();
+    public abstract void setApproved(boolean approved);
 }

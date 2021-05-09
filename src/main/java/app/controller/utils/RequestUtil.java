@@ -91,6 +91,8 @@ public class RequestUtil {
 
     public static String getQueryShowcreditsroll2bio(Context ctx) { return ctx.formParam("showcreditsroll2bio"); }
 
+    public static String getParamCritic(Context ctx) { return ctx.formParam("arppoveCritic"); }
+
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");
         ctx.sessionAttribute("loggedOut", null);

@@ -2,7 +2,7 @@
 #@mainLayout()
 <h1>$msg.get("SHOWS_HEADING_ALL")</h1>
 #if($deleteSucceded)
-    <p class="bad notification">$msg.get("SHOWS_DELETED", $deletedShowTitle)</p>
+    <p class="good notification">$msg.get("SHOWS_DELETED", $deletedShowTitle)</p>
 #end
 #if($user)
     #if($user.typeOfUser.equals("admin"))

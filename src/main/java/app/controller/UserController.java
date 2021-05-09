@@ -21,6 +21,20 @@ public class UserController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
         model.put("user", user);
+        model.put("users", userDao.getAllUsers());
+        ctx.render(Template.USER, model);
+    };
+    // Approve criticuser
+    public static Handler serveProfilePageGetPost = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        // Take a unapproved critic user's name
+        User approvedCriticUser = userDao.getUserByUsername(getParamCritic(ctx));
+        approvedCriticUser.setApproved(true);
+        userDao.updateUserToDatabase(approvedCriticUser);
+
+        User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
+        model.put("user", user);
+        model.put("users", userDao.getAllUsers());
         ctx.render(Template.USER, model);
     };
 
@@ -66,11 +80,11 @@ public class UserController {
         String hashedPassword = BCrypt.hashpw(password, newSalt);
 
         if (typeOfUser.equals("regularUser")) {
-            userDao.addUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "regular"));
+            userDao.addUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "regular", true));
         } else if (typeOfUser.equals("PCoUser")) {
-            userDao.addUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, "pco"));
+            userDao.addUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, "pco", true));
         } else if (typeOfUser.equals("criticsUser")) {
-            userDao.addUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "critics"));
+            userDao.addUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "critics", false));
         }
     }
 }

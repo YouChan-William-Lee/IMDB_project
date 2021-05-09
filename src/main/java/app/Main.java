@@ -51,6 +51,7 @@ public class Main {
             post(Web.SEARCH, ShowController.fetchSearchedShowsPost);
             post(Web.ADDMINADDSHOW, ShowController.fetchAddNewPagePost);
             post(Web.ONE_SHOW, ShowController.fetchDeleteShowPost);
+            post(Web.USER, UserController.serveProfilePageGetPost);
         });
 
         app.error(404, ViewUtil.notFound);

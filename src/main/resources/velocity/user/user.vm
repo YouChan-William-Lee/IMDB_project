@@ -8,6 +8,23 @@
         <h2><strong>Email</strong>: $user.email</h2>
         <h2><strong>Gender</strong>: $user.gender</h2>
         <h2><strong>Country</strong>: $user.country</h2>
+        <br>
+        #if($user.typeOfUser.equals("admin"))
+            <hr style="width:100%;text-align:left;margin-left:0">
+            <h2><strong>Critics Users</strong> to be approved</h2>
+            <br>
+            #foreach($user in $users)
+                #if($user.typeOfUser.equals("critics"))
+                    #if($user.approved == false)
+                        <form method="post">
+                            <h2>Username: $user.username
+                            <button class = "critic_button" style="float: right;" name="arppoveCritic" type="submit" value="$user.username">Approve</button>
+                            </h2>
+                        </form>
+                    #end
+                #end
+            #end
+        #end
     #else
         <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
     #end
