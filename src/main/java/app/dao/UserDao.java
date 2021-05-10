@@ -55,6 +55,19 @@ public class UserDao extends Database {
         }
     }
 
+    //Delete user from database
+    public void deleteUserToDatabase(User user) {
+        // Add this user into database.
+        String sql= "delete from account where username=?";
+        try {
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Get the user by user name
     public User getUserByUsername(String username) { // Obtaining user via name searching
 

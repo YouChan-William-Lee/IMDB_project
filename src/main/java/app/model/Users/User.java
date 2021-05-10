@@ -38,9 +38,6 @@ public class User implements UserInterface {
         return typeOfUser;
     }
     public boolean getApproved() { return approved; }
-    public void setApproved(boolean approved) {
-        System.out.println("Inside of setApproved:" + this.approved + approved);
-        this.approved = approved;
-        System.out.println(this.approved); }
+    public void setApproved(boolean approved) { this.approved = approved; }
 }
 

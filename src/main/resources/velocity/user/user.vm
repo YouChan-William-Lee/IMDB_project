@@ -14,12 +14,13 @@
             <h2><strong>Critics Users</strong> to be approved</h2>
             <br>
             #foreach($user in $users)
-                #if($user.typeOfUser.equals("critics"))
+                #if($user.typeOfUser.equals("critics") || $user.typeOfUser.equals("pco"))
                     #if($user.approved == false)
-                        <form method="post">
-                            <h2>Username: $user.username
-                            <button class = "critic_button" style="float: right;" name="arppoveCritic" type="submit" value="$user.username">Approve</button>
-                            </h2>
+                        <h2>Username: $user.username</h2>
+                        <form id="userform" method="post">
+                            <button name="arppoveCritic" type="submit" value="$user.username">Approve</button>
+                            &nbsp;
+                            <button name="rejectCritic" type="submit" value="$user.username">Reject</button>
                         </form>
                     #end
                 #end

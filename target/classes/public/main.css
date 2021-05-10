@@ -273,6 +273,17 @@ a .showCover img {
     cursor: pointer;
 }
 
+.userform {
+    color: black;
+    background: #f5c518;
+    border: 0;
+    cursor: pointer;
+}
+.userform-right {
+    float: right;
+
+}
+
 .notification {
     padding: 10px;
     background: #333;
@@ -320,6 +331,18 @@ a .showCover img {
     cursor: pointer;
 }
 
+#userform button {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    width: 30%;
+    border-radius: 3px;
+    margin: 2px 0 20px 0;
+    color: black;
+    background: #f5c518;
+    border: 0;
+    cursor: pointer;
+}
+
 .notification {
     padding: 10px;
     background: #333;
@@ -335,10 +358,11 @@ a .showCover img {
     background: #bb0000;
 }
 
-.critic_button {
+.button.usertable {
     border: 1px solid #ddd;
     padding: 8px 12px;
     width: 20%;
+    float: right;
     border-radius: 3px;
     margin: 2px 0 20px 0;
     text-align: center;
@@ -367,5 +391,4 @@ a .showCover img {
     border: 0;
     font-size: 16px;
     color: #fff;
-
 }

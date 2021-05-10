@@ -27,10 +27,19 @@ public class UserController {
     // Approve criticuser
     public static Handler serveProfilePageGetPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        // Take a unapproved critic user's name
-        User approvedCriticUser = userDao.getUserByUsername(getParamCritic(ctx));
-        approvedCriticUser.setApproved(true);
-        userDao.updateUserToDatabase(approvedCriticUser);
+
+        // If admin press approve button
+        if(getParamApproveUser(ctx) != null) {
+            User approvedCriticUser = userDao.getUserByUsername(getParamApproveUser(ctx));
+            approvedCriticUser.setApproved(true);
+            userDao.updateUserToDatabase(approvedCriticUser);
+        }
+
+        // If admin press reject button
+        if(getParamRejectUser(ctx) != null) {
+            User rejectedCriticUser = userDao.getUserByUsername(getParamRejectUser(ctx));
+            userDao.deleteUserToDatabase(rejectedCriticUser);
+        }
 
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
         model.put("user", user);
@@ -82,7 +91,7 @@ public class UserController {
         if (typeOfUser.equals("regularUser")) {
             userDao.addUserToDatabase(new RegularUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "regular", true));
         } else if (typeOfUser.equals("PCoUser")) {
-            userDao.addUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, "pco", true));
+            userDao.addUserToDatabase(new PCOUser(username, newSalt, hashedPassword, firstname, lastname, email, "pco", false));
         } else if (typeOfUser.equals("criticsUser")) {
             userDao.addUserToDatabase(new CriticsUser(username, newSalt, hashedPassword, firstname, lastname, email, gender, country, "critics", false));
         }
