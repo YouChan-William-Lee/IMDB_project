@@ -2,7 +2,7 @@
 #@mainLayout()
 <form id="loginForm" method="post">
     #if($approvedFailed)
-        <p class="bad notification">$msg.get("LOGIN_PENDING")</p>
+        <p class="bad notification">$pendingUser is pending</p>
     #end
 
     #if($authenticationFailed)

@@ -23,6 +23,7 @@ public class LoginController {
 
     // Login Cases: login failed, system returns to login page/ login succeed
     public static Handler handleLoginPost = ctx -> {
+        String thisuser = getQueryUsername(ctx);
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         // When the information from user does not match with the user in database, it shows "fail"
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
@@ -44,6 +45,7 @@ public class LoginController {
             }
             else {
                 model.put("approvedFailed", true);
+                model.put("pendingUser", thisuser);
                 ctx.render(Template.LOGIN, model);
             }
 

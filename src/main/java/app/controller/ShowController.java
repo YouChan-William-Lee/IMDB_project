@@ -19,7 +19,7 @@ public class ShowController {
     public static Handler fetchAllShows = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("deleteSucceded", false);
-        model.put("shows", showDao.getAllShows());
+        model.put("shows", showDao.getApprovedShows());
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         ctx.render(Template.SHOWS_ALL, model);
     };
@@ -57,7 +57,7 @@ public class ShowController {
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         model.put("showid", showDao.getNumberOfShows() + 1);
 
-        ctx.render(Template.ADDMINADDSHOW, model);
+        ctx.render(Template.useraddshow, model);
     };
 
     //Admin submits the new show's information
@@ -67,7 +67,7 @@ public class ShowController {
         //Check whether same show title exists or not
         if (!ShowController.duplicationCheck(getQueryShowtitle(ctx))) {
             model.put("duplicationCheckFailed", true);
-            ctx.render(Template.ADDMINADDSHOW, model);
+            ctx.render(Template.useraddshow, model);
         }
         else {
             //Check same production company already exists in database
@@ -78,7 +78,15 @@ public class ShowController {
             }
             //Increase show ID automatically
             int showId = showDao.getNumberOfShows() + 1;
-            Show newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), getQueryShowimageaddress(ctx), null);
+            Show newShow;
+            if(userDao.getUserByUsername(getSessionCurrentUser(ctx)).getTypeOfUser().equals("admin")) {
+                newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), true, getQueryShowimageaddress(ctx), null);
+            }
+            else {
+                newShow = new Show(showId, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), false, getQueryShowimageaddress(ctx), null);
+                model.put("approvedFailed", true);
+            }
+
             //Add this new show into database
             showDao.addShow(newShow);
             //Format date form
@@ -102,7 +110,7 @@ public class ShowController {
             castDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
 
             model.put("duplicationCheckSucceeded", true);
-            ctx.render(Template.ADDMINADDSHOW, model);
+            ctx.render(Template.useraddshow, model);
         }
     };
 

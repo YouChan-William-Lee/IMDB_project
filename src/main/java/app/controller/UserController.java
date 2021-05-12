@@ -9,6 +9,7 @@ import io.javalin.http.Handler;
 import java.util.Map;
 import app.model.Users.User;
 import org.mindrot.jbcrypt.BCrypt;
+import app.model.ShowEntities.Show;
 
 import static app.Main.*;
 import static app.controller.utils.RequestUtil.*;
@@ -22,26 +23,49 @@ public class UserController {
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
         model.put("user", user);
         model.put("users", userDao.getAllUsers());
+        model.put("shows", showDao.getAllShows());
         ctx.render(Template.USER, model);
     };
     // Approve criticuser
     public static Handler serveProfilePageGetPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
-        // If admin press approve button
+        // If admin press approve button on user
         if(getParamApproveUser(ctx) != null) {
             User approvedCriticUser = userDao.getUserByUsername(getParamApproveUser(ctx));
             approvedCriticUser.setApproved(true);
             userDao.updateUserToDatabase(approvedCriticUser);
+            model.put("UserApproved", true);
+            model.put("ApprovedUser", getParamApproveUser(ctx));
         }
 
-        // If admin press reject button
+        // If admin press reject button on user
         if(getParamRejectUser(ctx) != null) {
             User rejectedCriticUser = userDao.getUserByUsername(getParamRejectUser(ctx));
             userDao.deleteUserToDatabase(rejectedCriticUser);
+            model.put("UserApproved", false);
+            model.put("RejectedUser", getParamRejectUser(ctx));
+        }
+
+        // If admin press approve button on show
+        if(getParamApproveShow(ctx) != null) {
+            Show approvedShow = showDao.getShowByShowTitle(getParamApproveShow(ctx));
+            approvedShow.setApproved(true);
+            showDao.updateShow(approvedShow);
+            model.put("ShowApproved", true);
+            model.put("ApprovedShow", getParamApproveShow(ctx));
+        }
+
+        // If admin press reject button on show
+        if(getParamRejectShow(ctx) != null) {
+            Show rejectedShow = showDao.getShowByShowTitle(getParamRejectShow(ctx));
+            showDao.deleteShow(rejectedShow);
+            model.put("ShowApproved", false);
+            model.put("RejectedShow", getParamRejectShow(ctx));
         }
 
         User user = userDao.getUserByUsername(getSessionCurrentUser(ctx));
+        model.put("shows", showDao.getAllShows());
         model.put("user", user);
         model.put("users", userDao.getAllUsers());
         ctx.render(Template.USER, model);

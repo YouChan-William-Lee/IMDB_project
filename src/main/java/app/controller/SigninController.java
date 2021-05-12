@@ -21,6 +21,7 @@ public class SigninController {
     //               2. username is new, signin succeed, then renders the page
     public static Handler handleSigninPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        String thisuser = getQueryUsername(ctx);
         //Check whether this username already exists
         if (!UserController.duplicationCheck(getQueryUsername(ctx))) {
             model.put("duplicationCheckFailed", true);
@@ -42,6 +43,7 @@ public class SigninController {
                 model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
                 model.put("signinRedirect", removeSessionAttrLoginRedirect(ctx));
                 model.put("approvedFailed", true);
+                model.put("pendingUser", thisuser);
                 ctx.render(Template.SIGNIN, model);
             }
         }

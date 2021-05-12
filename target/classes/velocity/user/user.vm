@@ -1,6 +1,18 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($user)
+        #if($UserApproved == true)
+            <p class="good notification">User $ApprovedUser is approved</p>
+        #elseif($UserApproved == false)
+            <p class="bad notification">User $RejectedUser is rejected</p>
+        #end
+
+        #if($ShowApproved == true)
+        <p class="good notification">Show $ApprovedShow is approved</p>
+        #elseif($ShowApproved == false)
+        <p class="bad notification">Show $RejectedShow is rejected</p>
+        #end
+
         <h1><b>$user.username</b></h1>
         <br>
         <h2><strong>First Name</strong>: $user.firstname</h2>
@@ -23,6 +35,18 @@
                             <button name="rejectCritic" type="submit" value="$user.username">Reject</button>
                         </form>
                     #end
+                #end
+            #end
+            <h2><strong>Shows</strong> to be approved</h2>
+            <hr style="width:100%;text-align:left;margin-left:0">
+            #foreach($show in $shows)
+                #if($show.approved == false)
+                    <h2>Show Title: $show.showTitle</h2>
+                    <form id="userform" method="post">
+                        <button name="arppoveShow" type="submit" value="$show.showTitle">Approve</button>
+                        &nbsp;
+                        <button name="rejectShow" type="submit" value="$show.showTitle">Reject</button>
+                    </form>
                 #end
             #end
         #end

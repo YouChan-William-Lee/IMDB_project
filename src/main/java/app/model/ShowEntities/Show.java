@@ -12,10 +12,11 @@ public class Show {
     private final String PCO;
     private final String year;
     private final String imageAddress;
+    private boolean approved;
     private final Map<String, String> credits_roll;
 
     //Show constructor
-    public Show(int showId, String showTitle, String genre, String length, String movie, String series, String PCO, String year, String imageAddress, Map<String, String> casts) {
+    public Show(int showId, String showTitle, String genre, String length, String movie, String series, String PCO, String year, boolean approved, String imageAddress, Map<String, String> casts) {
         this.showId = showId;
         this.showTitle = showTitle;
         this.genre = genre;
@@ -25,6 +26,7 @@ public class Show {
         this.PCO = PCO;
         this.year = year;
         this.imageAddress = imageAddress;
+        this.approved = approved;
         this.credits_roll = casts;
     }
 
@@ -39,5 +41,7 @@ public class Show {
     public String getPCO() { return PCO; }
     public String getYear() { return String.valueOf(year); }
     public String getCover() { return this.imageAddress; }
+    public boolean getApproved() { return this.approved; }
+    public void setApproved(boolean approved) { this.approved = approved;}
     public Map<String, String> getCredits_roll() { return this.credits_roll; }
 }

@@ -95,6 +95,10 @@ public class RequestUtil {
 
     public static String getParamRejectUser(Context ctx) { return ctx.formParam("rejectCritic"); }
 
+    public static String getParamApproveShow(Context ctx) { return ctx.formParam("arppoveShow"); }
+
+    public static String getParamRejectShow(Context ctx) { return ctx.formParam("rejectShow"); }
+
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");
         ctx.sessionAttribute("loggedOut", null);

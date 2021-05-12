@@ -5,11 +5,9 @@
     <p class="good notification">$msg.get("SHOWS_DELETED", $deletedShowTitle)</p>
 #end
 #if($user)
-    #if($user.typeOfUser.equals("admin"))
-    <form id="signinForm" method="get" action="/adminaddshow">
+    <form id="signinForm" method="get" action="/useraddshow">
         <input type="submit" value="Add a movie">
     </form>
-    #end
 #end
 <div class="row row-3">
     #foreach($show in $shows)
