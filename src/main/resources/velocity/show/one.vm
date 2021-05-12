@@ -3,8 +3,12 @@
     #if($user)
         #if($user.typeOfUser.equals("admin"))
             <form id="signinForm" method="post">
-                <input type="submit" value="Delete this movie">
+                <input type="submit" value="Delete this show">
             </form>
+            <form id="signinForm" method="get" action="/shows/$show.showID/editshow">
+                <input type="submit" value="Edit this show">
+            </form>
+        </form>
         #end
     #end
     #if($show)

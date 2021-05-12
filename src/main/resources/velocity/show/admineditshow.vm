@@ -1,0 +1,51 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<form id="signinForm" method="post" autocomplete="on">
+
+    #if($duplicationCheckFailed)
+        <p class="bad notification">$msg.get("SHOWS_FAILED")</p>
+    #elseif($duplicationCheckSucceeded)
+        <p class="good notification">$msg.get("SHOWS_EDIT_SUCCEEDED")</p>
+    #end
+    <h1>$msg.get("SHOWS_EDIT_PAGE")</h1>
+    <label>$msg.get("SHOWS_SHOWID")</label>
+    <label>$show.showID</label>
+    <br>
+    <label>$msg.get("SHOWS_SHOWTITLE")</label>
+    <input type="text" name="showtitle" value="$show.showTitle" required>
+    <label>$msg.get("SHOWS_GENRE")</label>
+    <input type="text" name="showgenre" value="$show.genre" required>
+    <label>$msg.get("SHOWS_LENGTH")</label>
+    <input type="text" name="showlength" value="$show.length" required>
+    <label>$msg.get("SHOWS_MOVIE")</label>
+    <input type="text" name="showmovie" value="$show.movie" required>
+    <label>$msg.get("SHOWS_SERIES")</label>
+    <input type="text" name="showseries" value="$show.series" required>
+    <label>$msg.get("SHOWS_PCO")</label>
+    <input type="text" name="showPCO" value="$show.PCO" required>
+    <label>$msg.get("SHOWS_YEAR")</label>
+    <input type="text" name="showyear" value="$show.year" required>
+    <label>$msg.get("SHOWS_IMAGEADDRESS")</label>
+    <input type="text" name="showimageAddress" value="$show.cover" required>
+    <label>$msg.get("SHOWS_CREDITSROLL1")</label>
+    <label>Actor Name</label>
+    <input type="text" name="showcreditsroll1actorname" value="$show.credits_roll.values().toArray()[0]" required>
+    <label>Character Name</label>
+    <input type="text" name="showcreditsroll1charactername" value="$show.credits_roll.keySet().toArray()[0]" required>
+    <label>Birthday(yyyy-MMM--dd)</label>
+    <input type="text" name="showcreditsroll1birthday" value="$cast1.getBirthdate()" required>
+    <label>Bio</label>
+    <input type="text" name="showcreditsroll1bio" value="$cast1.bio" required>
+    <label>$msg.get("SHOWS_ADMIN_CREDITSROLL2")</label>
+    <label>Actor Name</label>
+    <input type="text" name="showcreditsroll2actorname" value="$show.credits_roll.values().toArray()[1]" required>
+    <label>Character Name</label>
+    <input type="text" name="showcreditsroll2charactername" value="$show.credits_roll.keySet().toArray()[1]" required>
+    <label>Birthday(yyyy-MMM--dd)</label>
+    <input type="text" name="showcreditsroll2birthday" value="$cast2.getBirthdate()" required>
+    <label>Bio</label>
+    <input type="text" name="showcreditsroll2bio" value="$cast2.bio" required>
+    <br>
+    <input type="submit" value="$msg.get("SHOWS_ADMIN_SAVE")">
+</form>
+#end

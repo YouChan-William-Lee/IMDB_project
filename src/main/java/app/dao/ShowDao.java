@@ -33,11 +33,20 @@ public class ShowDao extends Database {
 
     public void updateShow(Show show) {
         // Add this user into database.
-        String sql= "update imdb.show SET approved=? where showid=?";
+        String sql= "update imdb.show SET showid=?, show_title=?, genre=?, length=?, movie=?, series=?, proco_id=?, year=?, approved=?, imageAddress=? where showid=?";
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, show.getApproved());
-            preparedStatement.setInt(2, show.getShowID());
+            preparedStatement.setInt(1, show.getShowID());
+            preparedStatement.setString(2, show.getShowTitle());
+            preparedStatement.setString(3, show.getGenre());
+            preparedStatement.setString(4, show.getLength());
+            preparedStatement.setString(5, show.getMovie());
+            preparedStatement.setString(6, show.getSeries());
+            preparedStatement.setString(7, show.getPCO());
+            preparedStatement.setString(8, show.getYear());
+            preparedStatement.setBoolean(9, show.getApproved());
+            preparedStatement.setString(10, show.getCover());
+            preparedStatement.setInt(11, show.getShowID());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

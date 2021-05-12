@@ -10,5 +10,6 @@ public class Template {
     public static final String SIGNIN = "/velocity/signin/signin.vm";
     public static final String USER = "/velocity/user/user.vm";
     public static final String SEARCH = "/velocity/search/search.vm";
-    public static final String useraddshow = "/velocity/show/useraddshow.vm";
+    public static final String USERADDSHOW = "/velocity/show/useraddshow.vm";
+    public static final String ADMINEDITSHOW = "/velocity/show/admineditshow.vm";
 }

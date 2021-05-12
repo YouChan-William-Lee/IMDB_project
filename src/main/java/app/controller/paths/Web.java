@@ -11,5 +11,6 @@ public class Web {
     public static final String SIGNIN = "/signin";
     public static final String USER = "/user/:username";
     public static final String SEARCH = "/search";
-    public static final String ADDMINADDSHOW = "/useraddshow";
+    public static final String USERADDSHOW = "/useraddshow";
+    public static final String ADMINEDITSHOW = "/shows/:showId/editshow";
 }

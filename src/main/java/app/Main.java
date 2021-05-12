@@ -44,14 +44,16 @@ public class Main {
             get(Web.LOGIN, LoginController.serveLoginPage);
             get(Web.SIGNIN, SigninController.serveSigninPage);
             get(Web.USER, UserController.serveProfilePageGet);
-            get(Web.ADDMINADDSHOW, ShowController.fetchAddNewPage);
+            get(Web.USERADDSHOW, ShowController.fetchAddNewPage);
+            get(Web.ADMINEDITSHOW, ShowController.fetchEditShowPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
             post(Web.SIGNIN, SigninController.handleSigninPost);
             post(Web.SEARCH, ShowController.fetchSearchedShowsPost);
-            post(Web.ADDMINADDSHOW, ShowController.fetchAddNewPagePost);
+            post(Web.USERADDSHOW, ShowController.fetchAddNewPagePost);
             post(Web.ONE_SHOW, ShowController.fetchDeleteShowPost);
             post(Web.USER, UserController.serveProfilePageGetPost);
+            post(Web.ADMINEDITSHOW, ShowController.fetchEditShowPagePost);
         });
 
         app.error(404, ViewUtil.notFound);

@@ -57,7 +57,7 @@ public class ShowController {
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         model.put("showid", showDao.getNumberOfShows() + 1);
 
-        ctx.render(Template.useraddshow, model);
+        ctx.render(Template.USERADDSHOW, model);
     };
 
     //Admin submits the new show's information
@@ -67,7 +67,7 @@ public class ShowController {
         //Check whether same show title exists or not
         if (!ShowController.duplicationCheck(getQueryShowtitle(ctx))) {
             model.put("duplicationCheckFailed", true);
-            ctx.render(Template.useraddshow, model);
+            ctx.render(Template.USERADDSHOW, model);
         }
         else {
             //Check same production company already exists in database
@@ -90,7 +90,7 @@ public class ShowController {
             //Add this new show into database
             showDao.addShow(newShow);
             //Format date form
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM--dd");
             //Check same cast already exists in database
             Cast cast1 = castDao.getCast(getQueryShowcreditsroll1actorname(ctx));
             if (cast1 == null) {
@@ -110,7 +110,7 @@ public class ShowController {
             castDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
 
             model.put("duplicationCheckSucceeded", true);
-            ctx.render(Template.useraddshow, model);
+            ctx.render(Template.USERADDSHOW, model);
         }
     };
 
@@ -126,6 +126,83 @@ public class ShowController {
         ctx.render(Template.SHOWS_ALL, model);
     };
 
+    public static Handler fetchEditShowPage = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+        model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+        model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
+        Show show = showDao.getShowByShowId(getParamShowId(ctx));
+        Cast cast1 = castDao.getCast(show.getCredits_roll().values().toArray()[0].toString());
+        Cast cast2 = castDao.getCast(show.getCredits_roll().values().toArray()[1].toString());
+        model.put("cast1", cast1);
+        model.put("cast2", cast2);
+        ctx.render(Template.ADMINEDITSHOW, model);
+    };
+
+    public static Handler fetchEditShowPagePost = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+        Show show = showDao.getShowByShowId(getParamShowId(ctx));
+        int showID = showDao.getShowByShowId(getParamShowId(ctx)).getShowID();
+
+        if (!ShowController.duplicationCheckInEditPage(getQueryShowtitle(ctx), show.getShowTitle())) {
+            model.put("duplicationCheckFailed", true);
+            model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+            model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
+            Show updatedShow = showDao.getShowByShowId(getParamShowId(ctx));
+            Cast cast1 = castDao.getCast(updatedShow.getCredits_roll().values().toArray()[0].toString());
+            Cast cast2 = castDao.getCast(updatedShow.getCredits_roll().values().toArray()[1].toString());
+            model.put("cast1", cast1);
+            model.put("cast2", cast2);
+            ctx.render(Template.ADMINEDITSHOW, model);
+        }
+        else {
+            showDao.deleteShow(show);
+            //Check same production company already exists in database
+            ProductionCo productionCo = productionCoDao.getProductionCo(getQueryShowPCO(ctx));
+            if (productionCo == null) {
+                productionCo = new ProductionCo(productionCoDao.getNumberOfProductionCo() + 1, getQueryShowPCO(ctx));
+                productionCoDao.addProductionCo(productionCo);
+            }
+            //Increase show ID automatically
+            Show newShow;
+            newShow = new Show(showID, getQueryShowtitle(ctx), getQueryShowgenre(ctx), getQueryShowlength(ctx), getQueryShowmovie(ctx), getQueryShowseries(ctx), String.valueOf(productionCo.getId()), getQueryShowyear(ctx), true, getQueryShowimageaddress(ctx), null);
+
+            //Add this new show into database
+            showDao.addShow(newShow);
+            //Format date form
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM-dd");
+            //Check same cast already exists in database
+            Cast cast1 = castDao.getCast(getQueryShowcreditsroll1actorname(ctx));
+            if (cast1 == null) {
+                long date1 = ((Date)formatter.parse(getQueryShowcreditsroll1birthday(ctx))).getTime();
+                cast1 = new Cast(castDao.getNumberOfCasts() + 1, getQueryShowcreditsroll1actorname(ctx), "Actor", new java.sql.Date(date1), getQueryShowcreditsroll1bio(ctx));
+                castDao.addCast(cast1);
+            }
+
+            Cast cast2 = castDao.getCast(getQueryShowcreditsroll2actorname(ctx));
+            if (cast2 == null) {
+                long date2 = ((Date)formatter.parse(getQueryShowcreditsroll2birthday(ctx))).getTime();
+                cast2 = new Cast(castDao.getNumberOfCasts() + 1, getQueryShowcreditsroll2actorname(ctx), "Actor", new java.sql.Date(date2), getQueryShowcreditsroll2bio(ctx));
+                castDao.addCast(cast2);
+            }
+            //Add these casts to new show
+            castDao.addCastToShow(cast1, newShow, getQueryShowcreditsroll1charactername(ctx));
+            castDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
+
+            model.put("duplicationCheckSucceeded", true);
+            ctx.render(Template.ADMINEDITSHOW, model);
+        }
+
+        model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+        model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
+        Show updatedShow = showDao.getShowByShowId(getParamShowId(ctx));
+        Cast cast1 = castDao.getCast(updatedShow.getCredits_roll().values().toArray()[0].toString());
+        Cast cast2 = castDao.getCast(updatedShow.getCredits_roll().values().toArray()[1].toString());
+        model.put("cast1", cast1);
+        model.put("cast2", cast2);
+    };
+
     //Check whether show title already exists
     public static boolean duplicationCheck(String showTitle) {
         if(showTitle == null) {
@@ -136,5 +213,22 @@ public class ShowController {
         Show show = showDao.getShowByShowTitle(showTitle);
         //This means there is no show has this show title, and finally return true
         return show == null;
+    }
+
+    //Check whether show title already exists
+    public static boolean duplicationCheckInEditPage(String newShowTitle, String oldShowTitle) {
+        if(newShowTitle == null) {
+            return false;
+        }
+        //Find the show which has oldShowTitle and exclude this show
+        //If there is no show has this newShowTitle, then return false
+        for(Show show : showDao.getAllShows()) {
+            if(!show.getShowTitle().equals(oldShowTitle)) {
+                if(show.getShowTitle().equals(newShowTitle)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
