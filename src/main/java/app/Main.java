@@ -18,6 +18,7 @@ public class Main {
     public static UserDao userDao;
     public static CastDao castDao;
     public static ProductionCoDao productionCoDao;
+    public static UserReviewDao userReviewDao;
 
     public static void main(String[] args) {
         // Instantiate your dependencies
@@ -25,6 +26,7 @@ public class Main {
         userDao = new UserDao();
         castDao = new CastDao();
         productionCoDao = new ProductionCoDao();
+        userReviewDao = new UserReviewDao();
         //Connect to database
         Database.startConnection();
 
@@ -54,6 +56,7 @@ public class Main {
             post(Web.ONE_SHOW, ShowController.fetchDeleteShowPost);
             post(Web.USER, UserController.serveProfilePageGetPost);
             post(Web.ADMINEDITSHOW, ShowController.fetchEditShowPagePost);
+            post(Web.USERREVIEW,UserReviewController.handleEvaluatePost);
         });
 
         app.error(404, ViewUtil.notFound);

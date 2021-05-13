@@ -331,6 +331,35 @@ a .showCover img {
     cursor: pointer;
 }
 
+#ReviewForm {
+    margin: 10px auto;
+}
+
+#ReviewForm label  {
+    display: block;
+    width: 100%;
+    margin:  10px auto;
+}
+#ReviewForm select{
+    display: block;
+    width: 100%;
+    margin: 10px 10px auto;
+}
+#ReviewForm input {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    /*width: 100%;*/
+    border-radius: 3px;
+    margin: 2px 7px 20px 0;
+}
+
+#ReviewForm input[type="submit"] {
+    color: black;
+    background: #f5c518;
+    border: 0;
+    cursor: pointer;
+}
+
 #userform button {
     border: 1px solid #ddd;
     padding: 8px 12px;

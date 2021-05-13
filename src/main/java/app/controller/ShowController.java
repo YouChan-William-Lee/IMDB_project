@@ -30,6 +30,7 @@ public class ShowController {
         model.put("show", showDao.getShowByShowId(getParamShowId(ctx)));
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         model.put("casts", castDao.getAllCast());
+        model.put("reviews",userReviewDao.getAllReviewByShowId(getParamShowId(ctx)));
         ctx.render(Template.SHOWS_ONE, model);
     };
 

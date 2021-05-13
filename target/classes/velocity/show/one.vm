@@ -41,6 +41,34 @@
         <div class="showCover">
             <img src="$show.Cover" alt="$show.showTitle">
         </div>
+        <div class="showCover">
+            <h2>Others review</h2>
+            #foreach($review in $reviews)
+                <span>User:$review.userId</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Rating:$review.rating point</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Review Time:$review.date</span>
+                <br>
+                <span>$review.review</span>
+                <br>
+                <br>
+                <hr>
+            #end
+        </div>
+        <div class="showCover">
+            <h2>Add review</h2>
+            <form id="ReviewForm" method="post" action="/review">
+                <input type="hidden" name="showId" value="$show.showID" />
+                <h3>Rating:</h3>
+                <input name="rating" type="radio" value="1"/>1 point
+                <input name="rating" type="radio" value="2"/>2 point
+                <input name="rating" type="radio" value="3"/>3 point
+                <input name="rating" type="radio" value="4"/>4 point
+                <input name="rating" type="radio" value="5"/>5 point
+                <h3>Review:</h3>
+                <textarea rows="3" cols="100" style="margin: 5px" name="review"></textarea>
+                <input type="submit" value="Add Review"/>
+            </form>
+        </div>
     </div>
     #else
     <h1>$msg.get("SHOWS_SHOW_NOT_FOUND")</h1>

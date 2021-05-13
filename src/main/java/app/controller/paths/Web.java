@@ -13,4 +13,5 @@ public class Web {
     public static final String SEARCH = "/search";
     public static final String USERADDSHOW = "/useraddshow";
     public static final String ADMINEDITSHOW = "/shows/:showId/editshow";
+    public static final String USERREVIEW = "/review";
 }

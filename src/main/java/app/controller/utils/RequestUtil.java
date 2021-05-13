@@ -99,6 +99,14 @@ public class RequestUtil {
 
     public static String getParamRejectShow(Context ctx) { return ctx.formParam("rejectShow"); }
 
+
+    //Review
+    public static String getFormShowId(Context ctx) { return ctx.formParam("showId"); }
+
+    public static String getParamRating(Context ctx) { return ctx.formParam("rating"); }
+
+    public static String getParamReview(Context ctx) { return ctx.formParam("review"); }
+
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");
         ctx.sessionAttribute("loggedOut", null);
