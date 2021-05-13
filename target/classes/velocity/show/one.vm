@@ -65,7 +65,7 @@
                 <input name="rating" type="radio" value="4"/>4 point
                 <input name="rating" type="radio" value="5"/>5 point
                 <h3>Review:</h3>
-                <textarea rows="3" cols="100" style="margin: 5px" name="review"></textarea>
+                <textarea rows="5" cols="90" style="margin: 5px" name="review"></textarea>
                 <input type="submit" value="Add Review"/>
             </form>
         </div>

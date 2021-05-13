@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserReviewDao extends Database {
 
-    //Add this userreview into database
+    //Add this user review into database
     public void addUserReview(UserReview userReview) {
         String sql= "insert into imdb.user_review( show_id, user_id, rating, review, date) values(?,?,?,?,?)";
         try {
