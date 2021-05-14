@@ -53,4 +53,26 @@ public class UserReviewDao extends Database {
         return userReviewList;
     }
 
+    public Iterable<UserReview> getAllReview() {
+        List<UserReview> userReviewList = new ArrayList<UserReview>();
+        String sql;
+        try {
+            sql = "select * from user_review";
+            PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (true) {
+                if (rs.next()) {
+                    userReviewList.add(new UserReview(rs.getInt("show_id"),
+                            rs.getString("user_id"),rs.getInt("rating"),
+                            rs.getString("review"),rs.getString("date")));
+                } else {
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userReviewList;
+    }
+
 }

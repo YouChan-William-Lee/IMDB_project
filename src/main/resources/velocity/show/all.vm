@@ -17,6 +17,20 @@
                     <img src="$show.Cover" alt="$show.showTitle">
                 </div>
                 $msg.get("SHOWS_CAPTION", $show.showTitle)
+                <br>
+                #if($rates.get($show.showID) >= 0 && $rates.get($show.showID) <= 1)
+                    &#9734;&#9734;&#9734;&#9734;&#9734;
+                #elseif($rates.get($show.showID) > 1 && $rates.get($show.showID) <= 2)
+                    &#9733;&#9734;&#9734;&#9734;&#9734;
+                #elseif($rates.get($show.showID) > 2 && $rates.get($show.showID) <= 3)
+                    &#9733;&#9733;&#9734;&#9734;&#9734;
+                #elseif($rates.get($show.showID) > 3 && $rates.get($show.showID) <= 4)
+                    &#9733;&#9733;&#9733;&#9734;&#9734;
+                #elseif($rates.get($show.showID) > 4 && $rates.get($show.showID) <= 5)
+                    &#9733;&#9733;&#9733;&#9733;&#9734;
+                #else
+                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                #end
                 <h2>$show.year</h2>
             </a>
         </div>

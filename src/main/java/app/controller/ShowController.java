@@ -3,10 +3,12 @@ package app.controller;
 import app.controller.paths.Template;
 import app.model.ShowEntities.Cast;
 import app.model.ShowEntities.ProductionCo;
+import app.model.ShowEntities.UserReview;
 import io.javalin.http.Handler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import app.controller.utils.ViewUtil;
 import static app.Main.*;
@@ -21,6 +23,22 @@ public class ShowController {
         model.put("deleteSucceded", false);
         model.put("shows", showDao.getApprovedShows());
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
+        model.put("reviews", userReviewDao.getAllReview());
+        Map<Integer, Double> averageRates = new HashMap<Integer, Double>();
+        for(int i = 1; i <= showDao.getNumberOfShows(); i++) {
+            double rate = 0;
+            double count = 0;
+            double average = 0.0;
+            for(UserReview userReview : userReviewDao.getAllReviewByShowId(String.valueOf(i))) {
+                rate += userReview.getRating();
+                count += 1;
+            }
+            if(count != 0) {
+                average = rate / count;
+            }
+            averageRates.put(i, average);
+        }
+        model.put("rates", averageRates);
         ctx.render(Template.SHOWS_ALL, model);
     };
 
