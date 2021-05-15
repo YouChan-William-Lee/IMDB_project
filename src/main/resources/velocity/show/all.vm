@@ -9,6 +9,8 @@
         <input type="submit" value="Add a movie">
     </form>
 #end
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row row-3">
     #foreach($show in $shows)
         <div class="col">
@@ -18,20 +20,33 @@
                 </div>
                 $msg.get("SHOWS_CAPTION", $show.showTitle)
                 <br>
-                #if($rates.get($show.showID) >= 0 && $rates.get($show.showID) <= 1)
-                    &#9734;&#9734;&#9734;&#9734;&#9734;
-                #elseif($rates.get($show.showID) > 1 && $rates.get($show.showID) <= 2)
-                    &#9733;&#9734;&#9734;&#9734;&#9734;
-                #elseif($rates.get($show.showID) > 2 && $rates.get($show.showID) <= 3)
-                    &#9733;&#9733;&#9734;&#9734;&#9734;
-                #elseif($rates.get($show.showID) > 3 && $rates.get($show.showID) <= 4)
-                    &#9733;&#9733;&#9733;&#9734;&#9734;
-                #elseif($rates.get($show.showID) > 4 && $rates.get($show.showID) <= 5)
-                    &#9733;&#9733;&#9733;&#9733;&#9734;
+                <br>
+                #if($rates.get($show.showID) == 0)
+                    <i>No rating yet</i>
+                #elseif($rates.get($show.showID) > 0 && $rates.get($show.showID) < 0.5)
+                    <i class="fa">&#xf006;&#xf006;&#xf006;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 0.5 && $rates.get($show.showID) < 1)
+                    <i class="fa">&#xf123;&#xf006;&#xf006;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 1 && $rates.get($show.showID) < 1.5)
+                    <i class="fa">&#xf005;&#xf006;&#xf006;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 1.5 && $rates.get($show.showID) < 2)
+                    <i class="fa">&#xf005;&#xf123;&#xf006;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 2 && $rates.get($show.showID) < 2.5)
+                    <i class="fa">&#xf005;&#xf005;&#xf006;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 2.5 && $rates.get($show.showID) < 3)
+                    <i class="fa">&#xf005;&#xf005;&#xf123;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 3 && $rates.get($show.showID) < 3.5)
+                    <i class="fa">&#xf005;&#xf005;&#xf005;&#xf006;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 3.5 && $rates.get($show.showID) < 4)
+                    <i class="fa">&#xf005;&#xf005;&#xf005;&#xf123;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 4 && $rates.get($show.showID) < 4.5)
+                    <i class="fa">&#xf005;&#xf005;&#xf005;&#xf005;&#xf006;</i>
+                #elseif($rates.get($show.showID) >= 4.5 && $rates.get($show.showID) < 5)
+                    <i class="fa">&#xf005;&#xf005;&#xf005;&#xf005;&#11240;</i>
                 #else
-                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                    <i class="fa">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</i>
                 #end
-                <h2>$show.year</h2>
+                <h3>$show.year</h3>
             </a>
         </div>
     #end
