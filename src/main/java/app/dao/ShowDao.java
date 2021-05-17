@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 import app.model.ShowEntities.Show;
-import app.model.Users.User;
+
+import static app.Main.productionCoDao;
 
 public class ShowDao extends Database {
 
@@ -42,7 +43,7 @@ public class ShowDao extends Database {
             preparedStatement.setString(4, show.getLength());
             preparedStatement.setString(5, show.getMovie());
             preparedStatement.setString(6, show.getSeries());
-            preparedStatement.setString(7, show.getPCO());
+            preparedStatement.setInt(7, productionCoDao.getProductionCo(show.getPCO()).getId());
             preparedStatement.setString(8, show.getYear());
             preparedStatement.setBoolean(9, show.getApproved());
             preparedStatement.setString(10, show.getCover());
