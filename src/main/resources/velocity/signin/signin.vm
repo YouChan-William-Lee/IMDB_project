@@ -2,7 +2,7 @@
 #@mainLayout()
 <form id="signinForm" method="post">
     #if($approvedFailed)
-        <p class="bad notification">$pendingUser is pending</p>
+        <p class="bad notification">$pendingUser is not an approved account!</p>
     #end
 
     #if($duplicationCheckFailed)
