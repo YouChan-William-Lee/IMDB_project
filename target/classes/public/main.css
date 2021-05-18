@@ -350,7 +350,7 @@ a .showCover img {
     padding: 8px 12px;
     /*width: 100%;*/
     border-radius: 3px;
-    margin: 2px 7px 20px 0;
+    margin:20px;
 }
 
 #ReviewForm input[type="submit"] {
@@ -359,7 +359,12 @@ a .showCover img {
     border: 0;
     cursor: pointer;
 }
-
+.custom-select{
+    position: relative;
+    font-family: Arial;
+    margin: 10px;
+    float: left;
+}
 #userform button {
     border: 1px solid #ddd;
     padding: 8px 12px;

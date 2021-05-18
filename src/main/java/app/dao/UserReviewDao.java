@@ -12,7 +12,7 @@ public class UserReviewDao extends Database {
 
     //Add this user review into database
     public void addUserReview(UserReview userReview) {
-        String sql= "insert into imdb.user_review( show_id, user_id, rating, review, date) values(?,?,?,?,?)";
+        String sql= "insert into imdb.user_review( show_id, user_id, rating, review, date,feedback) values(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
 //            preparedStatement.setInt(1, userReview.getReviewId());
