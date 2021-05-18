@@ -2,12 +2,11 @@ package app.controller;
 
 import app.controller.paths.Template;
 import app.controller.paths.Web;
-import app.model.ShowEntities.Show;
+
 import io.javalin.http.Handler;
 import java.util.Map;
 import app.controller.utils.ViewUtil;
 
-import static app.Main.showDao;
 import static app.Main.userDao;
 import static app.controller.utils.RequestUtil.*;
 

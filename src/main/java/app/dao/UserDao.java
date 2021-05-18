@@ -70,7 +70,6 @@ public class UserDao extends Database {
 
     //Get the user by user name
     public User getUserByUsername(String username) { // Obtaining user via name searching
-
         User user = null;
         String sql;
 
