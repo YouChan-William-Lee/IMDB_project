@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.Main;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ class ShowControllerTest {
 
     @BeforeAll
     static void initialise() {
-
+        Main.initialization();
     }
 
     @Test

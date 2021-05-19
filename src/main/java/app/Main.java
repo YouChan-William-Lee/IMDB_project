@@ -22,13 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Instantiate your dependencies
-        showDao = new ShowDao();
-        userDao = new UserDao();
-        castDao = new CastDao();
-        productionCoDao = new ProductionCoDao();
-        userReviewDao = new UserReviewDao();
-        //Connect to database
-        Database.startConnection();
+        initialization();
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
@@ -60,5 +54,15 @@ public class Main {
         });
 
         app.error(404, ViewUtil.notFound);
+    }
+
+    public static void initialization() {
+        showDao = new ShowDao();
+        userDao = new UserDao();
+        castDao = new CastDao();
+        productionCoDao = new ProductionCoDao();
+        userReviewDao = new UserReviewDao();
+        //Connect to database
+        Database.startConnection();
     }
 }
