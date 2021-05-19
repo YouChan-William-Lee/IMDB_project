@@ -16,12 +16,14 @@ import static app.controller.utils.RequestUtil.*;
 
 public class UserReviewController {
 
-    //add show userreview
+    //add show user review
     public static Handler handleEvaluatePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        String user = getSessionCurrentUser(ctx);
-        if(StringUtils.isNotBlank(user)){
-            UserReviewController.newUserReview(getFormShowId(ctx),user,getParamRating(ctx),getParamReview(ctx));
+        if(newUserReview(getFormShowId(ctx),getSessionCurrentUser(ctx),getParamRating(ctx),getParamReview(ctx))) {
+            model.put("posted", true);
+        }
+        else {
+            model.put("posted", false);
         }
         model.put("show", showDao.getShowByShowId(getFormShowId(ctx)));
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
@@ -30,13 +32,19 @@ public class UserReviewController {
         ctx.render(Template.SHOWS_ONE, model);
     };
 
-    public static void newUserReview(String showId, String userId,String rating,String review) {
+    public static boolean newUserReview(String showId, String userId, String rating, String review) {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //Date
         String dateStr = format.format(date);
-        userReviewDao.addUserReview(new UserReview(Integer.parseInt(showId),
-                userId,Integer.parseInt(rating),review,dateStr));
-
+        UserReview userreview = new UserReview(Integer.parseInt(showId),
+                userId,Integer.parseInt(rating),review,dateStr);
+        if(userreview != null) {
+            userReviewDao.addUserReview(userreview);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

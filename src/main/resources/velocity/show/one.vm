@@ -1,5 +1,10 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+    #if($posted)
+        <p class="good notification">Post succeed</p>
+    #else
+        <p class="bad notification">Post failed</p>
+    #end
     #if($user)
         #if($user.typeOfUser.equals("admin"))
             <form id="signinForm" method="post">

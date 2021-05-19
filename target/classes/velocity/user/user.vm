@@ -29,7 +29,7 @@
                 #if($user.typeOfUser.equals("critics") || $user.typeOfUser.equals("pco"))
                     #if($user.approved == false)
                         <h2><strong>$user.username</strong></h2>
-                        <h2>Name: $user.lastname $user.firstname</h2>
+                        <h2>Name: $user.firstname $user.lastname</h2>
                         <h2>Type: $user.typeOfUser</h2>
                         <h2>Gender: $user.gender</h2>
                         <h2>Email: $user.email</h2>
