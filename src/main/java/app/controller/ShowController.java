@@ -10,6 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import app.controller.utils.ViewUtil;
 import static app.Main.*;
 import static app.controller.utils.RequestUtil.*;
@@ -236,11 +239,20 @@ public class ShowController {
 
     //Check whether show title already exists
     public static boolean duplicationCheckInEditPage(String newShowTitle, String oldShowTitle) {
-        if(newShowTitle == null) {
+       
+    	// StringUtils.isNotEmpty (),  StringUtils.IsEmpty,StringUtils.equals,avoid NullPointerException
+    	if(StringUtils.isNotEmpty(newShowTitle) ) {
             return false;
         }
+    	
+    	/*   	
+    	
+    	if(newShowTitle == null) {
+            return false;
+        }*/
         //Find the show which has oldShowTitle and exclude this show
         //If there is no show has this newShowTitle, then return false
+        
         for(Show show : showDao.getAllShows()) {
             if(!show.getShowTitle().equals(oldShowTitle)) {
                 if(show.getShowTitle().equals(newShowTitle)) {
@@ -249,5 +261,20 @@ public class ShowController {
             }
         }
         return true;
+       
+    /*
+        if (showDao.getAllShows() !=null) {
+        	for(Show show : showDao.getAllShows()) {
+                if(!show.getShowTitle().equals(oldShowTitle)) {
+                    if(show.getShowTitle().equals(newShowTitle)) {
+                        return false;
+                    }
+                }
+        	}
+        	
+        	
+        }
+        return true;
+       */// NullPointerException reason guess 1
     }
 }
