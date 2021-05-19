@@ -16,14 +16,12 @@ class ShowControllerTest {
 
     @Test
     void duplicationCheckStarWarsEpisodeIX() {
-//       assertEquals(true, duplicationCheck("Star Wars: Episode IX - The Rise of Skywalker"));
-//        Couldn't fix NullPointerException on showDao in ShowController.java
+       assertEquals(true, duplicationCheck("Star Wars: Episode IX - The Rise of Skywalker"));
     }
 
     @Test
     void duplicationCheckInEditPage() {
     	assertEquals(false, ShowController.duplicationCheckInEditPage("Star Wars: Episode IX - The Rise of Skywalker", "Star Wars: Episode IX - The Rise of Skywalker"));
-//        Couldn't fix NullPointerException on showDao in ShowController.java
     }
 
 }

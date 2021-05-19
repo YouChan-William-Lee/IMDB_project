@@ -70,7 +70,6 @@ public class UserDao extends Database {
 
     //Get the user by user name
     public User getUserByUsername(String username) { // Obtaining user via name searching
-        System.out.println("HEREERERER");
         User user = null;
         String sql;
 
@@ -85,7 +84,6 @@ public class UserDao extends Database {
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
-        System.out.println(user);
         return user;
     }
 

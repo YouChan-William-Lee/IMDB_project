@@ -17,15 +17,60 @@ class LoginControllerTest {
     @Test
     void approvedCheckAdmin() {
         assertEquals(true, approvedCheck("admin"));
-//        Couldn't fix NullPointerException on userDao in LoginController.java
     }
 
-//    @Test
-//    void approvedCheckNullValue() {
-//        assertThrows(
-//                NullPointerException.class,
-//                () -> approvedCheck(null),
-//                "Invalid null character should throw (NullPointerException)");
-//    }
+    @Test
+    void approvedCheckRegular1() {
+        assertEquals(true, approvedCheck("regular1"));
+    }
+
+    @Test
+    void approvedCheckRegular2() {
+        assertEquals(true, approvedCheck("regular2"));
+    }
+
+    @Test
+    void approvedCheckCritics1() {
+        assertEquals(true, approvedCheck("critics1"));
+    }
+
+    @Test
+    void approvedCheckCritics2() {
+        assertEquals(true, approvedCheck("critics2"));
+    }
+
+    @Test
+    void approvedCheckPCO1() {
+        assertEquals(false, approvedCheck("pco1"));
+    }
+
+    @Test
+    void approvedCheckPCO2() {
+        assertEquals(true, approvedCheck("pco2"));
+    }
+
+    @Test
+    void approvedCheckNonexistentUser() {
+        assertThrows(
+                NullPointerException.class,
+                () -> approvedCheck("admin2"),
+                "Non-existent username should throw (NullPointerException)");
+    }
+
+    @Test
+    void approvedCheckEmptyString() {
+        assertThrows(
+                NullPointerException.class,
+                () -> approvedCheck(""),
+                "Non-existent username should throw (NullPointerException)");
+    }
+
+    @Test
+    void approvedCheckNullValue() {
+        assertThrows(
+                NullPointerException.class,
+                () -> approvedCheck(null),
+                "Invalid null character should throw (NullPointerException)");
+    }
 
 }
