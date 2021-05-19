@@ -1,10 +1,5 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-    #if($posted)
-        <p class="good notification">Post succeed</p>
-    #else
-        <p class="bad notification">Post failed</p>
-    #end
     #if($user)
         #if($user.typeOfUser.equals("admin"))
             <form id="signinForm" method="post">
@@ -77,7 +72,7 @@
         #if($user)
             <div class="showCover">
                 <h2><strong>Rate and Review</strong></h2>
-                <form id="ReviewForm" method="post" action="/review">
+                <form id="RateForm" method="post" action="/rate">
                     <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Rating:</h3>
                     <input name="rating" type="radio" value="1"/>&#9733;
@@ -86,6 +81,9 @@
                     <input name="rating" type="radio" value="4"/>&#9733;&#9733;&#9733;&#9733;
                     <input name="rating" type="radio" value="5"/>&#9733;&#9733;&#9733;&#9733;&#9733;
                     <input type="submit" value="Add Rating"/>
+                </form>
+                <form id="ReviewForm" method="post" action="/review">
+                    <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Review: </h3>
                     <div class="custom-select" style="width:200px;">
                         <select>
@@ -100,13 +98,13 @@
                             <option value="8">Worst</option>
                         </select>
                     </div>
-
-
                     <input type="submit" value="Add Review"/>
+                </form>
+                <form id="FeedbackForm" method="post" action="/feedback">
+                    <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Feedback:</h3>
                     <textarea rows="5" cols="90" style="margin: 5px" name="review"></textarea>
                     <input type="submit" value="Add Feedback"/>
-
                 </form>
             </div>
         #end

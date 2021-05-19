@@ -19,6 +19,8 @@ public class Main {
     public static CastDao castDao;
     public static ProductionCoDao productionCoDao;
     public static UserReviewDao userReviewDao;
+    public static UserFeedbackDao userFeedbackDao;
+    public static UserRatingDao userRatingDao;
 
     public static void main(String[] args) {
         // Instantiate your dependencies
@@ -50,7 +52,9 @@ public class Main {
             post(Web.ONE_SHOW, ShowController.fetchDeleteShowPost);
             post(Web.USER, UserController.serveProfilePageGetPost);
             post(Web.ADMINEDITSHOW, ShowController.fetchEditShowPagePost);
-            post(Web.USERREVIEW,UserReviewController.handleEvaluatePost);
+            post(Web.USERRATE,UserRatingController.handleRatingPost);
+            post(Web.USERREVIEW,UserReviewController.handleReviewPost);
+            post(Web.USERFEEDBACK,UserFeedbackController.handleFeedbackPost);
         });
 
         app.error(404, ViewUtil.notFound);
