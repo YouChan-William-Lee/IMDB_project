@@ -214,14 +214,14 @@ DROP TABLE IF EXISTS `user_rating`;
 CREATE TABLE `user_rating` (
   `ratingId` int NOT NULL AUTO_INCREMENT,
   `show_id` int NOT NULL,
-  `user_id` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
   `rating` int NOT NULL DEFAULT '3',
   `date` datetime NOT NULL,
   PRIMARY KEY (`ratingId`),
   KEY `fk_showid_idx` (`show_id`),
-  KEY `fk_username_idx` (`user_id`),
+  KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_showid2` FOREIGN KEY (`show_id`) REFERENCES `show` (`showid`),
-  CONSTRAINT `fk_username2` FOREIGN KEY (`user_id`) REFERENCES `account` (`username`)
+  CONSTRAINT `fk_username2` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -235,14 +235,14 @@ DROP TABLE IF EXISTS `user_feedback`;
 CREATE TABLE `user_feedback` (
   `feedbackId` int NOT NULL AUTO_INCREMENT,
   `show_id` int NOT NULL,
-  `user_id` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
   `feedback` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`feedbackId`),
   KEY `fk_showid_idx` (`show_id`),
-  KEY `fk_username_idx` (`user_id`),
+  KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_showid3` FOREIGN KEY (`show_id`) REFERENCES `show` (`showid`),
-  CONSTRAINT `fk_username3` FOREIGN KEY (`user_id`) REFERENCES `account` (`username`)
+  CONSTRAINT `fk_username3` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
