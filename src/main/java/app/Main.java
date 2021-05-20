@@ -66,6 +66,8 @@ public class Main {
         castDao = new CastDao();
         productionCoDao = new ProductionCoDao();
         userReviewDao = new UserReviewDao();
+        userFeedbackDao = new UserFeedbackDao();
+        userRatingDao = new UserRatingDao();
         //Connect to database
         Database.startConnection();
     }
