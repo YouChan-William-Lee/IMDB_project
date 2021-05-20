@@ -33,7 +33,7 @@ public class ShowController {
             double count = 0;
             double average = 0.0;
             for(UserReview userReview : userReviewDao.getAllReviewByShowId(String.valueOf(i))) {
-                rate += userReview.getRating();
+//                rate += userReview.getRating();
                 count += 1;
             }
             if(count != 0) {

@@ -17,14 +17,14 @@ class UserReviewControllerTest {
 
     @Test
     void newUserReviewRegualr1() {
-        assertEquals(true, newUserReview("1", "regular1","3","This movie is such a nice movie."));
+        assertEquals(true, newUserReview("1", "regular1","This movie is such a nice movie."));
     }
 
     @Test
     void newUserReviewNullValueOnRating() {
         assertThrows(
                 NumberFormatException.class,
-                () -> newUserReview("1","regular1",null,"This movie is such a nice movie"),
+                () -> newUserReview("1","regular1","This movie is such a nice movie"),
                 "Invalid null character should throw (NumberFormatException)");
     }
 
@@ -32,25 +32,25 @@ class UserReviewControllerTest {
     void newUserReviewNullValueOnShowID() {
         assertThrows(
                 NumberFormatException.class,
-                () -> newUserReview(null,"regular1","3","This movie is such a nice movie"),
+                () -> newUserReview(null,"regular1","This movie is such a nice movie"),
                 "Invalid null character should throw (NumberFormatException)");
     }
 
     @Test
     void newUserReviewNullValueOnUserID() {
-        assertEquals(true, newUserReview("1",null,"3","This movie is such a nice movie"));
+        assertEquals(true, newUserReview("1",null,"This movie is such a nice movie"));
     }
 
     @Test
     void newUserReviewEmptyStringOnShowID() {
         assertThrows(
                 NumberFormatException.class,
-                () -> newUserReview("","regular1","3","This movie is such a nice movie"),
+                () -> newUserReview("","regular1","This movie is such a nice movie"),
                 "Invalid null character should throw (NumberFormatException)");
     }
 
     @Test
     void newUserReviewEmptyStringOnReview() {
-        assertEquals(true, newUserReview("1","regular1","3",""));
+        assertEquals(true, newUserReview("1","regular1",""));
     }
 }

@@ -32,12 +32,12 @@ public class UserReviewController {
         ctx.render(Template.SHOWS_ONE, model);
     };
 
-    public static boolean newUserReview(String showId, String userId, String review) {
+    public static boolean newUserReview(String showId, String username, String review) {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //Date
         String dateStr = format.format(date);
-        UserReview userreview = new UserReview(Integer.parseInt(showId),userId,review,dateStr);
+        UserReview userreview = new UserReview(Integer.parseInt(showId),username,review,dateStr);
         if(userreview != null) {
             userReviewDao.addUserReview(userreview);
             return true;
