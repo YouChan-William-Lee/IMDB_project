@@ -80,7 +80,7 @@
                     <input name="rating" type="radio" value="3"/>&#9733;&#9733;&#9733;
                     <input name="rating" type="radio" value="4"/>&#9733;&#9733;&#9733;&#9733;
                     <input name="rating" type="radio" value="5"/>&#9733;&#9733;&#9733;&#9733;&#9733;
-                    <input type="submit" value="Add Rating"/>
+                    <input type="submit"  value="Add Rating"/>
                 </form>
                 <form id="ReviewForm" method="post" action="/review">
                     <input type="hidden" name="showId" value="$show.showID" />
