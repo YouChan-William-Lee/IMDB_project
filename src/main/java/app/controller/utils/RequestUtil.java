@@ -107,6 +107,8 @@ public class RequestUtil {
 
     public static String getParamReview(Context ctx) { return ctx.formParam("review"); }
 
+    public static String getParamFeedback(Context ctx) { return ctx.formParam("feedback"); }
+
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");
         ctx.sessionAttribute("loggedOut", null);

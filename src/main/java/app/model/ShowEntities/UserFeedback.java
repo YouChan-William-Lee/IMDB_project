@@ -3,24 +3,18 @@ package app.model.ShowEntities;
 import java.util.Date;
 
 
-public class UserReview {
-//    private final int reviewId;
+public class UserFeedback {
     private final int showId;
     private final String username;
-    private final String review;
+    private final String feedback;
     private final String date;
 
-    public UserReview(int showId, String username, String review, String date) {
-//        this.reviewId = reviewId;
+    public UserFeedback(int showId, String username, String feedback, String date) {
         this.showId = showId;
         this.username = username;
-        this.review = review;
+        this.feedback = feedback;
         this.date = date;
     }
-
-//    public int getReviewId() {
-//        return reviewId;
-//    }
 
     public int getShowId() {
         return showId;
@@ -30,8 +24,8 @@ public class UserReview {
         return username;
     }
 
-    public String getReview() {
-        return review;
+    public String getFeedback() {
+        return feedback;
     }
 
     public String getDate() {
