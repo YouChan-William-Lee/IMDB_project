@@ -174,14 +174,14 @@ DROP TABLE IF EXISTS `user_review`;
 CREATE TABLE `user_review` (
   `reviewId` int NOT NULL AUTO_INCREMENT,
   `show_id` int NOT NULL,
-  `user_id` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
   `review` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`reviewId`),
   KEY `fk_showid_idx` (`show_id`),
-  KEY `fk_username_idx` (`user_id`),
+  KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_showid` FOREIGN KEY (`show_id`) REFERENCES `show` (`showid`),
-  CONSTRAINT `fk_username` FOREIGN KEY (`user_id`) REFERENCES `account` (`username`)
+  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -191,7 +191,7 @@ CREATE TABLE `user_review` (
 
 LOCK TABLES `user_review` WRITE;
 /*!40000 ALTER TABLE `user_review` DISABLE KEYS */;
-INSERT INTO `user_review` VALUES (1,1,3,'This movie is such a nice movie.','2021-05-14 22:49:56'),(2,1,3,'I love it.','2021-05-14 22:50:40'),(3,2,1,'It was just okay.','2021-05-14 23:08:48'),(4,1,2,'Aweosme!!!','2021-05-14 23:10:06'),(5,3,5,'The best movie in my life.','2021-05-14 23:31:55');
+INSERT INTO `user_review` VALUES (1,1,'regular1','This movie is such a nice movie.','2021-05-14 22:49:56'),(2,1,'regular1','I love it.','2021-05-14 22:50:40'),(3,2,'regular1','It was just okay.','2021-05-14 23:08:48'),(4,1,'regular1','Aweosme!!!','2021-05-14 23:10:06'),(5,3,'admin','The best movie in my life.','2021-05-14 23:31:55');
 /*!40000 ALTER TABLE `user_review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
