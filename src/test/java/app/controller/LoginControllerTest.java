@@ -62,7 +62,7 @@ class LoginControllerTest {
         assertThrows(
                 NullPointerException.class,
                 () -> approvedCheck(""),
-                "Non-existent username should throw (NullPointerException)");
+                "Empty string should throw (NullPointerException)");
     }
 
     @Test

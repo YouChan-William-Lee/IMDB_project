@@ -60,12 +60,12 @@ public class ShowController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         // If user chooses "Titles", then searches the shows contain this title
         if(getParamSearchoption(ctx).equals("Titles")) {
-            model.put("shows", showDao.getSearchedShowsByShowTitles(getParamSearchtext(ctx)));
+            model.put("shows", getSearchedShowsByShowTitles(getParamSearchtext(ctx)));
             model.put("searchedText", getParamSearchtext(ctx));
         }
         // If user chooses "Actors", then searches the shows cast this actor
         else if(getParamSearchoption(ctx).equals("Actors")) {
-            model.put("shows", castDao.getSearchedShowsByActors(getParamSearchtext(ctx)));
+            model.put("shows", getSearchedShowsByActors(getParamSearchtext(ctx)));
             model.put("searchedText", getParamSearchtext(ctx));
         }
 
@@ -249,5 +249,13 @@ public class ShowController {
         	}
         }
         return true;
+    }
+
+    public static Iterable<Show> getSearchedShowsByShowTitles(String title) {
+        return showDao.getSearchedShowsByShowTitles(title);
+    }
+
+    public static Iterable<Show> getSearchedShowsByActors(String actor){
+        return castDao.getSearchedShowsByActors(actor);
     }
 }
