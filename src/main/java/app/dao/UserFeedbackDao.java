@@ -12,12 +12,12 @@ public class UserFeedbackDao extends Database {
 
     //Add this user review into database
     public void addUserFeedback(UserFeedback userFeedback) {
-        String sql= "insert into imdb.user_feedback( show_id, user_id, feedback, date) values(?,?,?,?)";
+        String sql= "insert into imdb.user_feedback( show_id, username, feedback, date) values(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
 //            preparedStatement.setInt(1, userReview.getReviewId());
             preparedStatement.setInt(1, userFeedback.getShowId());
-            preparedStatement.setString(2, userFeedback.getUserId());
+            preparedStatement.setString(2, userFeedback.getUsername());
             preparedStatement.setString(3, userFeedback.getFeedback());
             preparedStatement.setString(4,userFeedback.getDate().toString());
             preparedStatement.executeUpdate();
@@ -37,7 +37,7 @@ public class UserFeedbackDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userFeedbackList.add(new UserFeedback(rs.getInt("show_id"),rs.getString("user_id"),rs.getString("feedback"),rs.getString("date")));
+                    userFeedbackList.add(new UserFeedback(rs.getInt("show_id"),rs.getString("username"),rs.getString("feedback"),rs.getString("date")));
                 } else {
                     break;
                 }
@@ -58,7 +58,7 @@ public class UserFeedbackDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userFeedbackList.add(new UserFeedback(rs.getInt("show_id"),rs.getString("user_id"),rs.getString("feedback"),rs.getString("date")));
+                    userFeedbackList.add(new UserFeedback(rs.getInt("show_id"),rs.getString("username"),rs.getString("feedback"),rs.getString("date")));
                 } else {
                     break;
                 }

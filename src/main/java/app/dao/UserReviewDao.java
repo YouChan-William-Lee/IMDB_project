@@ -17,7 +17,7 @@ public class UserReviewDao extends Database {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
 //            preparedStatement.setInt(1, userReview.getReviewId());
             preparedStatement.setInt(1, userReview.getShowId());
-            preparedStatement.setString(2, userReview.getUserId());
+            preparedStatement.setString(2, userReview.getUsername());
             preparedStatement.setString(3, userReview.getReview());
             preparedStatement.setString(4,userReview.getDate().toString());
             preparedStatement.executeUpdate();

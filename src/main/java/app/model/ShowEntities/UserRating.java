@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class UserRating {
     private final int showId;
-    private final String userId;
+    private final String username;
     private final int rating;
     private final String date;
 
-    public UserRating(int showId, String userId, int rating, String date) {
+    public UserRating(int showId, String username, int rating, String date) {
         this.showId = showId;
-        this.userId = userId;
+        this.username = username;
         this.rating = rating;
         this.date = date;
     }
@@ -20,8 +20,8 @@ public class UserRating {
         return showId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public int getRating() {

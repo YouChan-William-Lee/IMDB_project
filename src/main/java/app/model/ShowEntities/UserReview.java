@@ -6,14 +6,14 @@ import java.util.Date;
 public class UserReview {
 //    private final int reviewId;
     private final int showId;
-    private final String userId;
+    private final String username;
     private final String review;
     private final String date;
 
-    public UserReview(int showId, String userId, String review, String date) {
+    public UserReview(int showId, String username, String review, String date) {
 //        this.reviewId = reviewId;
         this.showId = showId;
-        this.userId = userId;
+        this.username = username;
         this.review = review;
         this.date = date;
     }
@@ -26,8 +26,8 @@ public class UserReview {
         return showId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public String getReview() {

@@ -12,12 +12,12 @@ public class UserRatingDao extends Database {
 
     //Add this user review into database
     public void addUserRating(UserRating userRating) {
-        String sql= "insert into imdb.user_rating( show_id, user_id, rating, date) values(?,?,?,?)";
+        String sql= "insert into imdb.user_rating( show_id, username, rating, date) values(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
 //            preparedStatement.setInt(1, userReview.getReviewId());
             preparedStatement.setInt(1, userRating.getShowId());
-            preparedStatement.setString(2, userRating.getUserId());
+            preparedStatement.setString(2, userRating.getUsername());
             preparedStatement.setInt(3, userRating.getRating());
             preparedStatement.setString(4,userRating.getDate().toString());
             preparedStatement.executeUpdate();
@@ -37,7 +37,7 @@ public class UserRatingDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userRatingList.add(new UserRating(rs.getInt("show_id"),rs.getString("user_id"),rs.getInt("rating"),rs.getString("date")));
+                    userRatingList.add(new UserRating(rs.getInt("show_id"),rs.getString("username"),rs.getInt("rating"),rs.getString("date")));
                 } else {
                     break;
                 }
@@ -58,7 +58,7 @@ public class UserRatingDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userRatingList.add(new UserRating(rs.getInt("show_id"),rs.getString("user_id"),rs.getInt("rating"),rs.getString("date")));
+                    userRatingList.add(new UserRating(rs.getInt("show_id"),rs.getString("username"),rs.getInt("rating"),rs.getString("date")));
                 } else {
                     break;
                 }
