@@ -12,7 +12,7 @@ public class UserReviewDao extends Database {
 
     //Add this user review into database
     public void addUserReview(UserReview userReview) {
-        String sql= "insert into imdb.user_review( show_id, user_id, review, date) values(?,?,?,?)";
+        String sql= "insert into imdb.user_review( show_id, username, review, date) values(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = Database.connection.prepareStatement(sql);
 //            preparedStatement.setInt(1, userReview.getReviewId());
@@ -37,7 +37,7 @@ public class UserReviewDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userReviewList.add(new UserReview(rs.getInt("show_id"),rs.getString("user_id"),rs.getString("review"),rs.getString("date")));
+                    userReviewList.add(new UserReview(rs.getInt("show_id"),rs.getString("username"),rs.getString("review"),rs.getString("date")));
                 } else {
                     break;
                 }
@@ -58,7 +58,7 @@ public class UserReviewDao extends Database {
             ResultSet rs = preparedStatement.executeQuery();
             while (true) {
                 if (rs.next()) {
-                    userReviewList.add(new UserReview(rs.getInt("show_id"),rs.getString("user_id"),rs.getString("review"),rs.getString("date")));
+                    userReviewList.add(new UserReview(rs.getInt("show_id"),rs.getString("username"),rs.getString("review"),rs.getString("date")));
                 } else {
                     break;
                 }

@@ -86,16 +86,16 @@
                     <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Review: </h3>
                     <div class="custom-select" style="width:200px;">
-                        <select>
+                        <select name="review">
                             <option value ="0">Select Review:</option>
-                            <option value ="1">Perfect</option>
-                            <option value="2">Outstanding</option>
-                            <option value="3">Very Good</option>
-                            <option value="4">Good</option>
-                            <option value="5">Not Bad</option>
-                            <option value="6">Bad</option>
-                            <option value="7">Terrible</option>
-                            <option value="8">Worst</option>
+                            <option value ="Perfect">Perfect</option>
+                            <option value="Outstanding">Outstanding</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Good">Good</option>
+                            <option value="Not Bad">Not Bad</option>
+                            <option value="Bad">Bad</option>
+                            <option value="Terrible">Terrible</option>
+                            <option value="Worst">Worst</option>
                         </select>
                     </div>
                     <input type="submit" value="Add Review"/>
@@ -103,7 +103,7 @@
                 <form id="FeedbackForm" method="post" action="/feedback">
                     <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Feedback:</h3>
-                    <textarea rows="5" cols="90" style="margin: 5px" name="review"></textarea>
+                    <textarea rows="5" cols="90" style="margin: 5px" name="feedback"></textarea>
                     <input type="submit" value="Add Feedback"/>
                 </form>
             </div>
