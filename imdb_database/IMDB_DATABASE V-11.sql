@@ -191,7 +191,7 @@ CREATE TABLE `user_review` (
 
 LOCK TABLES `user_review` WRITE;
 /*!40000 ALTER TABLE `user_review` DISABLE KEYS */;
-INSERT INTO `user_review` VALUES (1,1,'regular1',3,'This movie is such a nice movie.','2021-05-14 22:49:56'),(2,1,'regular1',3,'I love it.','2021-05-14 22:50:40'),(3,2,'regular1',1,'It was just okay.','2021-05-14 23:08:48'),(4,1,'regular1',2,'Aweosme!!!','2021-05-14 23:10:06'),(5,3,'admin',5,'The best movie in my life.','2021-05-14 23:31:55');
+INSERT INTO `user_review` VALUES (1,1,3,'This movie is such a nice movie.','2021-05-14 22:49:56'),(2,1,3,'I love it.','2021-05-14 22:50:40'),(3,2,1,'It was just okay.','2021-05-14 23:08:48'),(4,1,2,'Aweosme!!!','2021-05-14 23:10:06'),(5,3,5,'The best movie in my life.','2021-05-14 23:31:55');
 /*!40000 ALTER TABLE `user_review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
