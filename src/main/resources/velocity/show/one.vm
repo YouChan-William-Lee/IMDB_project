@@ -94,7 +94,7 @@
         <br>
         #if($user)
             <h3 class="showCover">
-                <h2><strong>$user.username opinion</strong></h2>
+                <h2><strong>Add your opinion for the show here</strong></h2>
                 <form id="RateForm" method="post" action="/rate">
                     <input type="hidden" name="showId" value="$show.showID" />
                     <h3>Rating: </h3>
