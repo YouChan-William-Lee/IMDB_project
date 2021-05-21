@@ -43,32 +43,54 @@
         </div>
         <br>
         <div class="showCover">
-            <h2><strong>Reviews</strong></h2>
-            #foreach($review in $reviews)
-                <span><strong>User: </strong>$review.userId</span>
+            <h2><strong>Ratings</strong></h2>
+            #foreach($rating in $ratings)
+                <span><strong>User: </strong>$rating.username</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span><strong>Rate: </strong>
-                #if($review.rating == 1)
-                    &#9733;
-                #elseif($review.rating == 2)
-                    &#9733;&#9733;
-                #elseif($review.rating == 3)
-                    &#9733;&#9733;&#9733;
-                #elseif($review.rating == 4)
-                    &#9733;&#9733;&#9733;&#9733;
-                #else
-                    &#9733;&#9733;&#9733;&#9733;&#9733;
-                #end
+                    #if($rating.rating == 1)
+                        &#9733;
+                    #elseif($rating.rating == 2)
+                        &#9733;&#9733;
+                    #elseif($rating.rating == 3)
+                        &#9733;&#9733;&#9733;
+                    #elseif($rating.rating == 4)
+                        &#9733;&#9733;&#9733;&#9733;
+                    #else
+                        &#9733;&#9733;&#9733;&#9733;&#9733;
+                    #end
                 </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Time: </strong>$review.date</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Time: </strong>$rating.date</span>
+                <hr>
+            #end
+        </div>
+        <br>
+        <div class="showCover">
+            <h2><strong>Feedbacks</strong></h2>
+            #foreach($feeback in $feebacks)
+                <span><strong>User: </strong>$feeback.username</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><strong>Time: </strong>$feeback.date</span>
                 <br>
                 <br>
-                <span>$review.review</span>
+                <span>$feeback.review</span>
                 <br>
                 <br>
                 <hr>
             #end
         </div>
+        <br>
+        <div class="showCover">
+            <h2><strong>Reviews</strong></h2>
+            #foreach($review in $reviews)
+                <span><strong>User: </strong>$review.username</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><strong>Time: </strong>$review.date</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Review: </strong>$review.review</span>
+                <hr>
+            #end
+        </div>
+        <br>
         #if($user)
             <div class="showCover">
                 <h2><strong>Rate and Review</strong></h2>

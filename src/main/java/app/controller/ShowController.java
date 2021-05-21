@@ -1,9 +1,8 @@
 package app.controller;
 
 import app.controller.paths.Template;
-import app.model.ShowEntities.Cast;
-import app.model.ShowEntities.ProductionCo;
-import app.model.ShowEntities.UserReview;
+import app.dao.UserRatingDao;
+import app.model.ShowEntities.*;
 import io.javalin.http.Handler;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
 import app.controller.utils.ViewUtil;
 import static app.Main.*;
 import static app.controller.utils.RequestUtil.*;
-import app.model.ShowEntities.Show;
 
 
 public class ShowController {
@@ -26,14 +24,14 @@ public class ShowController {
         model.put("deleteSucceded", false);
         model.put("shows", showDao.getApprovedShows());
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
-        model.put("reviews", userReviewDao.getAllReview());
+//        model.put("reviews", userRatingDao.getAllRating());
         Map<Integer, Double> averageRates = new HashMap<Integer, Double>();
         for(int i = 1; i <= showDao.getNumberOfShows(); i++) {
             double rate = 0;
             double count = 0;
             double average = 0.0;
-            for(UserReview userReview : userReviewDao.getAllReviewByShowId(String.valueOf(i))) {
-//                rate += userReview.getRating();
+            for(UserRating userrating : userRatingDao.getAllRatingByShowId(String.valueOf(i))) {
+                rate += userrating.getRating();
                 count += 1;
             }
             if(count != 0) {
@@ -52,6 +50,8 @@ public class ShowController {
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         model.put("casts", castDao.getAllCast());
         model.put("reviews",userReviewDao.getAllReviewByShowId(getParamShowId(ctx)));
+        model.put("feedbacks",userFeedbackDao.getAllFeedbackByShowId(getParamShowId(ctx)));
+        model.put("ratings",userRatingDao.getAllRatingByShowId(getParamShowId(ctx)));
         ctx.render(Template.SHOWS_ONE, model);
     };
 

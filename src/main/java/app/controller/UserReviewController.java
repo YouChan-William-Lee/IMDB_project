@@ -29,6 +29,8 @@ public class UserReviewController {
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
         model.put("casts", castDao.getAllCast());
         model.put("reviews",userReviewDao.getAllReviewByShowId(getFormShowId(ctx)));
+        model.put("feedbacks",userFeedbackDao.getAllFeedbackByShowId(getFormShowId(ctx)));
+        model.put("ratings",userRatingDao.getAllRatingByShowId(getFormShowId(ctx)));
         ctx.render(Template.SHOWS_ONE, model);
     };
 
