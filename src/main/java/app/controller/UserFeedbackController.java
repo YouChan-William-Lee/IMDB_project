@@ -34,12 +34,12 @@ public class UserFeedbackController {
         ctx.render(Template.SHOWS_ONE, model);
     };
 
-    public static boolean newUserFeedback(String showId, String userId, String feedback) {
+    public static boolean newUserFeedback(String showId, String username, String feedback) {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //Date
         String dateStr = format.format(date);
-        UserFeedback userfeedback = new UserFeedback(Integer.parseInt(showId),userId,feedback,dateStr);
+        UserFeedback userfeedback = new UserFeedback(Integer.parseInt(showId),username,feedback,dateStr);
         if(userfeedback != null) {
             userFeedbackDao.addUserFeedback(userfeedback);
             return true;

@@ -67,13 +67,13 @@
         <br>
         <div class="showCover">
             <h2><strong>Feedbacks</strong></h2>
-            #foreach($feeback in $feebacks)
-                <span><strong>User: </strong>$feeback.username</span>
+            #foreach($feedback in $feedbacks)
+                <span><strong>User: </strong>$feedback.username</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span><strong>Time: </strong>$feeback.date</span>
+                <span><strong>Time: </strong>$feedback.date</span>
                 <br>
                 <br>
-                <span>$feeback.review</span>
+                <span>$feedback.feedback</span>
                 <br>
                 <br>
                 <hr>
