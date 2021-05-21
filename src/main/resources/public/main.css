@@ -354,13 +354,6 @@ a .showCover img {
     width: 100%;
     margin: 10px 10px auto;
 }
-/*#ReviewForm input {
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    width: 100%;
-    border-radius: 3px;
-    margin:20px;
-}*/
 #RateForm input[type="submit"] {
     color: black;
     background: #f5c518;

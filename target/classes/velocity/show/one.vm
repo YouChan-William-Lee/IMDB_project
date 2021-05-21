@@ -85,18 +85,19 @@
             #foreach($review in $reviews)
                 <span><strong>User: </strong>$review.username</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><strong>Review: </strong>$review.review</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span><strong>Time: </strong>$review.date</span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><strong>Review: </strong>$review.review</span>
                 <hr>
             #end
         </div>
         <br>
         #if($user)
-            <div class="showCover">
-                <h2><strong>Rate and Review</strong></h2>
+            <h3 class="showCover">
+                <h2><strong>$user.username opinion</strong></h2>
                 <form id="RateForm" method="post" action="/rate">
                     <input type="hidden" name="showId" value="$show.showID" />
-                    <h3>Rating:</h3>
+                    <h3>Rating: </h3>
                     <input name="rating" type="radio" value="1"/>&#9733;
                     <input name="rating" type="radio" value="2"/>&#9733;&#9733;
                     <input name="rating" type="radio" value="3"/>&#9733;&#9733;&#9733;
@@ -106,21 +107,21 @@
                 </form>
                 <form id="ReviewForm" method="post" action="/review">
                     <input type="hidden" name="showId" value="$show.showID" />
-                    <h3>Review: </h3>
-                    <div class="custom-select" style="width:200px;">
-                        <select name="review">
-                            <option value ="0">Select Review:</option>
-                            <option value ="Perfect">Perfect</option>
-                            <option value="Outstanding">Outstanding</option>
-                            <option value="Very Good">Very Good</option>
-                            <option value="Good">Good</option>
-                            <option value="Not Bad">Not Bad</option>
-                            <option value="Bad">Bad</option>
-                            <option value="Terrible">Terrible</option>
-                            <option value="Worst">Worst</option>
-                        </select>
-                    </div>
-                    <input type="submit" value="Add Review"/>
+                        <h3>Review: </h3>
+                        <div class="custom-select" style="width:200px;">
+                            <select name="review">
+                                <option value ="0">Select Review:</option>
+                                <option value ="Perfect">Perfect</option>
+                                <option value="Outstanding">Outstanding</option>
+                                <option value="Very Good">Very Good</option>
+                                <option value="Good">Good</option>
+                                <option value="Not Bad">Not Bad</option>
+                                <option value="Bad">Bad</option>
+                                <option value="Terrible">Terrible</option>
+                                <option value="Worst">Worst</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Add Review"/>
                 </form>
                 <form id="FeedbackForm" method="post" action="/feedback">
                     <input type="hidden" name="showId" value="$show.showID" />
