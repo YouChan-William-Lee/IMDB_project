@@ -110,7 +110,7 @@ public class ShowController {
             //Add this new show into database
             showDao.addShow(newShow);
             //Format date form
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM--dd");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MMM-dd");
             //Check same cast already exists in database
             Cast cast1 = castDao.getCast(getQueryShowcreditsroll1actorname(ctx));
             if (cast1 == null) {
