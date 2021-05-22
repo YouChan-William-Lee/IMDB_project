@@ -13,7 +13,7 @@
     #end
     <h1>$msg.get("SHOWS_ADMIN_ADD_NEW_SHOW")</h1>
     <label>$msg.get("SHOWS_SHOWID")</label>
-    <label>$showid</label>
+    <label>$showID</label>
     <br>
     <label>$msg.get("SHOWS_SHOWTITLE")</label>
     <input type="text" name="showtitle" placeholder="$msg.get("SHOWS_SHOWTITLE")" value="" required>

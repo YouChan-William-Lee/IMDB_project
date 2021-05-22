@@ -77,7 +77,7 @@ public class ShowController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
         model.put("user", userDao.getUserByUsername(getSessionCurrentUser(ctx)));
-        model.put("showid", showDao.getNumberOfShows() + 1);
+        model.put("showID", showDao.getNumberOfShows() + 1);
 
         ctx.render(Template.USERADDSHOW, model);
     };
@@ -85,10 +85,10 @@ public class ShowController {
     //Admin submits the new show's information
     public static Handler fetchAddNewPagePost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("showid", showDao.getNumberOfShows() + 1);
         //Check whether same show title exists or not
         if (!ShowController.duplicationCheck(getQueryShowtitle(ctx))) {
             model.put("duplicationCheckFailed", true);
+            model.put("showID", showDao.getNumberOfShows() + 1);
             ctx.render(Template.USERADDSHOW, model);
         }
         else {
@@ -131,9 +131,11 @@ public class ShowController {
             castDao.addCastToShow(cast1, newShow, getQueryShowcreditsroll1charactername(ctx));
             castDao.addCastToShow(cast2, newShow, getQueryShowcreditsroll2charactername(ctx));
 
+            model.put("showID", showDao.getNumberOfShows() + 1);
             model.put("duplicationCheckSucceeded", true);
             ctx.render(Template.USERADDSHOW, model);
         }
+
     };
 
     public static Handler fetchDeleteShowPost = ctx -> {
