@@ -7,11 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static app.Main.showDao;
-import static app.controller.LoginController.approvedCheck;
 import static app.controller.ShowController.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,12 +50,12 @@ class ShowControllerTest {
     }
 
     @Test
-    void duplicationCheckInEditPageStarWarsEpisodeIXwithSameShowTitle() {
+    void duplicationCheckInEditPageStarWarsEpisodeIXWithSameShowTitle() {
     	assertTrue(ShowController.duplicationCheckInEditPage("Star Wars: Episode IX - The Rise of Skywalker", "Star Wars: Episode IX - The Rise of Skywalker"));
     }
 
     @Test
-    void duplicationCheckInEditPageStarWarsEpisodeIXwithDifferentShowTitle() {
+    void duplicationCheckInEditPageStarWarsEpisodeIXWithDifferentShowTitle() {
         assertTrue(ShowController.duplicationCheckInEditPage("Star Wars: Episode IX - The Rise of Skywalker 2", "Star Wars: Episode IX - The Rise of Skywalker"));
     }
 
@@ -68,7 +65,7 @@ class ShowControllerTest {
     }
 
     @Test
-    void duplicationCheckInEditPageStarWarsEpisodeIXwithEmptyString() {
+    void duplicationCheckInEditPageStarWarsEpisodeIXWithEmptyString() {
         assertTrue(ShowController.duplicationCheckInEditPage("", "Star Wars: Episode IX - The Rise of Skywalker"));
     }
 
@@ -92,7 +89,7 @@ class ShowControllerTest {
 
     @Test
     void getSearchedShowsByShowTitlesWithStar() {
-        String result[] = getShowsByTitle("star");
+        String[] result = getShowsByTitle("star");
         String[] actual = new String[]{"Star Wars: Episode IX - The Rise of Skywalker",
                                         "Star Wars: Episode III - Revenge of The Sith",
                                         "Star Wars: Episode V - The Empire strikes Back",
