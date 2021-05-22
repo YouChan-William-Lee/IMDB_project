@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.controller.paths.Template;
-import app.controller.paths.Web;
 import io.javalin.http.Handler;
 import java.util.Map;
 import app.controller.utils.ViewUtil;

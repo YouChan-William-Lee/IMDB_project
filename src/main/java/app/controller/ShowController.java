@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.controller.paths.Template;
-import app.dao.UserRatingDao;
 import app.model.ShowEntities.*;
 import io.javalin.http.Handler;
 
@@ -10,7 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 
 import app.controller.utils.ViewUtil;
 import static app.Main.*;

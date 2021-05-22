@@ -97,15 +97,6 @@ public class UserController {
     }
 
 
-    // This method doesn't do anything, it's just included as an example
-    public static void setPassword(String username, String oldPassword, String newPassword) {
-        if (authenticate(username, oldPassword)) {
-            String newSalt = BCrypt.gensalt();
-            String newHashedPassword = BCrypt.hashpw(newSalt, newPassword);
-            // Update the user salt and password
-        }
-    }
-
     //create a new user, now the new user is stored in database instead of buffer, it means if the server is closed, new user will not disappear when open server next time.
     public static void newUser(String username, String password, String firstname, String lastname, String email, String gender, String typeOfUser, String country) {
 

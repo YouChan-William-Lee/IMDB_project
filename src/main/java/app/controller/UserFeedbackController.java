@@ -4,7 +4,6 @@ import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.model.ShowEntities.UserFeedback;
 import io.javalin.http.Handler;
-import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

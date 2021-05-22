@@ -4,7 +4,6 @@ import app.Main;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static app.controller.LoginController.approvedCheck;
 import static app.controller.UserController.*;
 import static org.junit.jupiter.api.Assertions.*;
 
