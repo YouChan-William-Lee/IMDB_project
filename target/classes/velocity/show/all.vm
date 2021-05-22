@@ -6,7 +6,7 @@
 #end
 #if($user)
     <form id="signinForm" method="get" action="/useraddshow">
-        <input type="submit" value="Add a movie">
+        <input type="submit" value="Add a show">
     </form>
 #end
 <meta name="viewport" content="width=device-width, initial-scale=1">

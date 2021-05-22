@@ -73,4 +73,12 @@ class LoginControllerTest {
                 "Invalid null character should throw (NullPointerException)");
     }
 
+    @Test
+    void approvedCheckSpecialCharacter() {
+        assertThrows(
+                NullPointerException.class,
+                () -> approvedCheck("**"),
+                "Invalid null character should throw (NullPointerException)");
+    }
+
 }

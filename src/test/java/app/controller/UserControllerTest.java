@@ -70,4 +70,9 @@ class UserControllerTest {
         assertFalse(authenticate("", ""));
     }
 
+    @Test
+    void authenticateSpecialCharacter() {
+        assertFalse(authenticate("**", ""));
+    }
+
 }
