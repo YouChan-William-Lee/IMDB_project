@@ -147,6 +147,14 @@ class ShowControllerTest {
     }
 
     @Test
+    void getSearchedShowsByShowTitlesWithSpecialCharacter() {
+        String[] result = getShowsByTitle("**");
+        String[] actual = new String[]{};
+
+        assertArrayEquals(actual, result);
+    }
+
+    @Test
     void getSearchedShowsByActorsWithTom() {
         String[] result = getShowsByActor("tom");
         String[] actual = new String[]{"Inception"};
@@ -187,6 +195,14 @@ class ShowControllerTest {
     void getSearchedShowsByActorsWithUpperCaseLetters() {
         String[] result = getShowsByActor("TOM");
         String[] actual = new String[]{"Inception"};
+
+        assertArrayEquals(actual, result);
+    }
+
+    @Test
+    void getSearchedShowsByActorsWithSpecialCharacter() {
+        String[] result = getShowsByActor("**");
+        String[] actual = new String[]{};
 
         assertArrayEquals(actual, result);
     }

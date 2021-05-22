@@ -16,37 +16,37 @@ class LoginControllerTest {
 
     @Test
     void approvedCheckAdmin() {
-        assertEquals(true, approvedCheck("admin"));
+        assertTrue(approvedCheck("admin"));
     }
 
     @Test
     void approvedCheckRegular1() {
-        assertEquals(true, approvedCheck("regular1"));
+        assertTrue(approvedCheck("regular1"));
     }
 
     @Test
     void approvedCheckRegular2() {
-        assertEquals(true, approvedCheck("regular2"));
+        assertTrue(approvedCheck("regular2"));
     }
 
     @Test
     void approvedCheckCritics1() {
-        assertEquals(true, approvedCheck("critics1"));
+        assertTrue(approvedCheck("critics1"));
     }
 
     @Test
     void approvedCheckCritics2() {
-        assertEquals(true, approvedCheck("critics2"));
+        assertTrue(approvedCheck("critics2"));
     }
 
     @Test
     void approvedCheckPCO1() {
-        assertEquals(false, approvedCheck("pco1"));
+        assertFalse(approvedCheck("pco1"));
     }
 
     @Test
     void approvedCheckPCO2() {
-        assertEquals(true, approvedCheck("pco2"));
+        assertTrue(approvedCheck("pco2"));
     }
 
     @Test
@@ -70,6 +70,14 @@ class LoginControllerTest {
         assertThrows(
                 NullPointerException.class,
                 () -> approvedCheck(null),
+                "Invalid null character should throw (NullPointerException)");
+    }
+
+    @Test
+    void approvedCheckSpecialCharacter() {
+        assertThrows(
+                NullPointerException.class,
+                () -> approvedCheck("**"),
                 "Invalid null character should throw (NullPointerException)");
     }
 
